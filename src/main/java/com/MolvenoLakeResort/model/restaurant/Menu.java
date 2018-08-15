@@ -1,9 +1,6 @@
 package com.MolvenoLakeResort.model.restaurant;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +14,7 @@ public class Menu {
     private Season season;
 
     @OneToMany
+    @JoinColumn(name = "menuItem_id")
     private List<MenuItem> menuItemList = new ArrayList<>();
 
     public String getName() {
