@@ -14,7 +14,7 @@ public class MenuItem {
     private double salesPrice;
     private MenuCategory menuCategory;
 
-    
+
     @ManyToMany
     @JoinTable(name = "menuItem_ingredient",
             joinColumns = @JoinColumn(name = "menuItem_id", referencedColumnName = "id"),

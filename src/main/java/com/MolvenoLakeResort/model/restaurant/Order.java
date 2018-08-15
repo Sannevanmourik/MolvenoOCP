@@ -1,33 +1,34 @@
 package com.MolvenoLakeResort.model.restaurant;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.time.LocalDate;
 
+@Entity
 public class Order {
 
-    private int ID;
-    private Date date;
-    private double totalOrderCost;
-    private PaymentStatus statusOfPayment;
-    private boolean isPaid;
+    @Id
+    @GeneratedValue
+    private long id;
+    private LocalDate date;
+//    private double totalOrderCost;
+//    private PaymentStatus statusOfPayment;
+    private boolean paid;
 
-
-    //for unit testing
-    public void setTotalOrderCost (double totalOrderCost){
-
-        this.totalOrderCost = totalOrderCost;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public double getTotalOrderCost (){
-
-        return this.totalOrderCost;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    // use Enum PaymentStatus
-    public PaymentStatus getStatusOfPayment() {
-        return this.statusOfPayment;
+    public boolean isPaid() {
+        return paid;
     }
 
-    public void setStatusOfPayment(PaymentStatus statusOfPayment) {
-        this.statusOfPayment = statusOfPayment;
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 }

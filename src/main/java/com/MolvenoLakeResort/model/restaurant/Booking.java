@@ -23,7 +23,6 @@ public class Booking implements Serializable {
 
     private LocalDate date;
 
-
     private TimeSlot timeSlot;
 
     public Table getTable() {
