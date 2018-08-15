@@ -1,6 +1,7 @@
 package com.MolvenoLakeResort.model.restaurant;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class Receipt {
     @Id
     private long id;
     private boolean paid;
+    private LocalDate date;
 
     // a list of ordered items, coupled to a table
 
@@ -20,6 +22,11 @@ public class Receipt {
 
 
     // write a getter to get the total price WITH A FLATMAP :D
+
+
+    public LocalDate getDate() {
+        return date.now();
+    }
 
     public List<MenuItem> getOrderedItemList() {
         return orderedItemList;
