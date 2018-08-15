@@ -14,9 +14,7 @@ public class MenuItem {
     private double salesPrice;
     private MenuCategory menuCategory;
 
-
-
-
+    
     @ManyToMany
     @JoinTable(name = "menuItem_ingredient",
             joinColumns = @JoinColumn(name = "menuItem_id", referencedColumnName = "id"),
@@ -89,6 +87,10 @@ public class MenuItem {
 
     public double getProfit() {
         return getSalesPrice() - getCalculatedPrice();
+    }
+
+    public boolean isIngredientsInStock() {
+        return getIngredientList().stream().allMatch(Ingredient::isInStock);
     }
 }
 
