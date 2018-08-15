@@ -33,7 +33,7 @@ public class MenuItemTest {
 
     public void setupMock() {
 //        Mockito.when(iets).thenReturn(naareenklasse);
-        
+
         ingredientList.add(testIngredient1);
         ingredientList.add(testIngredient2);
         ingredientList.add(testIngredient3);
@@ -44,8 +44,8 @@ public class MenuItemTest {
     @Test
     public void getCalculatedPriceTest() {
         sut.getCalculatedPrice();
-        assertEquals(3.3,ingredientList.stream().mapToDouble(Ingredient::getPrice).sum(),0.005);
-        assertEquals(0, ingredientList2.stream().mapToDouble(Ingredient::getPrice).sum(), 0.005 );
+        assertEquals(3.3, ingredientList.stream().mapToDouble(Ingredient::getPrice).sum(),0.005);
+        assertEquals(0, ingredientList2.stream().mapToDouble(Ingredient::getPrice).sum(), 0.005);
     }
 
     @Test

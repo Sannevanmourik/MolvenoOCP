@@ -1,6 +1,5 @@
 package com.MolvenoLakeResort.rest;
 
-import com.MolvenoLakeResort.model.restaurant.Menu;
 import com.MolvenoLakeResort.model.restaurant.Order;
 import com.MolvenoLakeResort.model.restaurant.persistence.MenuRepository;
 import com.MolvenoLakeResort.model.restaurant.persistence.OrderRepository;
@@ -9,9 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
+
 
 @RestController
 @RequestMapping("api/orders")
@@ -23,7 +21,9 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<Order> create(@RequestBody Order newOrder) {
 
+
             return new ResponseEntity<Order>(this.orderRepository.save(newOrder), HttpStatus.CREATED);
+
     }
 
     @GetMapping
@@ -50,7 +50,8 @@ public class OrderController {
 
         if (possibleOrder.isPresent()) {
             Order order = possibleOrder.get();
-            order.setPaid(update.isPaid());
+//            order.setPaid(update.isPaid());
+
 
             return new ResponseEntity<Order>(this.orderRepository.save(order), HttpStatus.OK);
         } else {
