@@ -23,7 +23,7 @@ public class ReceiptController {
 
 
             return new ResponseEntity<Receipt>(this.receiptRepository.save(newReceipt), HttpStatus.CREATED);
-        
+
     }
 
     @GetMapping
@@ -51,6 +51,7 @@ public class ReceiptController {
         if (possibleReceipt.isPresent()) {
             Receipt receipt = possibleReceipt.get();
             receipt.setPaid(update.isPaid());
+            receipt.setOrderedItemList(update.getOrderedItemList());
 
 
             return new ResponseEntity<Receipt>(this.receiptRepository.save(receipt), HttpStatus.OK);

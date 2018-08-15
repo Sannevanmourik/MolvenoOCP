@@ -1,9 +1,8 @@
 package com.MolvenoLakeResort.model.restaurant;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Receipt {
@@ -12,6 +11,23 @@ public class Receipt {
     @Id
     private long id;
     private boolean paid;
+
+    // a list of ordered items, coupled to a table
+
+    @OneToMany
+//    @JoinColumn(name = "menuItem_id")
+    private List<MenuItem> orderedItemList = new ArrayList<>();
+
+
+    // write a getter to get the total price WITH A FLATMAP :D
+
+    public List<MenuItem> getOrderedItemList() {
+        return orderedItemList;
+    }
+
+    public void setOrderedItemList(List<MenuItem> orderedItemList) {
+        this.orderedItemList = orderedItemList;
+    }
 
     public boolean isPaid() {
         return paid;
