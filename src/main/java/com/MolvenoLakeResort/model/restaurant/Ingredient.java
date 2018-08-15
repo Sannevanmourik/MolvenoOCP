@@ -16,6 +16,7 @@ public class Ingredient implements Serializable {
     private String name;
     private double price;
     private boolean vegetarian;
+    private long stock;
 
     @ManyToMany(mappedBy = "ingredientList")
     @JsonIgnore // print geen tabel van menuItems
@@ -32,6 +33,14 @@ public class Ingredient implements Serializable {
 
     // add getter and setter
 
+
+    public long getStock() {
+        return stock;
+    }
+
+    public void setStock(long stock) {
+        this.stock = stock;
+    }
 
     public boolean isVegetarian() {
         return vegetarian;
