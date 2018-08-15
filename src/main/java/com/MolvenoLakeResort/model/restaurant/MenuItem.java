@@ -24,7 +24,11 @@ public class MenuItem {
     private List<Ingredient> ingredientList = new ArrayList<>();
 
 
-
+    @ManyToMany
+    @JoinTable(name = "menuItem_subDish",
+            joinColumns = @JoinColumn(name = "menuItem_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "subDish_id", referencedColumnName = "id"))
+    private List<SubDish> subDishList = new ArrayList<>();
 
 
 // add constructor
@@ -80,7 +84,9 @@ public class MenuItem {
     }
 
     public double getCalculatedPrice() {
-        return getIngredientList().stream().mapToDouble(Ingredient::getPrice).sum();
+        double totalPriceIngredientList = getIngredientList().stream().mapToDouble(Ingredient::getPrice).sum();
+        double totalPriceSubDishList = getSubDishList().stream().flatMapToDouble(s -> s.getIngredientListForSubDish().stream().mapToDouble(i -> i.getPrice())).sum();
+        return totalPriceIngredientList + totalPriceSubDishList;
     }
 
     public boolean isVegetarian() {
@@ -89,6 +95,14 @@ public class MenuItem {
 
     public double getProfit() {
         return getSalesPrice() - getCalculatedPrice();
+    }
+
+    public List<SubDish> getSubDishList() {
+        return subDishList;
+    }
+
+    public void setSubDishList(List<SubDish> subDishList) {
+        this.subDishList = subDishList;
     }
 }
 
