@@ -23,8 +23,6 @@ public class MenuItem {
 
 
 
-
-
 // add constructor
 
     public MenuItem() {

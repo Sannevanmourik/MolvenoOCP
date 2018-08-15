@@ -11,17 +11,13 @@ public class Order {
     @Id
     @GeneratedValue
     private long id;
-    private LocalDate date;
+    private LocalDate date = LocalDate.now(); // in constructor?
 //    private double totalOrderCost;
 //    private PaymentStatus statusOfPayment;
     private boolean paid;
 
     public LocalDate getDate() {
         return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
     }
 
     public boolean isPaid() {
