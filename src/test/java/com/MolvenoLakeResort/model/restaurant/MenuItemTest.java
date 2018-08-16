@@ -12,7 +12,13 @@ import static org.junit.Assert.*;
 
 public class MenuItemTest {
 
-    MenuItem sut;
+    MenuItem sut = new MenuItem();
+
+    Ingredient testIngredient4 = new Ingredient();
+    Ingredient testIngredient5 = new Ingredient();
+
+    List<Ingredient> testList = new ArrayList<>();
+
 
     @Mock
     List<Ingredient> ingredientList = new ArrayList<>();
@@ -37,9 +43,42 @@ public class MenuItemTest {
         ingredientList.add(testIngredient1);
         ingredientList.add(testIngredient2);
         ingredientList.add(testIngredient3);
+        testIngredient4.setStock(10);
+        testIngredient5.setStock(100);
+        testList.add(testIngredient4);
+        testList.add(testIngredient5);
+        sut.setIngredientList(testList);
+
+
+
 
 
     }
+
+    @Test
+    public void orderTest() {
+        sut.order();
+        assertEquals(9, testIngredient4.getStock());
+        assertEquals(99, testIngredient5.getStock());
+    }
+
+    @Test
+    public void orderTest2() {
+        sut.order();
+        assertEquals(1, sut.getAmountOfTimesOrdered());
+
+    }
+
+    @Test
+    public void orderTest3() {
+        sut.order();
+        sut.order();
+        sut.order();
+        assertEquals(3, sut.getAmountOfTimesOrdered());
+
+    }
+
+
 
     @Test
     public void getCalculatedPriceTest() {

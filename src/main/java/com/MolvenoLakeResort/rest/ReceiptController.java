@@ -51,6 +51,7 @@ public class ReceiptController {
             Receipt receipt = possibleReceipt.get();
             receipt.setPaid(update.isPaid());
             receipt.setOrderedItemList(update.getOrderedItemList());
+            receipt.setGuest(update.getGuest());
 
 
             return new ResponseEntity<Receipt>(this.receiptRepository.save(receipt), HttpStatus.OK);

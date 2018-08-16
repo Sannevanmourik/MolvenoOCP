@@ -19,6 +19,7 @@ public class MenuItem {
     private String name;
     private double salesPrice;
     private MenuCategory menuCategory;
+    private long amountOfTimesOrdered;
 
 
     @ManyToMany
@@ -53,10 +54,23 @@ public class MenuItem {
         this.salesPrice = salesPrice;
     }
 
+    // order function: for each ingredient in ingredientlist, decrement stock with 1
+
+    public void order() {
+        getIngredientList().stream().forEach(i -> i.reduceStock());
+        amountOfTimesOrdered++;
+
+
+    }
+
 // Dit is een test!!!!
 
     // add getter and setter
 
+
+    public long getAmountOfTimesOrdered() {
+        return amountOfTimesOrdered;
+    }
 
     public MenuCategory getMenuCategory() {
         return menuCategory;

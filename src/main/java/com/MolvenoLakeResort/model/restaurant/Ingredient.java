@@ -48,6 +48,10 @@ public class Ingredient implements Serializable {
         }
     }
 
+    public void reduceStock() {
+        stock--;
+    }
+
     public long getStock() {
         return stock;
     }
