@@ -19,6 +19,7 @@ public class MenuItem {
     private String name;
     private double salesPrice;
     private MenuCategory menuCategory;
+    private long amountOfTimesOrdered;
 
 
     @ManyToMany
@@ -57,6 +58,8 @@ public class MenuItem {
 
     public void order() {
         getIngredientList().stream().forEach(i -> i.reduceStock());
+        amountOfTimesOrdered++;
+
 
     }
 
@@ -64,6 +67,10 @@ public class MenuItem {
 
     // add getter and setter
 
+
+    public long getAmountOfTimesOrdered() {
+        return amountOfTimesOrdered;
+    }
 
     public MenuCategory getMenuCategory() {
         return menuCategory;

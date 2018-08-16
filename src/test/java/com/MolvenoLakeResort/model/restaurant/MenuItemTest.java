@@ -63,6 +63,24 @@ public class MenuItemTest {
     }
 
     @Test
+    public void orderTest2() {
+        sut.order();
+        assertEquals(1, sut.getAmountOfTimesOrdered());
+
+    }
+
+    @Test
+    public void orderTest3() {
+        sut.order();
+        sut.order();
+        sut.order();
+        assertEquals(3, sut.getAmountOfTimesOrdered());
+
+    }
+
+
+
+    @Test
     public void getCalculatedPriceTest() {
         sut.getCalculatedPrice();
         assertEquals(3.3, ingredientList.stream().mapToDouble(Ingredient::getPrice).sum(),0.005);
