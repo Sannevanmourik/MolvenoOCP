@@ -2,6 +2,7 @@ package com.MolvenoLakeResort.model.restaurant;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +24,17 @@ public class Receipt {
 
     // write a getter to get the total price WITH A FLATMAP :D
 
+    // set current date in constructor
+
+    public Receipt () {
+        this.date = date.now();
+        // check if it works:
+//        this.date = LocalDate.of(2014, Month.JANUARY, 1);
+    }
+
 
     public LocalDate getDate() {
-        return date.now();
+        return date;
     }
 
     public List<MenuItem> getOrderedItemList() {
