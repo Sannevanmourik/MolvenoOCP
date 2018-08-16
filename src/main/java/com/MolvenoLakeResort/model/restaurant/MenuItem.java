@@ -3,8 +3,12 @@ package com.MolvenoLakeResort.model.restaurant;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 public class MenuItem {
@@ -99,7 +103,7 @@ public class MenuItem {
 
     public double getCalculatedPrice() {
         double totalPriceIngredientList = getIngredientList().stream().mapToDouble(Ingredient::getPrice).sum();
-        double totalPriceSubDishList = getSubDishList().stream().flatMapToDouble(s -> s.getIngredientListForSubDish().stream().mapToDouble(i -> i.getPrice())).sum();
+        double totalPriceSubDishList = getSubDishList().stream().flatMapToDouble(s -> s.getIngredientListForSubDish().stream().mapToDouble(Ingredient::getPrice)).sum();
         return totalPriceIngredientList + totalPriceSubDishList;
     }
 
@@ -114,7 +118,6 @@ public class MenuItem {
     public boolean isIngredientsInStock() {
         return getIngredientList().stream().allMatch(Ingredient::isInStock);
     }
-
 
     public List<SubDish> getSubDishList() {
         return subDishList;
@@ -131,8 +134,30 @@ public class MenuItem {
 
     public void setReceiptList(List<Receipt> receiptList) {
         this.receiptList = receiptList;
+
     }
+
+
+    public List<Allergy> getFilteredListOfAllergiesPerMenuItem() {
+        List<Allergy> listOfAllergiesFromIngredients = getIngredientList().parallelStream().map(Ingredient::getAllergy).collect(Collectors.toList());
+        List<Allergy> listOfAllergiesFromSubDishes = getSubDishList().parallelStream().flatMap(s -> s.getIngredientListForSubDish().stream().map(Ingredient::getAllergy)).collect(Collectors.toList());
+        List<Allergy> listofAllAllergiesFromMenuItem = Stream.concat(listOfAllergiesFromIngredients.stream(), listOfAllergiesFromSubDishes.stream()).collect(Collectors.toList());
+
+        List<Allergy> filteredListOfAllAllergiesFromMenuItem = listofAllAllergiesFromMenuItem.stream().filter(a -> a != null).distinct().collect(Collectors.toList());
+
+        return filteredListOfAllAllergiesFromMenuItem;
+        
+    }
+
+
 }
+
+
+//        List<Y> createEnumList() {
+//        return Stream.of(Y.values())
+//        .flatMap(y -> IntStream.range(0, y.getI()).mapToObj(i -> y))
+//        .collect(toList());
+
 
 
 
