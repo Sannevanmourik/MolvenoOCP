@@ -56,4 +56,9 @@ public class Receipt {
     public long getId() {
         return id;
     }
+
+    public double getTotalPrice() {
+        double totalPrice = getOrderedItemList().stream().mapToDouble(MenuItem::getSalesPrice).sum();
+        return totalPrice;
+    }
 }

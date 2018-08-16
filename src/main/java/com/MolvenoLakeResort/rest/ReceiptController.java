@@ -21,7 +21,6 @@ public class ReceiptController {
     @PostMapping
     public ResponseEntity<Receipt> create(@RequestBody Receipt newReceipt) {
 
-
             return new ResponseEntity<Receipt>(this.receiptRepository.save(newReceipt), HttpStatus.CREATED);
 
     }
