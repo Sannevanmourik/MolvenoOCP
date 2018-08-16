@@ -63,6 +63,7 @@ public class GuestController {
             guest.setFirstName(update.getFirstName());
             guest.setLastName(update.getLastName());
             guest.setPhoneNumber(update.getPhoneNumber());
+            guest.setReceipts(update.getReceipts());
 
             return new ResponseEntity<Guest>(this.guestRepository.save(guest), HttpStatus.OK);
         } else {
