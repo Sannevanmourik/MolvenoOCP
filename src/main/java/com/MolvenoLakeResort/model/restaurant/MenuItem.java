@@ -49,6 +49,13 @@ public class MenuItem {
         this.salesPrice = salesPrice;
     }
 
+    // order function: for each ingredient in ingredientlist, decrement stock with 1
+
+    public void order() {
+        getIngredientList().stream().forEach(i -> i.reduceStock());
+
+    }
+
 // Dit is een test!!!!
 
     // add getter and setter
