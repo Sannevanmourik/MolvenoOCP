@@ -16,7 +16,7 @@ public class Ingredient implements Serializable {
     private String name;
     private double price;
     private boolean vegetarian;
-    private long stock;
+    private static long stock;
     private boolean inStock = false;
 
     @ManyToMany(mappedBy = "ingredientList")
