@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -129,14 +130,20 @@ public class MenuItem {
 
     }
 
-    public List<Allergy> getListOfAllergies() {
-        List<Allergy> listOfAllergiesFromIngredients = getIngredientList().stream().map(Ingredient::getAllergy).collect(Collectors.toList());
-        List<Allergy> listOfAllergiesFromSubDishes = getSubDishList().stream().flatMap(s -> s.getIngredientListForSubDish().stream().map(Ingredient::getAllergy)).collect(Collectors.toList());
-        return Stream.concat(listOfAllergiesFromIngredients.stream(), listOfAllergiesFromSubDishes.stream()).collect(Collectors.toList());
+
+    public List<Allergy> getFilteredListOfAllergiesPerMenuItem() {
+        List<Allergy> listOfAllergiesFromIngredients = getIngredientList().parallelStream().map(Ingredient::getAllergy).collect(Collectors.toList());
+        List<Allergy> listOfAllergiesFromSubDishes = getSubDishList().parallelStream().flatMap(s -> s.getIngredientListForSubDish().stream().map(Ingredient::getAllergy)).collect(Collectors.toList());
+        List<Allergy> listofAllAllergiesFromMenuItem = Stream.concat(listOfAllergiesFromIngredients.stream(), listOfAllergiesFromSubDishes.stream()).collect(Collectors.toList());
+
+        List<Allergy> filteredListOfAllAllergiesFromMenuItem = listofAllAllergiesFromMenuItem.stream().filter(a -> a != null).distinct().collect(Collectors.toList());
+
+        return filteredListOfAllAllergiesFromMenuItem;
         
     }
-}
 
+
+}
 
 
 //        List<Y> createEnumList() {
