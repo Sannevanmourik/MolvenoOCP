@@ -1,5 +1,7 @@
 package com.MolvenoLakeResort.model.restaurant;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,13 @@ public class MenuItem {
             joinColumns = @JoinColumn(name = "menuItem_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "subDish_id", referencedColumnName = "id"))
     private List<SubDish> subDishList = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "orderedItemList")
+    @JsonIgnore // print geen tabel van subDishes
+    private List<Receipt> receiptList;
+
+
+
 
 
 // add constructor
@@ -97,6 +106,8 @@ public class MenuItem {
 
     public boolean isIngredientsInStock() {
         return getIngredientList().stream().allMatch(Ingredient::isInStock);
+    }
+
 
     public List<SubDish> getSubDishList() {
         return subDishList;
@@ -105,6 +116,14 @@ public class MenuItem {
     public void setSubDishList(List<SubDish> subDishList) {
         this.subDishList = subDishList;
 
+    }
+
+    public List<Receipt> getReceiptList() {
+        return receiptList;
+    }
+
+    public void setReceiptList(List<Receipt> receiptList) {
+        this.receiptList = receiptList;
     }
 }
 
