@@ -69,6 +69,7 @@ public class IngredientController {
             ingredient.setPrice(update.getPrice());
             ingredient.setVegetarian(update.isVegetarian());
             ingredient.setStock(update.getStock());
+            ingredient.setAllergy(update.getAllergy());
 
             return new ResponseEntity<Ingredient>(this.ingredientRepository.save(ingredient), HttpStatus.OK);
         } else {
