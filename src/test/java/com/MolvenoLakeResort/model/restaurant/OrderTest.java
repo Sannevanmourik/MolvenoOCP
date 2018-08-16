@@ -8,20 +8,6 @@ import static org.junit.Assert.assertEquals;
 
 public class OrderTest {
 
-    private Order order;
 
-    @Before
-    public void setUP() {
-        this.order = new Order();
-    }
-
-    @Test
-    public void testSetAndGetForTotalOrderCost(){
-
-        this.order.setTotalOrderCost(3.25);
-
-        Assert.assertEquals(3.25, order.getTotalOrderCost(), 0);
-
-    }
 
 }

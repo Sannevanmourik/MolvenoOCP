@@ -15,8 +15,6 @@ public class MenuItem {
     private MenuCategory menuCategory;
 
 
-
-
     @ManyToMany
     @JoinTable(name = "menuItem_ingredient",
             joinColumns = @JoinColumn(name = "menuItem_id", referencedColumnName = "id"),
@@ -97,12 +95,16 @@ public class MenuItem {
         return getSalesPrice() - getCalculatedPrice();
     }
 
+    public boolean isIngredientsInStock() {
+        return getIngredientList().stream().allMatch(Ingredient::isInStock);
+
     public List<SubDish> getSubDishList() {
         return subDishList;
     }
 
     public void setSubDishList(List<SubDish> subDishList) {
         this.subDishList = subDishList;
+
     }
 }
 
