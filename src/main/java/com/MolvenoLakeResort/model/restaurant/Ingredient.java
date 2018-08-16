@@ -28,6 +28,10 @@ public class Ingredient implements Serializable {
     @JsonIgnore // print geen tabel van subDishes
     private List<SubDish> subDishList;
 
+    @ManyToMany(mappedBy = "ingredientListForRecipe")
+    @JsonIgnore // print geen tabel van recipes
+    private List<Recipe> recipeList;
+
     public Ingredient(String name, long id, double price) {
         this.name = name;
         this.id = id;
@@ -110,6 +114,14 @@ public class Ingredient implements Serializable {
 
     public void setAllergy(Allergy allergy) {
         this.allergy = allergy;
+    }
+
+    public List<Recipe> getRecipeList() {
+        return recipeList;
+    }
+
+    public void setRecipeList(List<Recipe> recipeList) {
+        this.recipeList = recipeList;
     }
 
     @Override

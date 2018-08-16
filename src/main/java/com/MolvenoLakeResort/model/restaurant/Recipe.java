@@ -1,9 +1,8 @@
 package com.MolvenoLakeResort.model.restaurant;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Recipe {
@@ -15,7 +14,25 @@ public class Recipe {
     private double salesPrice;
     private MenuCategory menuCategory;
 
+    // link to ingredients, same way as for menuItem
+    @ManyToMany
+    @JoinTable(name = "recipe_ingredient",
+            joinColumns = @JoinColumn(name = "recipe_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id"))
+    private List<Ingredient> ingredientListForRecipe = new ArrayList<>();
+
+
+
     // getters and setters
+
+
+    public List<Ingredient> getIngredientListForRecipe() {
+        return ingredientListForRecipe;
+    }
+
+    public void setIngredientList(List<Ingredient> ingredientListForRecipe) {
+        this.ingredientListForRecipe = ingredientListForRecipe;
+    }
 
     public String getName() {
         return name;
