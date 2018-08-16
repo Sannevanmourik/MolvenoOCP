@@ -3,8 +3,11 @@ package com.MolvenoLakeResort.model.restaurant;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 public class MenuItem {
@@ -92,7 +95,7 @@ public class MenuItem {
 
     public double getCalculatedPrice() {
         double totalPriceIngredientList = getIngredientList().stream().mapToDouble(Ingredient::getPrice).sum();
-        double totalPriceSubDishList = getSubDishList().stream().flatMapToDouble(s -> s.getIngredientListForSubDish().stream().mapToDouble(i -> i.getPrice())).sum();
+        double totalPriceSubDishList = getSubDishList().stream().flatMapToDouble(s -> s.getIngredientListForSubDish().stream().mapToDouble(Ingredient::getPrice)).sum();
         return totalPriceIngredientList + totalPriceSubDishList;
     }
 
@@ -123,8 +126,24 @@ public class MenuItem {
 
     public void setReceiptList(List<Receipt> receiptList) {
         this.receiptList = receiptList;
+
+    }
+
+    public List<Allergy> getListOfAllergies() {
+        List<Allergy> listOfAllergiesFromIngredients = getIngredientList().stream().map(Ingredient::getAllergy).collect(Collectors.toList());
+        List<Allergy> listOfAllergiesFromSubDishes = getSubDishList().stream().flatMap(s -> s.getIngredientListForSubDish().stream().map(Ingredient::getAllergy)).collect(Collectors.toList());
+        return Stream.concat(listOfAllergiesFromIngredients.stream(), listOfAllergiesFromSubDishes.stream()).collect(Collectors.toList());
+        
     }
 }
+
+
+
+//        List<Y> createEnumList() {
+//        return Stream.of(Y.values())
+//        .flatMap(y -> IntStream.range(0, y.getI()).mapToObj(i -> y))
+//        .collect(toList());
+
 
 
 
