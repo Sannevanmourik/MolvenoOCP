@@ -18,6 +18,7 @@ public class Ingredient implements Serializable {
     private boolean vegetarian;
     private long stock;
     private boolean inStock = false;
+    private Allergy allergy;
 
     @ManyToMany(mappedBy = "ingredientList")
     @JsonIgnore // print geen tabel van menuItems
@@ -97,6 +98,14 @@ public class Ingredient implements Serializable {
 
     public void setSubDishList(List<SubDish> subDishList) {
         this.subDishList = subDishList;
+    }
+
+    public Allergy getAllergy() {
+        return allergy;
+    }
+
+    public void setAllergy(Allergy allergy) {
+        this.allergy = allergy;
     }
 
     @Override
