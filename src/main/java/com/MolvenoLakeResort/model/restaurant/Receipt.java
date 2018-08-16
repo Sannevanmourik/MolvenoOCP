@@ -1,5 +1,7 @@
 package com.MolvenoLakeResort.model.restaurant;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Month;
@@ -17,8 +19,12 @@ public class Receipt {
 
     // a list of ordered items, coupled to a table
 
-    @OneToMany
-//    @JoinColumn(name = "menuItem_id")
+
+
+    @ManyToMany
+    @JoinTable(name = "menuItem_receipt",
+            joinColumns = @JoinColumn(name = "menuItem_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "receipt_id", referencedColumnName = "id"))
     private List<MenuItem> orderedItemList = new ArrayList<>();
 
 
