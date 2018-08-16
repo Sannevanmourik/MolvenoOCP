@@ -97,6 +97,8 @@ public class MenuItem {
 
     public boolean isIngredientsInStock() {
         return getIngredientList().stream().allMatch(Ingredient::isInStock);
+    }
+
 
     public List<SubDish> getSubDishList() {
         return subDishList;
