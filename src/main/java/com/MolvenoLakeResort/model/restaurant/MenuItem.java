@@ -3,10 +3,8 @@ package com.MolvenoLakeResort.model.restaurant;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,7 +17,7 @@ public class MenuItem {
     private String name;
     private double salesPrice;
     private MenuCategory menuCategory;
-    private long amountOfTimesOrdered;
+    private long amountOfTimesOrdered; // this should also go in a service
 
 
     @ManyToMany
@@ -56,6 +54,7 @@ public class MenuItem {
 
     // order function: for each ingredient in ingredientlist, decrement stock with 1
 
+    // this function should go somewhere else!
     public void order() {
         getIngredientList().stream().forEach(i -> i.reduceStock());
         amountOfTimesOrdered++;
