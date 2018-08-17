@@ -17,6 +17,13 @@ public class Menu {
     @JoinColumn(name = "menuItem_id")
     private List<MenuItem> menuItemList = new ArrayList<>();
 
+
+    public long getId() {
+        return id;
+    }
+
+
+
     public String getName() {
         return name;
     }

@@ -17,9 +17,16 @@ public class RecipeList {
     @JoinColumn(name = "recipe_id")
     private List<Recipe> recipeList = new ArrayList<>();
 
+//    @OneToOne
+//    private Menu menu;
 
 
     // getters and setters
+
+
+//    public Menu getMenu() {
+//        return menu;
+//    }
 
     public long getId() {
         return id;
@@ -44,13 +51,13 @@ public class RecipeList {
 //        return totalPrice;
 //    }
 
-    public long getAmountOfAvailableRecipes() {
+    public long generateAmountOfAvailableRecipes() {
         return getRecipeList().stream().filter(m -> m.isIngredientsInStock()).count();
 
     }
 
     public long generateRandomNumberInRangeAvailableRecipes() {
-        long range = getAmountOfAvailableRecipes();
+        long range = generateAmountOfAvailableRecipes();
         long random = (long) (Math.random() * range);
         return random;
     }
@@ -59,9 +66,19 @@ public class RecipeList {
     // from stackoverflow: get nth number of stream:
     // OptionalInt result = stream.skip(n-1).findFirst();
 
-    public Recipe getDishOfTheDay() {
+//    public Recipe generateDishOfTheDay() {
+//        long n = generateRandomNumberInRangeAvailableRecipes();
+//        return getRecipeList().stream().skip(n).findFirst().get();
+//        // if the list is empty: NoSuchElementException
+//
+//    }
+
+//    MenuItem dishOfTheDay = new MenuItem();
+
+    public Recipe generateDishOfTheDay() {
         long n = generateRandomNumberInRangeAvailableRecipes();
-        return getRecipeList().stream().skip(n).findFirst().get();
+        return getRecipeList().stream().skip(n).findFirst().orElse(null);
 
     }
+
 }

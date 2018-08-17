@@ -19,6 +19,7 @@ import static org.mockito.Mockito.when;
 public class RecipeListTest {
 
     RecipeList sut = new RecipeList();
+    RecipeList sut2 = new RecipeList();
 
     List<Recipe> recipeList = new ArrayList<>();
 
@@ -54,7 +55,7 @@ public class RecipeListTest {
         when(recipeTest2.isIngredientsInStock()).thenReturn(true);
         when(recipeTest3.isIngredientsInStock()).thenReturn(true);
         when(recipeTest4.isIngredientsInStock()).thenReturn(true);
-        assertEquals(4, sut.getAmountOfAvailableRecipes());
+        assertEquals(4, sut.generateAmountOfAvailableRecipes());
 
         verify(recipeTest1, Mockito.atMost(1)).isIngredientsInStock();
 //        verify(recipeTest2, Mockito.never()).isIngredientsInStock();
@@ -66,11 +67,21 @@ public class RecipeListTest {
         assertTrue(value <= 3 && value >= 0);
     }
 
+
+//     does this test ever fail?
     @Test
     public void getDishOfTheDayTest() {
-        Recipe dishOfTheDay = sut.getDishOfTheDay();
+        Recipe dishOfTheDay = sut.generateDishOfTheDay();
         assertTrue(dishOfTheDay.equals(recipeTest1) || dishOfTheDay.equals(recipeTest2)
         || dishOfTheDay.equals(recipeTest3) || dishOfTheDay.equals(recipeTest4));
     }
+
+@Test
+    public void getDishOfTheDayTest2() {
+        Recipe dishOfTheDay = sut2.generateDishOfTheDay();
+        assertNull(dishOfTheDay);
+
+    }
+
 
 }
