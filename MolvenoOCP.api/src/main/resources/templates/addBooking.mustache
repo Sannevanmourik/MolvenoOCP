@@ -1,0 +1,43 @@
+{{> guestHeader}}
+
+<!-- Page Content -->
+<div class="container-fluid">
+
+    <div class="container" style="margin-top: 30px;">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+
+                <h3>Book a table</h3>
+                <p style="font-style: italic;">Book for more than 6 guests? Please call us at +39 061 586934.</p>
+                <form id="bookingForm" enctype='text/plain'>
+                    First name:<br>
+                    <input type='text' class="form-control" name='guestFirstName' id="guestFirstName"><br>
+                    Last name: <br>
+                    <input type='text' class="form-control" name='guestLastName' id="guestLastName"><br>
+                    E-mail address:
+                    <input type='text' class="form-control" name='phoneNumber' id="phoneNumber"><br>
+                    For how many people do you want to book a table?<br>
+                    <input type='text' class="form-control" name='tableCapacity' id="tableCapacity" placeholder="Max. 6 guests"><br>
+                    Date:<br>
+                    <input type='date' class="form-control" name='bookingDate' id="bookingDate"><br>
+                    Would you like to book for lunch or dinner?<br>
+                    <input type='text' class="form-control" name='bookingTime' id="bookingTime" placeholder="e.g. 'lunch' or 'dinner'"><br>
+                    <div style="margin-bottom: 10px;">
+                        <input type="checkbox" id="isSubscribed" name="subscriptionBox" value="subscriptionBox"/>
+                        <label for="isSubscribed">I'd like to subscribe to the newsletter!</label>
+                    </div>
+                    <button type="button" class="btn btn-success"  onclick="submitNewBooking('http://localhost:8080/api/bookings');">Submit</button>
+                    <a href="/" class="btn close-btn" role="button" >Cancel</a>
+                </form>
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container -->
+
+{{> footer}}
