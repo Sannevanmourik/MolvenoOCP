@@ -1,12 +1,14 @@
 package com.MolvenoLakeResort.service;
 
-import com.MolvenoLakeResort.model.restaurant.Recipe;
+import com.MolvenoLakeResort.model.restaurant.MenuItem;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class DishOfTheDayService {
     // filter lijst van menuItems op basis van isIngredientsInStock
     // haal de lengte van de lijst op
@@ -14,22 +16,19 @@ public class DishOfTheDayService {
     // selecteer een menuItem uit de lijst op basis van random number
     // zet dit als menuItem op het menu (menuCategory: DishOfTheDay, price 10)
 
+    private List<MenuItem> menuItemList = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "recipe_id")
-    private List<Recipe> recipeList = new ArrayList<>();
-
-    public List<Recipe> getRecipeList() {
-        return recipeList;
+    public List<MenuItem> getMenuItemList() {
+        return menuItemList;
     }
 
-    public long generateAmountOfAvailableRecipes() {
-        return getRecipeList().stream().filter(m -> m.isIngredientsInStock()).count();
+    public long generateAmountOfAvailableMenuItems() {
+        return getMenuItemList().stream().filter(m -> m.isIngredientsInStock()).count();
 
     }
 
-    public long generateRandomNumberInRangeAvailableRecipes() {
-        long range = generateAmountOfAvailableRecipes();
+    public long generateRandomNumberInRangeAvailableMenuItems() {
+        long range = generateAmountOfAvailableMenuItems();
         long random = (long) (Math.random() * range);
         return random;
     }
@@ -37,9 +36,9 @@ public class DishOfTheDayService {
     // from stackoverflow: get nth number of stream:
     // OptionalInt result = stream.skip(n-1).findFirst();
 
-    public Recipe generateDishOfTheDay() {
-        long n = generateRandomNumberInRangeAvailableRecipes();
-        return getRecipeList().stream().skip(n).findFirst().orElse(null);
+    public MenuItem generateDishOfTheDay() {
+        long n = generateRandomNumberInRangeAvailableMenuItems();
+        return getMenuItemList().stream().skip(n).findFirst().orElse(null);
 
     }
 }
