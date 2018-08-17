@@ -3,6 +3,8 @@ package com.MolvenoLakeResort.model.restaurant;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 @Entity
 public class RecipeList {
@@ -14,6 +16,8 @@ public class RecipeList {
     @OneToMany
     @JoinColumn(name = "recipe_id")
     private List<Recipe> recipeList = new ArrayList<>();
+
+
 
     // getters and setters
 
@@ -42,6 +46,22 @@ public class RecipeList {
 
     public long getAmountOfAvailableRecipes() {
         return getRecipeList().stream().filter(m -> m.isIngredientsInStock() == true).count();
+
+    }
+
+    public long generateRandomNumberInRangeAvailableRecipes() {
+        long range = getAmountOfAvailableRecipes();
+        long random = (long) (Math.random() * range);
+        return random;
+    }
+
+
+    // from stackoverflow: get nth number of stream:
+    // OptionalInt result = stream.skip(n-1).findFirst();
+
+    public Recipe getDishOfTheDay() {
+        long n = generateRandomNumberInRangeAvailableRecipes();
+        return getRecipeList().stream().skip(n-1).findFirst().get();
 
     }
 }
