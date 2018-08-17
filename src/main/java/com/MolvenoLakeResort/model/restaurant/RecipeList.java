@@ -45,7 +45,7 @@ public class RecipeList {
 //    }
 
     public long getAmountOfAvailableRecipes() {
-        return getRecipeList().stream().filter(m -> m.isIngredientsInStock() == true).count();
+        return getRecipeList().stream().filter(m -> m.isIngredientsInStock()).count();
 
     }
 
@@ -61,7 +61,7 @@ public class RecipeList {
 
     public Recipe getDishOfTheDay() {
         long n = generateRandomNumberInRangeAvailableRecipes();
-        return getRecipeList().stream().skip(n-1).findFirst().get();
+        return getRecipeList().stream().skip(n).findFirst().get();
 
     }
 }

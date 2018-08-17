@@ -2,32 +2,38 @@ package com.MolvenoLakeResort.model.restaurant;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class RecipeListTest {
 
     RecipeList sut = new RecipeList();
 
-    @Mock
     List<Recipe> recipeList = new ArrayList<>();
 
     @Mock
-    Recipe recipeTest1 = new Recipe();
+    Recipe recipeTest1;
+
 
     @Mock
-    Recipe recipeTest2 = new Recipe();
+    Recipe recipeTest2;
 
     @Mock
-    Recipe recipeTest3 = new Recipe();
+    Recipe recipeTest3;
 
     @Mock
-    Recipe recipeTest4 = new Recipe();
+    Recipe recipeTest4;
 
     @Before
     public void setup() {
@@ -43,8 +49,15 @@ public class RecipeListTest {
 
     @Test
     public void getAmountOfAvailableRecipesTest() {
+
+        when(recipeTest1.isIngredientsInStock()).thenReturn(true);
+        when(recipeTest2.isIngredientsInStock()).thenReturn(true);
+        when(recipeTest3.isIngredientsInStock()).thenReturn(true);
+        when(recipeTest4.isIngredientsInStock()).thenReturn(true);
         assertEquals(4, sut.getAmountOfAvailableRecipes());
 
+        verify(recipeTest1, Mockito.atMost(1)).isIngredientsInStock();
+//        verify(recipeTest2, Mockito.never()).isIngredientsInStock();
     }
 
     @Test
