@@ -20,6 +20,12 @@ public class MenuItemController {
     public ResponseEntity<MenuItem> create(@RequestBody MenuItem newMenuItem) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findByName(newMenuItem.getName());
 
+        if ((newMenuItem.getName().equals("")) || (newMenuItem.getName() == null)) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (!(newMenuItem.getName().contains("[a-zA-Z]+"))) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if (possibleMenuItem.isPresent()) {
             MenuItem existingMenuItem = possibleMenuItem.get();
             return new ResponseEntity<MenuItem>(HttpStatus.CONFLICT);
@@ -60,6 +66,12 @@ public class MenuItemController {
     public ResponseEntity<MenuItem> updateById(@PathVariable long id, @RequestBody MenuItem update) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findById(id);
 
+        if ((update.getName().equals("")) || (update.getName() == null)) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (!(update.getName().contains("[a-zA-Z]+"))) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if (possibleMenuItem.isPresent()) {
             MenuItem menuItem = possibleMenuItem.get();
             menuItem.setName(update.getName());
