@@ -22,6 +22,14 @@ public class Recipe {
     private List<Ingredient> ingredientListForRecipe = new ArrayList<>();
 
 
+    // dish of the day generator: filter recipes on isIngredientInStock, get length list,
+    // generate a random number in the range of the list
+    // select dish from list based on random number
+    // show DISH OF THE DAY on menu (menu category?)
+
+//    private List<Recipe> recipeList = new ArrayList<>();
+
+
 
     // getters and setters
 
@@ -60,5 +68,9 @@ public class Recipe {
 
     public long getId() {
         return id;
+    }
+
+    public boolean isIngredientsInStock() {
+        return getIngredientListForRecipe().stream().allMatch(Ingredient::isInStock);
     }
 }
