@@ -23,23 +23,26 @@ public class IngredientController {
     public ResponseEntity<Ingredient> create(@RequestBody Ingredient newIngredient) {
         Optional<Ingredient> possibleIngredient = this.ingredientRepository.findByName(newIngredient.getName());
 
-        if (possibleIngredient.isPresent()) {
+            if ((newIngredient.getName().equals("")) || (newIngredient.getName() == null)) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        if (!(newIngredient.getName().contains("[a-zA-Z]+"))) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+         else if (possibleIngredient.isPresent()) {
             Ingredient existingIngredient = possibleIngredient.get();
             return new ResponseEntity<Ingredient>(HttpStatus.CONFLICT);
+        }
+        else if (newIngredient.getPrice() < 0){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-//            if (existingIngredient.getName().equals(newIngredient.getName())) {
-//                return new ResponseEntity<Ingredient>(HttpStatus.CONFLICT);
-//            } else {
-//
-//                return new ResponseEntity<Ingredient>(this.ingredientRepository.save(newIngredient), HttpStatus.CREATED);
-//
-//            }
-
-        } else {
+        else {
 
             return new ResponseEntity<Ingredient>(this.ingredientRepository.save(newIngredient), HttpStatus.CREATED);
         }
     }
+
 
     @GetMapping
     public ResponseEntity<Iterable<Ingredient>> list() {
@@ -52,9 +55,7 @@ public class IngredientController {
 
         if (possibleIngredient.isPresent()) {
             return new ResponseEntity<Ingredient>(possibleIngredient.get(), HttpStatus.OK);
-        }
-
-        else {
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -63,6 +64,16 @@ public class IngredientController {
     public ResponseEntity<Ingredient> updateById(@PathVariable long id, @RequestBody Ingredient update) {
         Optional<Ingredient> possibleIngredient = this.ingredientRepository.findById(id);
 
+
+        if ((update.getName().equals("")) ) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (!(update.getName().contains("[a-zA-Z]+"))) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        else if (update.getPrice() < 0){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if (possibleIngredient.isPresent()) {
             Ingredient ingredient = possibleIngredient.get();
             ingredient.setName(update.getName());
