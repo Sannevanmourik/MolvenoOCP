@@ -2,6 +2,7 @@ package com.MolvenoLakeResort.rest;
 
 import com.MolvenoLakeResort.model.restaurant.Menu;
 import com.MolvenoLakeResort.model.restaurant.persistence.MenuRepository;
+import com.MolvenoLakeResort.service.DishOfTheDayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/menu")
 public class MenuController {
+
+    @Autowired
+    private DishOfTheDayService dishOfTheDayService;
 
     @Autowired
     private MenuRepository menuRepository;
@@ -27,7 +31,7 @@ public class MenuController {
 
 
         } else {
-
+            newMenu.setDishOfTheDay(dishOfTheDayService.generateDishOfTheDay());
             return new ResponseEntity<Menu>(this.menuRepository.save(newMenu), HttpStatus.CREATED);
         }
     }

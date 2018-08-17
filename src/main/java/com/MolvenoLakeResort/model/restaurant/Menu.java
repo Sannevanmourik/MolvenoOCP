@@ -1,5 +1,8 @@
 package com.MolvenoLakeResort.model.restaurant;
 
+import com.MolvenoLakeResort.service.DishOfTheDayService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,17 @@ public class Menu {
     @OneToMany
     @JoinColumn(name = "menuItem_id")
     private List<MenuItem> menuItemList = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name="dishOfTheDay_id")
+    private MenuItem dishOfTheDay;
+
+
+    public long getId() {
+        return id;
+    }
+
+
 
     public String getName() {
         return name;
@@ -42,6 +56,11 @@ public class Menu {
     }
 
 
+    public void setDishOfTheDay(MenuItem menuItem) {
+        this.dishOfTheDay = menuItem;
+    }
 
-
+    public MenuItem getDishOfTheDay() {
+        return dishOfTheDay;
+    }
 }
