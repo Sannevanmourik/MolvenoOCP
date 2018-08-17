@@ -73,4 +73,6 @@ public class Recipe {
     public boolean isIngredientsInStock() {
         return getIngredientListForRecipe().stream().allMatch(Ingredient::isInStock);
     }
+
+
 }

@@ -28,4 +28,20 @@ public class RecipeList {
     public void setRecipeList(List<Recipe> recipeList) {
         this.recipeList = recipeList;
     }
+
+    // filter lijst van recepten op basis van isIngredientsInStock
+    // haal de lengte van de lijst op
+    // genereer een random number in de range vd lijst
+    // selecteer een recept uit de lijst op basis van random number
+    // zet dit recept als menuItem op het menu (menuCategory: DishOfTheDay, price 10)
+
+//    public MenuItem getDishOfTheDay() {
+//        double totalPrice = getOrderedItemList().stream().mapToDouble(MenuItem::getSalesPrice).sum();
+//        return totalPrice;
+//    }
+
+    public long getAmountOfAvailableRecipes() {
+        return getRecipeList().stream().filter(m -> m.isIngredientsInStock() == true).count();
+
+    }
 }
