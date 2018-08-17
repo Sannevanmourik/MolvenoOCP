@@ -1,6 +1,8 @@
 package com.MolvenoLakeResort.model.restaurant;
 
+import com.MolvenoLakeResort.service.DishOfTheDayService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class MenuItem {
     private double salesPrice;
     private MenuCategory menuCategory;
     private long amountOfTimesOrdered; // this should also go in a service
+
 
 
     @ManyToMany

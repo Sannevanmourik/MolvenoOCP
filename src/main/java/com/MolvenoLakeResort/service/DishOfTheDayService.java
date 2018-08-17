@@ -1,6 +1,9 @@
 package com.MolvenoLakeResort.service;
 
+import com.MolvenoLakeResort.model.restaurant.Menu;
 import com.MolvenoLakeResort.model.restaurant.MenuItem;
+import com.MolvenoLakeResort.model.restaurant.persistence.MenuItemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.JoinColumn;
@@ -16,10 +19,15 @@ public class DishOfTheDayService {
     // selecteer een menuItem uit de lijst op basis van random number
     // zet dit als menuItem op het menu (menuCategory: DishOfTheDay, price 10)
 
-    private List<MenuItem> menuItemList = new ArrayList<>();
+    @Autowired
+    private MenuItemRepository repository;
+
+
 
     public List<MenuItem> getMenuItemList() {
-        return menuItemList;
+        List<MenuItem> menuItems = new ArrayList<>();
+        repository.findAll().forEach(menuItems::add);
+        return menuItems;
     }
 
     public long generateAmountOfAvailableMenuItems() {
