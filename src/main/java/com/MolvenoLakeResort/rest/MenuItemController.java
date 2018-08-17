@@ -27,13 +27,9 @@ public class MenuItemController {
 //            if (existingMenuItem.getName().equals(newMenuItem.getName())) {
 //                return new ResponseEntity<MenuItem>(HttpStatus.CONFLICT);
 //            } else {
-//
 //                return new ResponseEntity<MenuItem>(this.menuItemRepository.save(newMenuItem), HttpStatus.CREATED);
-//
 //            }
-
         } else {
-
             return new ResponseEntity<MenuItem>(this.menuItemRepository.save(newMenuItem), HttpStatus.CREATED);
         }
     }
@@ -46,7 +42,6 @@ public class MenuItemController {
     @GetMapping("{id}")
     public ResponseEntity<MenuItem> findById(@PathVariable long id) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findById(id);
-
         if (possibleMenuItem.isPresent()) {
             return new ResponseEntity<MenuItem>(possibleMenuItem.get(), HttpStatus.OK);
         }
@@ -86,5 +81,4 @@ public class MenuItemController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }
