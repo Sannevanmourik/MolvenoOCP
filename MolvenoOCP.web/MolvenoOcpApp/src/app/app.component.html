@@ -18,9 +18,15 @@
 </div> -->
 
 <div>
-  <app-ingredient-list></app-ingredient-list>
+  <!-- <app-ingredient-list></app-ingredient-list>
+   -->
+
+   <!-- // replaced with router-outlet: -->
+   <a routerLink="/ingredients">Ingredient List</a><br>
+   <a routerLink="/ingredientEditor">Ingredient Editor</a>
+   <router-outlet></router-outlet>
 </div>
 
-<app-ingredient-editor></app-ingredient-editor>
+<!-- <app-ingredient-editor></app-ingredient-editor> -->
 
 <!-- <app-admin></app-admin> -->

@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'ingredientEditor', component: IngredientEditorComponent },
   { path: 'admin',
     component: AdminComponent,
-    // canActivate: [AdminGuard]
+    canActivate: [AdminGuard]
   },
 
 ];
@@ -19,6 +19,6 @@ const routes: Routes = [
   imports: [ RouterModule.forRoot(routes) ],
   exports: [ RouterModule ]
 })
-export class AppRoutingModule {
 
+export class AppRoutingModule {
 }

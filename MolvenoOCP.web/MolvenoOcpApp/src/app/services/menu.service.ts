@@ -26,6 +26,7 @@ export class MenuService {
 
 
   menuUrl = 'http://localhost:8080/api/menuItems';
+  menuxUrl = 'http://localhost:8080/api/menuItems/delete';
 
 
   constructor(private http: HttpClient) {
@@ -45,7 +46,7 @@ export class MenuService {
   }
 
   deleteMenu (id: number): Observable<{}> {
-    const url = `${this.menuUrl}/${id}`;
+    const url = `${this.menuxUrl}/${id}`;
     return this.http.delete(url);
   }
 
