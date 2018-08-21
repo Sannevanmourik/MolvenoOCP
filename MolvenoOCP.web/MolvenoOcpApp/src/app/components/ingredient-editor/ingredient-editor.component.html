@@ -1,0 +1,59 @@
+<form [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
+  <label>
+    Name:
+    <input type="text" formControlName="name" required>
+  </label>
+
+  <label>
+    Price:
+    <input type="number" formControlName="price" required>
+  </label>
+
+  <label>
+    Vegetarian:
+    <input type="checkbox" formControlName="vegetarian">
+  </label>
+
+  <label>
+    Stock:
+    <input type="number" formControlName="stock">
+  </label>
+
+  <label>
+    Allergy:
+    <input type="text" formControlName="allergy">
+  </label>
+
+
+
+
+  <div formArrayName="aliases">
+    <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button>
+
+    <div *ngFor="let address of aliases.controls; let i=index">
+      <!-- The repeated alias template -->
+      <label>
+        Alias:
+        <input type="text" [formControlName]="i">
+      </label>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!ingredientForm.valid">Submit</button>
+</form>
+
+<hr>
+
+
+<p>
+  Form Value: {{ ingredientForm.value | json }}
+</p>
+
+
+<p>
+  Form Status: {{ ingredientForm.status }}
+</p>
+
+<p>
+  <button (click)="updateIngredient()">Update Ingredient</button>
+</p>
