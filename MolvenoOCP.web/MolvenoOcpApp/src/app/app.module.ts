@@ -1,3 +1,4 @@
+import { MenuServiceService } from './services/menu-service.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
@@ -9,6 +10,10 @@ import { IngredientService } from '../app/services/ingredient-service.service';
 import { IngredientListComponent } from '../app/components/ingredient-list/ingredient-list.component';
 import { IngredientEditorComponent} from '../app/components/ingredient-editor/ingredient-editor.component';
 import { AppComponent } from './app.component';
+<<<<<<< HEAD
+=======
+
+>>>>>>> created show-menu component + added it to routing + made sure we can view menuItems on localhost:4200
 import { AppRoutingModule } from './/app-routing.module';
 import { PlaceOrderComponent } from './components/place-order/place-order.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -20,6 +25,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { FakeBackendInterceptor, JwtInterceptor } from './components/helpers';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
+import { ShowMenuComponent } from './components/show-menu/show-menu.component';
 
 
 
@@ -33,6 +39,7 @@ import {MatCardModule} from '@angular/material/card';
     LoginComponent,
     AdminComponent,
     IngredientEditorComponent,
+    ShowMenuComponent,
 
 
   ],
@@ -47,7 +54,7 @@ import {MatCardModule} from '@angular/material/card';
     BrowserAnimationsModule,
     MatCardModule,
   ],
-  providers: [IngredientService, AlertService, NgbActiveModal,
+  providers: [IngredientService, MenuServiceService, AlertService, NgbActiveModal,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: FakeBackendInterceptor,
@@ -58,7 +65,7 @@ import {MatCardModule} from '@angular/material/card';
   useClass: JwtInterceptor,
   multi: true
 }],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 

@@ -1,0 +1,26 @@
+<!-- <p>
+  {{menus && menus[0]?.name}} {{menus && menus[0].menuItemList[1].name}}
+
+</p>
+
+
+<p>
+  after
+</p>
+ -->
+
+<br/> <br/>
+
+<div *ngFor="let menu of menus">
+  <b>{{menu && menu.name}}</b>
+
+  <div *ngFor="let menuItemList of menu.menuItemList">
+    {{menuItemList.name}} <i *ngIf="menuItemList.vegetarian">is vegetarian </i>
+    <!-- <i> {{menuItemList.filteredListOfAllergiesPerMenuItem.getDescription()}}</i> -->
+  </div>
+
+ 
+
+</div>
+  
+
