@@ -26,11 +26,13 @@ public class ReceiptController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<Receipt>> list() {
         return new ResponseEntity<Iterable<Receipt>>(this.receiptRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Receipt> findById(@PathVariable long id) {
         Optional<Receipt> possibleReceipt = this.receiptRepository.findById(id);
 
@@ -44,6 +46,7 @@ public class ReceiptController {
     }
 
     @PutMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Receipt> updateById(@PathVariable long id, @RequestBody Receipt update) {
         Optional<Receipt> possibleReceipt = this.receiptRepository.findById(id);
 
@@ -61,6 +64,7 @@ public class ReceiptController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Receipt> deleteById(@PathVariable long id) {
         Optional<Receipt> possibleReceipt = this.receiptRepository.findById(id);
 

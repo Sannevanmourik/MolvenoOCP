@@ -17,6 +17,7 @@ public class SubDishController {
     private SubDishRepository subDishRespository;
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<SubDish> create(@RequestBody SubDish newSubDish) {
         Optional<SubDish> possibleSubDish = this.subDishRespository.findByName(newSubDish.getName());
 
@@ -31,11 +32,13 @@ public class SubDishController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<SubDish>> list() {
         return new ResponseEntity<Iterable<SubDish>>(this.subDishRespository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<SubDish> findById(@PathVariable long id) {
         Optional<SubDish> possibleSubDish = this.subDishRespository.findById(id);
 
@@ -47,6 +50,7 @@ public class SubDishController {
     }
 
     @PutMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<SubDish> updateById(@PathVariable long id, @RequestBody SubDish update) {
         Optional<SubDish> possibleSubDish = this.subDishRespository.findById(id);
 
@@ -63,6 +67,7 @@ public class SubDishController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<SubDish> deleteById(@PathVariable long id) {
         Optional<SubDish> possibleSubDish = this.subDishRespository.findById(id);
 

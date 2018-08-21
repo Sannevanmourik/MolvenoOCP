@@ -32,6 +32,7 @@ public class MostPopularDishes {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<MenuItem>> list() {
         return new ResponseEntity<Iterable<MenuItem>>(this.mostPopular(), HttpStatus.OK);
     }

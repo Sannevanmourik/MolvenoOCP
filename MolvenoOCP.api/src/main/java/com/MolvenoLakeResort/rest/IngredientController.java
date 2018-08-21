@@ -21,6 +21,7 @@ public class IngredientController {
     private IngredientRepository ingredientRepository;
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Ingredient> create(@RequestBody Ingredient newIngredient) {
         Optional<Ingredient> possibleIngredient = this.ingredientRepository.findByName(newIngredient.getName());
 
@@ -46,11 +47,13 @@ public class IngredientController {
 
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<Ingredient>> list() {
         return new ResponseEntity<Iterable<Ingredient>>(this.ingredientRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Ingredient> findById(@PathVariable long id) {
         Optional<Ingredient> possibleIngredient = this.ingredientRepository.findById(id);
 
@@ -62,6 +65,7 @@ public class IngredientController {
     }
 
     @PutMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Ingredient> updateById(@PathVariable long id, @RequestBody Ingredient update) {
         Optional<Ingredient> possibleIngredient = this.ingredientRepository.findById(id);
 
@@ -92,6 +96,7 @@ public class IngredientController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Ingredient> deleteById(@PathVariable long id) {
         Optional<Ingredient> possibleIngredient = this.ingredientRepository.findById(id);
 
