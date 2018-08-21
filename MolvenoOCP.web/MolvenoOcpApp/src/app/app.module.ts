@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material';
+import { EnumSelectPipe } from './pipes/enum-select.pipe';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {MatTableModule} from '@angular/material';
     AppComponent,
     IngredientListComponent,
     IngredientEditorComponent,
+    EnumSelectPipe,
 
 
   ],
