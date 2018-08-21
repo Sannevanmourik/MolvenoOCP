@@ -30,6 +30,7 @@ public class BookingController {
     private TableRepository tableRepository;
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Booking> create(@RequestBody Booking newBooking) {
 
         System.out.println("just to be sure: " + newBooking);
@@ -74,12 +75,14 @@ public class BookingController {
 
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<Booking>> list() {
         return new ResponseEntity<Iterable<Booking>>(this.bookingsRepository.findAll(),
                 HttpStatus.OK);
     }
 
     @GetMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Booking> findById(@PathVariable long id) {
 
         Optional<Booking> result = this.bookingsRepository.findById(id);
@@ -92,6 +95,7 @@ public class BookingController {
     }
 
     @PutMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Booking> updateById(@PathVariable long id, @RequestBody Booking update) {
 
         Optional<Booking> possibleDirectObject = this.bookingsRepository.findById(id);
@@ -117,6 +121,7 @@ public class BookingController {
     }
 
     @DeleteMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<?> deleteById(@PathVariable long id) {
         this.bookingsRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);

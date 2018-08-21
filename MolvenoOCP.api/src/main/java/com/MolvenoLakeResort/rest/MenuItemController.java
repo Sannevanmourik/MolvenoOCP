@@ -17,13 +17,14 @@ public class MenuItemController {
     private MenuItemRepository menuItemRepository;
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<MenuItem> create(@RequestBody MenuItem newMenuItem) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findByName(newMenuItem.getName());
 
-        if ((newMenuItem.getName().equals("")) || (newMenuItem.getName() == null)) {
+        if (((newMenuItem.getName() == null) || newMenuItem.getName().equals(""))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        if (!(newMenuItem.getName().contains("[a-zA-Z]+"))) {
+        if (!(newMenuItem.getName().matches("[a-zA-Z]+"))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if (possibleMenuItem.isPresent()) {
@@ -41,11 +42,13 @@ public class MenuItemController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<MenuItem>> list() {
         return new ResponseEntity<Iterable<MenuItem>>(this.menuItemRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<MenuItem> findById(@PathVariable long id) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findById(id);
         if (possibleMenuItem.isPresent()) {
@@ -58,13 +61,14 @@ public class MenuItemController {
     }
 
     @PutMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<MenuItem> updateById(@PathVariable long id, @RequestBody MenuItem update) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findById(id);
 
         if ((update.getName().equals("")) || (update.getName() == null)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        if (!(update.getName().contains("[a-zA-Z]+"))) {
+        if (!(update.getName().matches("[a-zA-Z]+"))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if (possibleMenuItem.isPresent()) {
@@ -84,6 +88,7 @@ public class MenuItemController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<MenuItem> deleteById(@PathVariable long id) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findById(id);
 
