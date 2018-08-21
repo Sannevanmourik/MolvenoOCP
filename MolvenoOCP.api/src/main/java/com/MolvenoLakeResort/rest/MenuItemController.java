@@ -20,10 +20,10 @@ public class MenuItemController {
     public ResponseEntity<MenuItem> create(@RequestBody MenuItem newMenuItem) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findByName(newMenuItem.getName());
 
-        if ((newMenuItem.getName().equals("")) || (newMenuItem.getName() == null)) {
+        if (((newMenuItem.getName() == null) || newMenuItem.getName().equals(""))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        if (!(newMenuItem.getName().contains("[a-zA-Z]+"))) {
+        if (!(newMenuItem.getName().matches("[a-zA-Z]+"))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if (possibleMenuItem.isPresent()) {
@@ -64,7 +64,7 @@ public class MenuItemController {
         if ((update.getName().equals("")) || (update.getName() == null)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        if (!(update.getName().contains("[a-zA-Z]+"))) {
+        if (!(update.getName().matches("[a-zA-Z]+"))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if (possibleMenuItem.isPresent()) {

@@ -69,7 +69,7 @@ public class IngredientController {
         if ((update.getName().equals("")) ) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        if (!(update.getName().contains("[a-zA-Z]+"))) {
+        if (!(update.getName().matches("[a-zA-Z]+"))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         else if (update.getPrice() < 0){
