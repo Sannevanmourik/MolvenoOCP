@@ -1,3 +1,6 @@
+
+<h4> Add ingredient</h4>
+
 <form [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
   <label>
     Name:
@@ -39,21 +42,21 @@
     </div>
   </div>
 
-  <button type="submit" [disabled]="!ingredientForm.valid">Submit</button>
+  <button type="submit" [disabled]="!ingredientForm.valid" (click)="add()">Add</button>
 </form>
 
-<hr>
+
 
 
 <p>
   Form Value: {{ ingredientForm.value | json }}
 </p>
 
+<p>
+  Name value test: {{ name.value }}
+</p>
+
 
 <p>
   Form Status: {{ ingredientForm.status }}
-</p>
-
-<p>
-  <button (click)="updateIngredient()">Update Ingredient</button>
 </p>
