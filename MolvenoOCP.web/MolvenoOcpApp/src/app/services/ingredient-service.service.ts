@@ -26,7 +26,7 @@ export class IngredientService {
     return this.http.get(this.ingredientUrl);
   }
 
-  getIngredient (id: number): Observable<Ingredient>{
+  getIngredient (id: number): Observable<Ingredient> {
     return this.http.get<Ingredient>(`${this.ingredientUrl}/${id}`);
   }
 

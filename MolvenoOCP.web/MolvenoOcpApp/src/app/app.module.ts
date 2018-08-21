@@ -10,6 +10,8 @@ import { IngredientEditorComponent} from '../app/components/ingredient-editor/in
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { AppRoutingModule } from './/app-routing.module';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [IngredientService],
   bootstrap: [AppComponent]
