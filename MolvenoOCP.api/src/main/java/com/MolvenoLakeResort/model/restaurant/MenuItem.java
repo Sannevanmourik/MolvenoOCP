@@ -159,16 +159,15 @@ public class MenuItem {
         
     }
 
+    public boolean canEatWithAllergy(Allergy allergy) {
+        return !getFilteredListOfAllergiesPerMenuItem().contains(allergy);
+    }
 
 
 
 }
 
 
-//        List<Y> createEnumList() {
-//        return Stream.of(Y.values())
-//        .flatMap(y -> IntStream.range(0, y.getI()).mapToObj(i -> y))
-//        .collect(toList());
 
 
 
