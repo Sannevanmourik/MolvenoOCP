@@ -30,30 +30,28 @@
 
 
 
-  <div formArrayName="aliases">
+  <!-- <div formArrayName="aliases">
     <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button>
 
     <div *ngFor="let address of aliases.controls; let i=index">
-      <!-- The repeated alias template -->
+
       <label>
         Alias:
         <input type="text" [formControlName]="i">
       </label>
     </div>
-  </div>
+  </div> -->
 
-  <button type="submit" [disabled]="!ingredientForm.valid" (click)="add()">Add</button>
+  
 </form>
+
+<button type="submit" [disabled]="!ingredientForm.valid" (click)="add2()">Add</button>
 
 
 
 
 <p>
   Form Value: {{ ingredientForm.value | json }}
-</p>
-
-<p>
-  Name value test: {{ name.value }}
 </p>
 
 
