@@ -12,13 +12,8 @@ import { PlaceOrderComponent } from './components/place-order/place-order.compon
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
-    PlaceOrderComponent
-=======
     IngredientListComponent,
-
-
->>>>>>> develop
+    PlaceOrderComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,5 +23,3 @@ import { PlaceOrderComponent } from './components/place-order/place-order.compon
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-//it works, because of the herbs
