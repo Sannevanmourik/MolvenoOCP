@@ -27,7 +27,7 @@ public class IngredientController {
             if ((newIngredient.getName().equals("")) || (newIngredient.getName() == null)) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-        if (!(newIngredient.getName().contains("[a-zA-Z]+"))) {
+        if (!(newIngredient.getName().matches("[a-zA-Z]+"))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
          else if (possibleIngredient.isPresent()) {
