@@ -22,6 +22,7 @@ public class MenuController {
     private MenuRepository menuRepository;
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Menu> create(@RequestBody Menu newMenu) {
         Optional<Menu> possibleMenu = this.menuRepository.findByName(newMenu.getName());
 
@@ -37,11 +38,13 @@ public class MenuController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<Menu>> list() {
         return new ResponseEntity<Iterable<Menu>>(this.menuRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Menu> findById(@PathVariable long id) {
         Optional<Menu> possibleMenu = this.menuRepository.findById(id);
 
@@ -55,6 +58,7 @@ public class MenuController {
     }
 
     @PutMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Menu> updateById(@PathVariable long id, @RequestBody Menu update) {
         Optional<Menu> possibleMenu = this.menuRepository.findById(id);
 
@@ -72,6 +76,7 @@ public class MenuController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Menu> deleteById(@PathVariable long id) {
         Optional<Menu> possibleMenu = this.menuRepository.findById(id);
 
