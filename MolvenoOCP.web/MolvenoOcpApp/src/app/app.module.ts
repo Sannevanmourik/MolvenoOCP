@@ -9,6 +9,7 @@ import { IngredientListComponent } from '../app/components/ingredient-list/ingre
 import { IngredientEditorComponent} from '../app/components/ingredient-editor/ingredient-editor.component';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [IngredientService],
   bootstrap: [AppComponent]
