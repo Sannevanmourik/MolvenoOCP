@@ -6,22 +6,29 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IngredientService } from '../app/services/ingredient-service.service';
 import { IngredientListComponent } from '../app/components/ingredient-list/ingredient-list.component';
+import { IngredientEditorComponent} from '../app/components/ingredient-editor/ingredient-editor.component';
 import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './/app-routing.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     IngredientListComponent,
+    IngredientEditorComponent,
 
 
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [IngredientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
-//it works, because of the herbs
+// it works, because of the herbs

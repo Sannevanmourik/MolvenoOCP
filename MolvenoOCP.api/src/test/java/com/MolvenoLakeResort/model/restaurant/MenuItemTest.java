@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 public class MenuItemTest {
 
     MenuItem sut = new MenuItem();
+    MenuItem menuItem = new MenuItem();
 
     Ingredient testIngredient4 = new Ingredient();
     Ingredient testIngredient5 = new Ingredient();
@@ -28,6 +29,8 @@ public class MenuItemTest {
     Ingredient testIngredient2 = new Ingredient("test", 1, 1.1);
     Ingredient testIngredient3 = new Ingredient("test", 1, 1.1);
 
+
+
     @Before
     public void setUp() throws Exception {
 
@@ -40,14 +43,20 @@ public class MenuItemTest {
     public void setupMock() {
 //        Mockito.when(iets).thenReturn(naareenklasse);
 
+        testIngredient4.setStock(10);
+        testIngredient5.setStock(100);
+        testIngredient1.setAllergy(Allergy.GLUTEN);
+
         ingredientList.add(testIngredient1);
         ingredientList.add(testIngredient2);
         ingredientList.add(testIngredient3);
-        testIngredient4.setStock(10);
-        testIngredient5.setStock(100);
+
+        testList.add(testIngredient1);
         testList.add(testIngredient4);
         testList.add(testIngredient5);
+
         sut.setIngredientList(testList);
+
 
 
 
@@ -90,5 +99,16 @@ public class MenuItemTest {
     @Test
     public void isVegetarian() {
         assertEquals(false, ingredientList.stream().allMatch(Ingredient::isVegetarian));
+    }
+
+    @Test
+    public void canEatWithAllergyTest(){
+        Allergy allergy = Allergy.GLUTEN;
+        sut.canEatWithAllergy(Allergy.GLUTEN);
+        menuItem.canEatWithAllergy(Allergy.GLUTEN);
+        assertEquals(false, !(sut.getFilteredListOfAllergiesPerMenuItem().contains(allergy)));
+        assertEquals(true, !(menuItem.getFilteredListOfAllergiesPerMenuItem().contains(allergy)));
+
+
     }
 }
