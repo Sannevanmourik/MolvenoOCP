@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'ingredientEditor', component: IngredientEditorComponent },
   { path: 'admin',
     component: AdminComponent,
-    canActivate: [AdminGuard]
+    // canActivate: [AdminGuard]
   },
 
 ];

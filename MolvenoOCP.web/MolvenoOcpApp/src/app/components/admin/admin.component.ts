@@ -27,25 +27,26 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+
   name = 'admin';
 
   menus: Menu[];
   editMenu: Menu;
 
-  constructor(private movieService: MenuService ) { }
+  constructor(private menuService: MenuService ) { }
 
   ngOnInit() {
-    this.getMovies();
+    this.getMenus();
   }
 
-  getMovies() {
-    this.movieService.getAll().subscribe(
+  getMenus() {
+    this.menuService.getAll().subscribe(
       (menus: Array<Menu>) => {
         this.menus = menus;
-        console.log('Retrieved movies:', this.menus);
+        console.log('Retrieved menus:', this.menus);
       },
       (error) => {
-        console.error('Failed to get movies', error);
+        console.error('Failed to get menus', error);
       }
     );
   }
@@ -68,7 +69,7 @@ export class AdminComponent implements OnInit {
     name = name.trim();
     if (!name) { return; }
 
-    const newMovie: Menu = {
+    const newMenu: Menu = {
       id,
       name,
       salesPrice,
@@ -82,34 +83,34 @@ export class AdminComponent implements OnInit {
       vegetarian,
       ingredientsInStock,
      } as Menu;
-    this.movieService.addMovie(newMovie)
-      .subscribe(movie => {
-        this.menus.push(movie);
-        console.log('Films now contains', this.menus);
-        this.movieService.getAll();
+    this.menuService.addMenu(newMenu)
+      .subscribe(menu => {
+        this.menus.push(menu);
+        console.log('Menu now contains', this.menus);
+        this.menuService.getAll();
       });
   }
 
-  delete(movie: Menu): void {
-    this.menus = this.menus.filter(h => h !== movie);
-    this.movieService.deleteMovie(movie.id).subscribe();
-    this.movieService.getAll();
+  delete(menu: Menu): void {
+    this.menus = this.menus.filter(h => h !== menu);
+    this.menuService.deleteMenu(menu.id).subscribe();
+    this.menuService.getAll();
   }
 
-  edit(movie) {
-    this.editMenu = movie;
-    this.movieService.getAll();
+  edit(menu) {
+    this.editMenu = menu;
+    this.menuService.getAll();
   }
 
   update() {
     if (this.editMenu) {
-      this.movieService.updateMovie(this.editMenu, this.editMenu.id)
-        .subscribe(movie => {
-          const ix = movie ? this.menus.findIndex(h => h.id === movie.id) : -1;
-          if (ix > -1) { this.menus[ix] = movie; }
+      this.menuService.updateMenu(this.editMenu, this.editMenu.id)
+        .subscribe(menu => {
+          const ix = menu ? this.menus.findIndex(h => h.id === menu.id) : -1;
+          if (ix > -1) { this.menus[ix] = menu; }
         });
       this.editMenu = undefined;
     }
-    this.movieService.getAll();
+    this.menuService.getAll();
   }
 }

@@ -36,25 +36,25 @@ export class MenuService {
     return this.http.get(this.menuUrl);
   }
 
-  getMovie (id: number): Observable<Menu> {
+  getMenu (id: number): Observable<Menu> {
     return this.http.get<Menu>(`${this.menuUrl}/${id}`);
   }
 
-  addMovie (menu: Menu): Observable<Menu> {
+  addMenu (menu: Menu): Observable<Menu> {
     return this.http.post<Menu>(this.menuUrl, menu, httpOptions);
   }
 
-  deleteMovie (id: number): Observable<{}> {
+  deleteMenu (id: number): Observable<{}> {
     const url = `${this.menuUrl}/${id}`;
     return this.http.delete(url);
   }
 
-  updateMovie (movie: Menu, id: number): Observable<Menu> {
+  updateMenu (menu: Menu, id: number): Observable<Menu> {
     httpOptions.headers = httpOptions.headers.set('Authorization', 'my-new-auth-token');
     const url = `${this.menuUrl}/${id}`;
 
     return this.http.put<Menu>(
-      url, movie, httpOptions);
+      url, menu, httpOptions);
   }
 
 }
