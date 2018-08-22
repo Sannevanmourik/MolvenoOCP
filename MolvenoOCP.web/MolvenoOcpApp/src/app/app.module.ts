@@ -32,6 +32,7 @@ import {MatTableModule} from '@angular/material';
 import { EnumSelectPipe } from './pipes/enum-select.pipe';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 import {MatListModule} from '@angular/material';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
