@@ -15,6 +15,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from './services/alert.service';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AdminComponent } from './components/admin/admin.component';
 import { FakeBackendInterceptor, JwtInterceptor } from './components/helpers';
@@ -51,7 +52,8 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    AngularFontAwesomeModule
   ],
   exports: [
     EnumSelectPipe
