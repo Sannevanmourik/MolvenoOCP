@@ -37,7 +37,7 @@ export class IngredientListComponent implements OnInit, OnDestroy {
 
   editIngredient: Ingredient;
 
-  formValue: Ingredient;
+  // formValue: Ingredient;
 
 
   // from angular material
@@ -99,36 +99,24 @@ export class IngredientListComponent implements OnInit, OnDestroy {
 
 
   edit(editIngredient) {
-    this.formValue = this.editForm.value;
-
     this.editForm.value.name = editIngredient.name;
 
     // this.formValue.name = editIngredient.name;
-    this.formValue.price = editIngredient.price;
-    this.formValue.vegetarian = editIngredient.vegetarian;
-    this.formValue.stock = editIngredient.stock;
-    this.formValue.allergy = editIngredient.allergy;
-    this.formValue.id = editIngredient.id;
+    this.editForm.value.price = editIngredient.price;
+    this.editForm.value.vegetarian = editIngredient.vegetarian;
+    this.editForm.value.stock = editIngredient.stock;
+    this.editForm.value.allergy = editIngredient.allergy;
+    this.editForm.value.id = editIngredient.id;
     console.log('edit');
     console.log(editIngredient);
     console.log('formValue');
-    console.log(this.formValue);
+    console.log(this.editForm.value);
     this.ingredientService.getAll();
     // this.update();
   }
 
-  save() {
+  save(newIngredient: Ingredient) {
 
-    const editValue = this.editForm.value;
-    console.log(editValue);
-
-    const newIngredient = new Ingredient();
-    newIngredient.id = this.formValue.id;
-    newIngredient.name = editValue.name;
-    newIngredient.price = editValue.price;
-    newIngredient.vegetarian = editValue.vegetarian;
-    newIngredient.stock = editValue.stock;
-    newIngredient.allergy = editValue.allergy;
     console.log('save');
     console.log(newIngredient);
 

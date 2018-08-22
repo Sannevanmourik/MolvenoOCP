@@ -77,7 +77,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                    <!-- <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
                         <label>
                           Name:
                           <input value = "{{element.name}}" type="text" formControlName="name" required>
@@ -111,10 +111,45 @@
                         
                               </select>
                           </label>
+                      </form> -->
+                      <form>
+                          <label>
+                              Name:
+                              <input value = "{{element.name}}" type="text" [(ngModel)] = "element.name" required name = "name">
+                            </label>
+                          
+                            <label>
+                              Price:
+                              <input value = "{{element.price}}" type="number" [(ngModel)] = "element.price" required name = "price">
+                            </label>
+                          
+                            <label>
+                              Vegetarian:
+                              <input type="checkbox" [(ngModel)] = "element.vegetarian" name = "vegetarian">
+                            </label>
+                          
+                            <label>
+                              Stock:
+                              <input value = "{{element.stock}}" type="number" [(ngModel)] = "element.stock" name = "stock">
+                            </label>
+                                       
+                            <!-- <label>
+                                Allergy:
+                                <select formControlName="allergy">
+                                  <option value = "GLUTEN">Gluten</option>
+                                  <option value = "EGG">Egg</option>
+                                  <option value = "COWMILK">Cow's milk</option>
+                                  <option value = "TREENUTS">Tree nuts</option>
+                                  <option value = "PEANUTS">Peanuts</option>
+                                  <option value = "SHELLFISH">Shellfish</option>
+                                  <option value = "SOY">Soy</option>
+                            
+                                  </select>
+                              </label> -->
                       </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" (click)="save()">Save</button>
+                  <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" (click)="save(element)">Save</button>
                 </div>
               </ng-template>
               
