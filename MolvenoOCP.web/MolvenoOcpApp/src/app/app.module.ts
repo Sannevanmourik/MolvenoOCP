@@ -9,6 +9,9 @@ import { IngredientService } from '../app/services/ingredient-service.service';
 import { IngredientListComponent } from '../app/components/ingredient-list/ingredient-list.component';
 import { IngredientEditorComponent} from '../app/components/ingredient-editor/ingredient-editor.component';
 import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './/app-routing.module';
+import { MenuItemListComponent } from './components/menu-item-list/menu-item-list.component';
 import { PlaceOrderComponent } from './components/place-order/place-order.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ModalComponent } from './components/modal/modal.component';
@@ -24,6 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
 import { MenuItemListComponent } from './components/menu-item-list/menu-item-list.component';
 
+>>>>>>>>> Temporary merge branch 2
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +39,10 @@ import { MenuItemListComponent } from './components/menu-item-list/menu-item-lis
     LoginComponent,
     AdminComponent,
     IngredientEditorComponent,
+<<<<<<<<< Temporary merge branch 1
+=========
     MenuItemListComponent,
+
   ],
   imports: [
     NgbModule,
