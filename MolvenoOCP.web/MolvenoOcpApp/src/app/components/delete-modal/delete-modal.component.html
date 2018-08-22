@@ -1,0 +1,20 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Are you sure?</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      This action cannot be undone!
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" (click)="delete(ingredient)">Confirm delete</button>
+    </div>
+  </ng-template>
+  
+  <button class="btn btn-lg btn-outline-danger" (click)="open(content)">Delete</button>
+  
+  <!-- <hr> -->
+  
+  <!-- <pre>{{closeResult}}</pre> -->

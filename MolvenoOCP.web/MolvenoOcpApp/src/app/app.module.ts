@@ -25,6 +25,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material';
 import { EnumSelectPipe } from './pipes/enum-select.pipe';
+import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { EnumSelectPipe } from './pipes/enum-select.pipe';
     AdminComponent,
     IngredientEditorComponent,
     EnumSelectPipe,
+    DeleteModalComponent,
 
 
   ],
