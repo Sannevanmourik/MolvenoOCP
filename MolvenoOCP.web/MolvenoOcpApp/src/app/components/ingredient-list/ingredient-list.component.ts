@@ -47,6 +47,12 @@ export class IngredientListComponent implements OnInit, OnDestroy {
     return this.ingredients;
   }
 
+  delete(ingredient: Ingredient): void {
+    this.ingredients = this.ingredients.filter(h => h !== ingredient);
+    this.ingredientService.deleteIngredient(ingredient.id).subscribe();
+    this.ingredientService.getAll();
+  }
+
 
 
 
