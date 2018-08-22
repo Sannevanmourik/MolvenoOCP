@@ -133,9 +133,9 @@
                               <input value = "{{element.stock}}" type="number" [(ngModel)] = "element.stock" name = "stock">
                             </label>
                                        
-                            <!-- <label>
+                            <label>
                                 Allergy:
-                                <select formControlName="allergy">
+                                <select  [(ngModel)] = "element.allergy" name = "allergy">
                                   <option value = "GLUTEN">Gluten</option>
                                   <option value = "EGG">Egg</option>
                                   <option value = "COWMILK">Cow's milk</option>
@@ -145,7 +145,7 @@
                                   <option value = "SOY">Soy</option>
                             
                                   </select>
-                              </label> -->
+                              </label>
                       </form>
                 </div>
                 <div class="modal-footer">
