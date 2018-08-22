@@ -22,6 +22,9 @@ import { AdminComponent } from './components/admin/admin.component';
 import { FakeBackendInterceptor, JwtInterceptor } from './components/helpers';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
+import { FooterComponent } from './components/footer/footer.component';
+import { MainComponent } from './components/main/main.component';
+import { HeaderComponent } from './components/header/header.component';
 import { ShowMenuComponent } from './components/show-menu/show-menu.component';
 import { LowerCasePipe } from '@angular/common';
 
@@ -37,6 +40,9 @@ import { LowerCasePipe } from '@angular/common';
     LoginComponent,
     AdminComponent,
     IngredientEditorComponent,
+    FooterComponent,
+    MainComponent,
+    HeaderComponent,
     ShowMenuComponent,
 
   ],

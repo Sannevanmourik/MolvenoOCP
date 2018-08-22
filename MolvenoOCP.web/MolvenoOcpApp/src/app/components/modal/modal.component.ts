@@ -1,21 +1,7 @@
-// import { Component, OnInit } from '@angular/core';
 
-// @Component({
-//   selector: 'app-modal',
-//   templateUrl: './modal.component.html',
-//   styleUrls: ['./modal.component.css']
-// })
-// export class ModalComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
-
+import { AuthenticationService } from '../../services/authentication.service';
+import {NgbModule, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -36,34 +22,53 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
     }
   `]
 })
-// export class AppModalComponent {
-  export class ModalComponent implements OnInit {
+
+
+export class ModalComponent implements OnInit {
 
   closeResult: string;
+  modalReference: any;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,
+    private authService: AuthenticationService) {}
 
     ngOnInit() {
+      console.log('Login status: ' + this.getLoggedIn());
   }
 
-
-  openBackDropCustomClass(content) {
-    this.modalService.open(content, {backdropClass: 'light-blue-backdrop'});
-  }
-
-  openWindowCustomClass(content) {
-    this.modalService.open(content, { windowClass: 'dark-modal' });
-  }
-
-  openSm(content) {
-    this.modalService.open(content, { size: 'sm' });
+  public getLoggedIn(): boolean {
+    // console.log('toggeld isLoggedIn()...');
+    return this.authService.isLoggedIn();
   }
 
   openLg(content) {
-    this.modalService.open(content, { size: 'lg' });
+    this.modalService.open(content, { size: 'lg' }).result.then((result) => {
+    // this.modalService.open(content, { size: 'lg' }).dismiss();
+        // this.closeResult = `Closed with: ${result}`;
+     console.log('closing modal') ;
+this.activeModal.close();
+this.activeModal.dismiss();
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      console.log('dismissed');
+    });
+
+    if (this.getLoggedIn()) {
+      console.log('closing modal...');
+    } else {
+      console.log('signing on');
+    }
   }
 
-  openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 }

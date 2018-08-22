@@ -35,6 +35,8 @@ export class AuthenticationService {
   isLoggedIn(): boolean {
     if (this.setActive === true) {
       return this.loggedIn;
+    } else {
+      return false;
     }
   }
 
