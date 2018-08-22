@@ -19,6 +19,7 @@ public class TableController {
     private TableRepository tableRepository;
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Table> create(@RequestBody Table newTable) {
         Optional<Table> possibleTable = (this.tableRepository.findById(newTable.getId()));
 
@@ -30,11 +31,13 @@ public class TableController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<Table>> list() {
         return new ResponseEntity<Iterable<Table>>(this.tableRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Table> findById(@PathVariable long id) {
 
         Optional<Table> result = (this.tableRepository.findById(id));
@@ -47,6 +50,7 @@ public class TableController {
     }
 
     @PutMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Table> updateById(@PathVariable long id, @RequestBody Table update) {
 
         Optional<Table> possibleVictim = (this.tableRepository.findById(id));
@@ -64,6 +68,7 @@ public class TableController {
     }
 
     @DeleteMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Table> deleteById(@PathVariable long id) {
 
         Optional<Table> result = (this.tableRepository.findById(id));
