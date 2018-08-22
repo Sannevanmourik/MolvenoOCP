@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
 import { IngredientService } from '../../services/ingredient-service.service';
 import { Ingredient } from '../../models/ingredient';
 import { Validators, FormBuilder} from '@angular/forms';
 import { Subscription } from '../../../../node_modules/rxjs';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { element } from '../../../../node_modules/@angular/core/src/render3/instructions';
+import { MatTable } from '@angular/material';
 
 // from agnular material
 export interface PeriodicElement {
@@ -31,9 +32,13 @@ export class IngredientListComponent implements OnInit, OnDestroy {
     allergy: [null],
   });
 
+  @ViewChild(MatTable) table: MatTable<any>;
+
   closeResult: string;
 
   editIngredient: Ingredient;
+
+  formValue: Ingredient;
 
 
   // from angular material
@@ -95,14 +100,17 @@ export class IngredientListComponent implements OnInit, OnDestroy {
 
 
   edit(editIngredient) {
-    const formValue = this.editForm.value;
-    formValue.name = editIngredient.name;
-    formValue.price = editIngredient.price;
-    formValue.vegetarian = editIngredient.vegetarian;
-    formValue.stock = editIngredient.stock;
-    formValue.allergy = editIngredient.allergy;
-    formValue.id = editIngredient.id;
+    this.formValue = this.editForm.value;
+    this.formValue.name = editIngredient.name;
+    this.formValue.price = editIngredient.price;
+    this.formValue.vegetarian = editIngredient.vegetarian;
+    this.formValue.stock = editIngredient.stock;
+    this.formValue.allergy = editIngredient.allergy;
+    this.formValue.id = editIngredient.id;
+    console.log('edit');
     console.log(editIngredient);
+    console.log('formValue');
+    console.log(this.formValue);
     this.ingredientService.getAll();
     // this.update();
   }
@@ -110,16 +118,19 @@ export class IngredientListComponent implements OnInit, OnDestroy {
   save() {
 
     const formValue = this.editForm.value;
+
     const newIngredient = new Ingredient();
-    newIngredient.id = formValue.id;
+    newIngredient.id = this.formValue.id;
     newIngredient.name = formValue.name;
     newIngredient.price = formValue.price;
     newIngredient.vegetarian = formValue.vegetarian;
     newIngredient.stock = formValue.stock;
     newIngredient.allergy = formValue.allergy;
+    console.log('save');
     console.log(newIngredient);
 
     this.ingredientService.updateIngredient(newIngredient, newIngredient.id).subscribe();
+    this.table.renderRows();
 
 
   }
