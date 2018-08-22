@@ -1,8 +1,4 @@
-.card{
-    background-color: darkgrey;
-
-}
-
 .jumbotron{
-    background: url('assets/images/menu.jpg');
+    background-image: url("/src/assets/images/menu.jpg");
+    
 }
