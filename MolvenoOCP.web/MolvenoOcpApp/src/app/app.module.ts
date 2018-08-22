@@ -26,6 +26,7 @@ import { FakeBackendInterceptor, JwtInterceptor } from './components/helpers';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import { ShowMenuComponent } from './components/show-menu/show-menu.component';
+import { LowerCasePipe } from '@angular/common';
 
 
 

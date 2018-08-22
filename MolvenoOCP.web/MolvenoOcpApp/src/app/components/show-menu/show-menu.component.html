@@ -25,7 +25,11 @@
         <div class="card bg-light text-darkgrey text-center">
 
           <h3 class="card-title">{{menuItemList.name}}</h3>
-          <p class="card-text"><i *ngIf="menuItemList.vegetarian">is vegetarian </i></p>
+          <p class="card-text">
+            <i *ngIf="menuItemList.vegetarian">Vegetarian <img src="/src/assets/images/vegetarian.PNG" width="20px"> </i>
+
+          </p>
+          <p class="card-text">Allergy info: {{menuItemList.filteredListOfAllergiesPerMenuItem}}</p>
           <!-- <p>Ut enim ad..</p> Note of Sanne: should have contain all the allergies -->
           <a href="#" class="btn btn-secondary">Order!</a>
 
@@ -36,40 +40,48 @@
 
     <div class="row card-group" *ngFor="let menuItemList of menu.menuItemList | slice:5:10">
 
-        <div class="col-sm-4">
-          <div class="card bg-light text-darkgrey text-center">
-  
-            <h3 class="card-title">{{menuItemList.name}}</h3>
-            <p class="card-text"><i *ngIf="menuItemList.vegetarian">is vegetarian </i></p>
-            <!-- <p>Ut enim ad..</p> Note of Sanne: should have contain all the allergies -->
-            <a href="#" class="btn btn-secondary">Order!</a>
-  
-          </div>
+      <div class="col-sm-4">
+        <div class="card bg-light text-darkgrey text-center">
+
+          <h3 class="card-title">{{menuItemList.name}}</h3>
+          <p class="card-text">
+            <i *ngIf="menuItemList.vegetarian">Vegetarian <img src="/src/assets/images/vegetarian.PNG" width="20px"> </i>
+
+          </p>
+          <p class="card-text">Allergy info: {{menuItemList.filteredListOfAllergiesPerMenuItem}}</p>
+          <!-- <p>Ut enim ad..</p> Note of Sanne: should have contain all the allergies -->
+          <a href="#" class="btn btn-secondary">Order!</a>
+
         </div>
-  
       </div>
 
-      <div class="row card-group" *ngFor="let menuItemList of menu.menuItemList | slice:10:15">
+    </div>
 
-          <div class="col-sm-4">
-            <div class="card bg-light text-darkgrey text-center">
-    
-              <h3 class="card-title">{{menuItemList.name}}</h3>
-              <p class="card-text"><i *ngIf="menuItemList.vegetarian">is vegetarian </i></p>
-              <!-- <p>Ut enim ad..</p> Note of Sanne: should have contain all the allergies -->
-              <a href="#" class="btn btn-secondary">Order!</a>
-    
-            </div>
-          </div>
-    
+    <div class="row card-group" *ngFor="let menuItemList of menu.menuItemList | slice:10:15">
+
+      <div class="col-sm-4">
+        <div class="card bg-light text-darkgrey text-center">
+
+          <h3 class="card-title">{{menuItemList.name}}</h3>
+          <p class="card-text">
+            <i *ngIf="menuItemList.vegetarian">Vegetarian <img src="/src/assets/images/vegetarian.PNG" width="20px"> </i>
+
+          </p>
+          <p class="card-text">Allergy info: {{menuItemList.filteredListOfAllergiesPerMenuItem}}</p>
+          <!-- <p>Ut enim ad..</p> Note of Sanne: should have contain all the allergies -->
+          <a href="#" class="btn btn-secondary">Order!</a>
+
         </div>
+      </div>
+
+    </div>
 
 
 
 
   </div>
 
-  
+
 
 
 
