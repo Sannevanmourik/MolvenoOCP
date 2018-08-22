@@ -31,11 +31,7 @@ public class MenuItemController {
             MenuItem existingMenuItem = possibleMenuItem.get();
             return new ResponseEntity<MenuItem>(HttpStatus.CONFLICT);
 
-//            if (existingMenuItem.getName().equals(newMenuItem.getName())) {
-//                return new ResponseEntity<MenuItem>(HttpStatus.CONFLICT);
-//            } else {
-//                return new ResponseEntity<MenuItem>(this.menuItemRepository.save(newMenuItem), HttpStatus.CREATED);
-//            }
+
         } else {
             return new ResponseEntity<MenuItem>(this.menuItemRepository.save(newMenuItem), HttpStatus.CREATED);
         }

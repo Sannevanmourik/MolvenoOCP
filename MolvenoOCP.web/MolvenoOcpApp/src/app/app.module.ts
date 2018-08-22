@@ -9,21 +9,18 @@ import { IngredientService } from '../app/services/ingredient-service.service';
 import { IngredientListComponent } from '../app/components/ingredient-list/ingredient-list.component';
 import { IngredientEditorComponent} from '../app/components/ingredient-editor/ingredient-editor.component';
 import { AppComponent } from './app.component';
-
-import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
-import { MenuItemListComponent } from './components/menu-item-list/menu-item-list.component';
 import { PlaceOrderComponent } from './components/place-order/place-order.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from './services/alert.service';
-import { AppRoutingModule } from './app-routing.module';
 import { AdminComponent } from './components/admin/admin.component';
 import { FakeBackendInterceptor, JwtInterceptor } from './components/helpers';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
+
 
 
 @NgModule({
@@ -36,8 +33,6 @@ import {MatCardModule} from '@angular/material/card';
     LoginComponent,
     AdminComponent,
     IngredientEditorComponent,
-
-    MenuItemListComponent,
 
 
   ],
@@ -67,4 +62,4 @@ import {MatCardModule} from '@angular/material/card';
 })
 export class AppModule { }
 
-// it works, because of the herbs
+
