@@ -1,0 +1,91 @@
+<!-- <p>
+  admin works!
+</p> -->
+<div class="basic_text container">
+    <br />
+    <br />
+    <h2>Welcome admin</h2>
+    <br />
+    <br />
+    <table>
+    
+          <thead>
+              <th class="basic_text" padding="2000px">Id </th>
+              <th class="basic_text">Name </th>
+              <th class="basic_text" >Url </th>
+              <th class="basic_text" >Genre</th>
+              <th class="basic_text">Description</th>
+              <th class="basic_text">Image Url</th>
+          </thead>
+  
+          <tr *ngFor="let menu of menus; let i = index" class="basic_text" (click)="edit(menu)">
+              <td class="basic_text">{{menu.id}} </td>
+  
+              <td class="basic_text">
+                <span class="basic_text" *ngIf="menu!==editmenu">{{menu.name}}</span>
+                <input class="basic_text" *ngIf="menu===editmenu" [(ngModel)]="menu.name" (blur)="update()" (keyup.enter)="update()">
+              </td>
+  
+              <td>
+                <span class="basic_text" *ngIf="menu!==editmenu">{{menu.url}}</span>
+                <input class="basic_text" *ngIf="menu===editmenu" [(ngModel)]="menu.url" (blur)="update()" (keyup.enter)="update()"> </td>
+  
+              <td>
+                <span class="basic_text" *ngIf="menu!==editmenu">{{menu.genre}}</span>
+  
+                <select #menuGenre *ngIf="menu===editmenu" [(ngModel)]="menu.genre" (blur)="update()" (keyup.enter)="update()">
+                  <!-- <option *ngFor="let genre of genres | enumSelect" [value]="genre.key">{{genre.value}}</option> -->
+                </select>
+              </td>
+  
+              <td>
+                <span class="basic_text" *ngIf="menu!==editmenu">{{menu.description}}</span>
+                <input class="basic_text" *ngIf="menu===editmenu" [(ngModel)]="menu.description" (blur)="update()" (keyup.enter)="update()">
+              </td>
+  
+              <td>
+                <span class="basic_text" *ngIf="menu!==editmenu">{{menu.imageUrl}}</span>
+                <input class="basic_text" *ngIf="menu===editmenu" [(ngModel)]="menu.imageUrl" (blur)="update()" (keyup.enter)="update()">
+              </td>
+  
+            <td>
+              <button class="basic_text" class="delete" title="delete menu" (click)="delete(menu)">x</button>
+            </td>
+          </tr>
+    </table>
+    <br />
+    <br />
+    <h1 class="basic_text">Add menus</h1>
+    <p></p>
+    <div class="basic_text">
+      <tr class="basic_text">
+        <label class="basic_text">
+          <b>
+            <td class="basic_text" width="250px">Name:
+              <input class="basic_text" #menuName />
+            </td>
+            <td class="basic_text" width="230px">Url:
+              <input class="basic_text" #menuUrl />
+            </td>
+            <td class="basic_text" width="200px">Genre:
+              <select #menuGenre>
+                <!-- <option class="basic_text" *ngFor="let genre of genres | enumSelect" [value]="genre.key">{{genre.value}}</option> -->
+              </select>
+            </td>
+            <td class="basic_text" width="300px">Description:
+              <input #menuDescription />
+            </td>
+            <td class="basic_text" width="300px">Image url:
+              <input #menuImgUrl />
+            </td>
+            <td class="basic_text" width="15px">
+              <button class="basic_text" (click)="add(menuName.value, menuUrl.value, menuGenre.value, menuDescription.value, menuImgUrl.value) ; menuName.value=''; menuUrl.value=''; menuGenre.value=''; menuDescription.value=''; menuImgUrl.value=''">
+                add
+              </button>
+            </td>
+          </b>
+        </label>
+      </tr>
+    </div>
+  </div>
+  
