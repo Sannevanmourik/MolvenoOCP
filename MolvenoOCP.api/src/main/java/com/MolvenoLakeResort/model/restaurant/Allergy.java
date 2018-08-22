@@ -17,4 +17,8 @@ public enum Allergy {
         this.description = description;
 
     }
+
+    public String getDescription() {
+        return description;
+    }
 }
