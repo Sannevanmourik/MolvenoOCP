@@ -5,7 +5,6 @@ import { Validators, FormBuilder} from '@angular/forms';
 import { Subscription } from '../../../../node_modules/rxjs';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { element } from '../../../../node_modules/@angular/core/src/render3/instructions';
-import { MatTable } from '@angular/material';
 
 // from agnular material
 export interface PeriodicElement {
@@ -32,7 +31,7 @@ export class IngredientListComponent implements OnInit, OnDestroy {
     allergy: [null],
   });
 
-  @ViewChild(MatTable) table: MatTable<any>;
+
 
   closeResult: string;
 
@@ -101,7 +100,10 @@ export class IngredientListComponent implements OnInit, OnDestroy {
 
   edit(editIngredient) {
     this.formValue = this.editForm.value;
-    this.formValue.name = editIngredient.name;
+
+    this.editForm.value.name = editIngredient.name;
+
+    // this.formValue.name = editIngredient.name;
     this.formValue.price = editIngredient.price;
     this.formValue.vegetarian = editIngredient.vegetarian;
     this.formValue.stock = editIngredient.stock;
@@ -117,37 +119,41 @@ export class IngredientListComponent implements OnInit, OnDestroy {
 
   save() {
 
-    const formValue = this.editForm.value;
+    const editValue = this.editForm.value;
+    console.log(editValue);
 
     const newIngredient = new Ingredient();
     newIngredient.id = this.formValue.id;
+    newIngredient.name = editValue.name;
+    newIngredient.price = editValue.price;
+    newIngredient.vegetarian = editValue.vegetarian;
+    newIngredient.stock = editValue.stock;
+    newIngredient.allergy = editValue.allergy;
+    console.log('save');
+    console.log(newIngredient);
+
+    this.ingredientService.updateIngredient(newIngredient, newIngredient.id).subscribe();
+    this.ingredientService.getAll();
+
+
+  }
+
+  /*
+
+  add2() {
+    const formValue = this.ingredientForm.value;
+    const newIngredient = new Ingredient();
     newIngredient.name = formValue.name;
     newIngredient.price = formValue.price;
     newIngredient.vegetarian = formValue.vegetarian;
     newIngredient.stock = formValue.stock;
     newIngredient.allergy = formValue.allergy;
-    console.log('save');
     console.log(newIngredient);
 
-    this.ingredientService.updateIngredient(newIngredient, newIngredient.id).subscribe();
-    this.table.renderRows();
-
-
+    this.ingredientService.addIngredient(newIngredient).subscribe();
   }
 
-  update() {
-    if (this.editIngredient) {
-      this.ingredientService.updateIngredient(this.editIngredient, this.editIngredient.id)
-        .subscribe(movie => {
-          const ix = movie ? this.ingredients.findIndex(h => h.id === movie.id) : -1;
-          if (ix > -1) { this.ingredients[ix] = movie; }
-        });
-      this.editIngredient = undefined;
-    }
-    this.ingredientService.getAll();
-  }
-
-
+  */
 
 
   ngOnDestroy() {
