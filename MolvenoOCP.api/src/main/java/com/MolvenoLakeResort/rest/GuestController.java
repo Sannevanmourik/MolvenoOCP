@@ -16,6 +16,7 @@ public class GuestController {
     private GuestRepository guestRepository;
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Guest> create(@RequestBody Guest newGuest) {
         Optional<Guest> possibleGuest = Optional.ofNullable(this.guestRepository.findByFirstName(newGuest.getFirstName()));
 
@@ -37,11 +38,13 @@ public class GuestController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<Guest>> list() {
         return new ResponseEntity<Iterable<Guest>>(this.guestRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Guest> findById(@PathVariable long id) {
         Optional<Guest> possibleGuest = this.guestRepository.findById(id);
 
@@ -55,6 +58,7 @@ public class GuestController {
     }
 
     @PutMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Guest> updateById(@PathVariable long id, @RequestBody Guest update) {
         Optional<Guest> possibleGuest = this.guestRepository.findById(id);
 
@@ -72,6 +76,7 @@ public class GuestController {
     }
 
     @DeleteMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Guest> deleteById(@PathVariable long id) {
         Optional<Guest> possibleGuest = this.guestRepository.findById(id);
 

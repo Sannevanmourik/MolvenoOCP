@@ -17,6 +17,7 @@ public class MenuItemController {
     private MenuItemRepository menuItemRepository;
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<MenuItem> create(@RequestBody MenuItem newMenuItem) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findByName(newMenuItem.getName());
 
@@ -41,11 +42,13 @@ public class MenuItemController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<MenuItem>> list() {
         return new ResponseEntity<Iterable<MenuItem>>(this.menuItemRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<MenuItem> findById(@PathVariable long id) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findById(id);
         if (possibleMenuItem.isPresent()) {
@@ -58,6 +61,7 @@ public class MenuItemController {
     }
 
     @PutMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<MenuItem> updateById(@PathVariable long id, @RequestBody MenuItem update) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findById(id);
 
@@ -84,6 +88,7 @@ public class MenuItemController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<MenuItem> deleteById(@PathVariable long id) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findById(id);
 

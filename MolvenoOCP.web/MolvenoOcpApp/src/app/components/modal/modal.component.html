@@ -1,0 +1,26 @@
+<!-- <p>
+  modal works!
+</p> -->
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <!-- <h4 class="modal-title" (click)="openLg(content)">Login1</h4> -->
+    <!-- <button type="button" class="close" aria-label="Close" (click)="d('Cross click')"> -->
+      <!-- <span aria-hidden="true">&times;</span> -->
+    <!-- </button> -->
+  </div>
+  <div class="modal-body">
+<app-login></app-login>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openWindowCustomClass(content)">Modal with window custom class</button> -->
+<!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openBackDropCustomClass(content)">Modal with backdrop custom class</button> -->
+<!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openSm(content)">Small modal</button> -->
+<!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Login</button> -->
+<!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openVerticallyCentered(content)">Modal vertically centered</button> -->
+
+<p class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Login</p>
