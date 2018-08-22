@@ -10,7 +10,7 @@
     </button>
   </div>
   <div class="modal-body">
-<app-login></app-login>
+<app-login (loginSuccesful)="closeModal()" ></app-login>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
