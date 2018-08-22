@@ -44,22 +44,30 @@ export class ModalComponent implements OnInit {
   }
 
   openLg(content) {
-    this.modalService.open(content, { size: 'lg' }).result.then((result) => {
-    // this.modalService.open(content, { size: 'lg' }).dismiss();
-        // this.closeResult = `Closed with: ${result}`;
-     console.log('closing modal') ;
-this.activeModal.close();
-this.activeModal.dismiss();
+
+    this.modalReference = this.modalService.open(content);
+
+    this.modalReference.result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      console.log('dismissed');
     });
 
-    if (this.getLoggedIn()) {
-      console.log('closing modal...');
-    } else {
-      console.log('signing on');
-    }
+
+    // this.modalReference = this.modalService.open(content, { size: 'lg' }).result.then((result) => {
+    // // this.modalService.open(content, { size: 'lg' }).dismiss();
+    //     // this.closeResult = `Closed with: ${result}`;
+    //  console.log('closing modal') ;
+    // }, (reason) => {
+    //   this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    //   console.log('dismissed');
+    // });
+
+    // if (this.getLoggedIn()) {
+    //   console.log('closing modal...');
+    // } else {
+    //   console.log('signing on');
+    // }
   }
 
   private getDismissReason(reason: any): string {
@@ -70,5 +78,9 @@ this.activeModal.dismiss();
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  closeModal() {
+    this.modalReference.close();
   }
 }
