@@ -17,8 +17,6 @@
 import { MenuService } from '../../services/menu.service';
 import { Component, OnInit } from '@angular/core';
 import { Menu } from '../../models/menu';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-
 
 @Component({
   selector: 'app-admin',
