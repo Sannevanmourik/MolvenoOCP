@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { IngredientService } from '../../services/ingredient-service.service';
 import { Ingredient } from '../../models/ingredient';
+import { Validators, FormBuilder} from '@angular/forms';
 import { Subscription } from '../../../../node_modules/rxjs';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
@@ -21,6 +22,17 @@ export interface PeriodicElement {
 })
 export class IngredientListComponent implements OnInit, OnDestroy {
 
+  ingredientForm = this.fb.group({
+    name: ['', Validators.required],
+    price: [0, Validators.required],
+    vegetarian: [false],
+    stock: [0],
+    allergy: [null],
+    // ingredients: this.fb.array([
+    //   this.fb.control('')
+    // ])
+  });
+
   closeResult: string;
 
 
@@ -31,7 +43,7 @@ export class IngredientListComponent implements OnInit, OnDestroy {
 
   @Input() ingredients: Array<Ingredient>;
 
-  constructor( private modalService: NgbModal, private ingredientService: IngredientService) { }
+  constructor( private fb: FormBuilder, private modalService: NgbModal, private ingredientService: IngredientService) { }
 
   ngOnInit() {
     this.subscription = this.ingredientService.getAll().subscribe(
