@@ -18,9 +18,11 @@ import { ModalComponent } from './components/modal/modal.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from './services/alert.service';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 import { AdminComponent } from './components/admin/admin.component';
 import { FakeBackendInterceptor, JwtInterceptor } from './components/helpers';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import {MatCardModule} from '@angular/material/card';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
@@ -28,7 +30,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { ShowMenuComponent } from './components/show-menu/show-menu.component';
 import { LowerCasePipe } from '@angular/common';
 
-
+import { AppRoutingModule } from './/app-routing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material';
+import { EnumSelectPipe } from './pipes/enum-select.pipe';
+import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +51,10 @@ import { LowerCasePipe } from '@angular/common';
     HeaderComponent,
     ShowMenuComponent,
 
+    EnumSelectPipe,
+    DeleteModalComponent,
+
+
   ],
   imports: [
     NgbModule,
@@ -55,7 +65,8 @@ import { LowerCasePipe } from '@angular/common';
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatCardModule,
+    MatTableModule,
+    AngularFontAwesomeModule
   ],
   providers: [IngredientService, MenuServiceService, AlertService, NgbActiveModal,
     {

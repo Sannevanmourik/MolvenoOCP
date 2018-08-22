@@ -16,6 +16,7 @@ export class IngredientService {
 
 
   ingredientUrl = 'http://localhost:8080/api/ingredients';
+  ingredientDeleteUrl = 'http://localhost:8080/api/ingredients/delete';
 
 
   constructor(private http: HttpClient) {
@@ -26,7 +27,7 @@ export class IngredientService {
     return this.http.get(this.ingredientUrl);
   }
 
-  getIngredient (id: number): Observable<Ingredient>{
+  getIngredient (id: number): Observable<Ingredient> {
     return this.http.get<Ingredient>(`${this.ingredientUrl}/${id}`);
   }
 
@@ -35,7 +36,7 @@ export class IngredientService {
   }
 
   deleteIngredient (id: number): Observable<{}> {
-    const url = `${this.ingredientUrl}/${id}`;
+    const url = `${this.ingredientDeleteUrl}/${id}`;
     return this.http.delete(url);
   }
 
