@@ -20,6 +20,9 @@ import { AdminComponent } from './components/admin/admin.component';
 import { FakeBackendInterceptor, JwtInterceptor } from './components/helpers';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
+import { FooterComponent } from './components/footer/footer.component';
+import { MainComponent } from './components/main/main.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import {MatCardModule} from '@angular/material/card';
     LoginComponent,
     AdminComponent,
     IngredientEditorComponent,
+    FooterComponent,
+    MainComponent,
+    HeaderComponent,
   ],
   imports: [
     NgbModule,

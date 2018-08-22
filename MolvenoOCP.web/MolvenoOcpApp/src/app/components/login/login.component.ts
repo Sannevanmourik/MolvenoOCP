@@ -78,13 +78,11 @@ export class LoginComponent implements OnInit {
                   console.log(' success');
                     this.router.navigate([this.returnUrl]);
                     this.loading = false;
-
                 },
                 error => {
-                  console.log(' error');
+                  console.log(' invalid credentials');
                     this.alertService.error(error);
                     this.loading = false;
                 });
-                console.log(this.f.username.value, this.f.password.value);
     }
 }
