@@ -4,6 +4,7 @@ import { Ingredient } from '../../models/ingredient';
 import { Validators, FormBuilder} from '@angular/forms';
 import { Subscription } from '../../../../node_modules/rxjs';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { element } from '../../../../node_modules/@angular/core/src/render3/instructions';
 
 // from agnular material
 export interface PeriodicElement {
@@ -22,18 +23,17 @@ export interface PeriodicElement {
 })
 export class IngredientListComponent implements OnInit, OnDestroy {
 
-  ingredientForm = this.fb.group({
+  editForm = this.fb.group({
     name: ['', Validators.required],
-    price: [0, Validators.required],
+    price: ['', Validators.required],
     vegetarian: [false],
     stock: [0],
     allergy: [null],
-    // ingredients: this.fb.array([
-    //   this.fb.control('')
-    // ])
   });
 
   closeResult: string;
+
+  editIngredient: Ingredient;
 
 
   // from angular material
@@ -83,6 +83,56 @@ export class IngredientListComponent implements OnInit, OnDestroy {
   delete(ingredient: Ingredient): void {
     this.ingredients = this.ingredients.filter(h => h !== ingredient);
     this.ingredientService.deleteIngredient(ingredient.id).subscribe();
+    this.ingredientService.getAll();
+  }
+
+  // put(ingredient: Ingredient): void {
+  //   this.ingredients = this.ingredients.filter(h => h !== ingredient);
+  //   this.ingredientService.updateIngredient(ingredient, ingredient.id).subscribe();
+  //   this.ingredientService.getAll();
+
+  // }
+
+
+  edit(editIngredient) {
+    const formValue = this.editForm.value;
+    formValue.name = editIngredient.name;
+    formValue.price = editIngredient.price;
+    formValue.vegetarian = editIngredient.vegetarian;
+    formValue.stock = editIngredient.stock;
+    formValue.allergy = editIngredient.allergy;
+    formValue.id = editIngredient.id;
+    console.log(editIngredient);
+    this.ingredientService.getAll();
+    // this.update();
+  }
+
+  save() {
+
+    const formValue = this.editForm.value;
+    const newIngredient = new Ingredient();
+    newIngredient.id = formValue.id;
+    newIngredient.name = formValue.name;
+    newIngredient.price = formValue.price;
+    newIngredient.vegetarian = formValue.vegetarian;
+    newIngredient.stock = formValue.stock;
+    newIngredient.allergy = formValue.allergy;
+    console.log(newIngredient);
+
+    this.ingredientService.updateIngredient(newIngredient, newIngredient.id).subscribe();
+
+
+  }
+
+  update() {
+    if (this.editIngredient) {
+      this.ingredientService.updateIngredient(this.editIngredient, this.editIngredient.id)
+        .subscribe(movie => {
+          const ix = movie ? this.ingredients.findIndex(h => h.id === movie.id) : -1;
+          if (ix > -1) { this.ingredients[ix] = movie; }
+        });
+      this.editIngredient = undefined;
+    }
     this.ingredientService.getAll();
   }
 
