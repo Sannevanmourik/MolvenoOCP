@@ -8,7 +8,7 @@ import { Menu } from '../models/Menu';
 })
 export class MenuServiceService {
 
-  
+
   menuUrl = 'http://localhost:8080/api/menu';
 
 

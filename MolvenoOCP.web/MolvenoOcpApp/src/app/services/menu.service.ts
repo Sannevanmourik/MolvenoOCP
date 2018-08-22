@@ -42,6 +42,7 @@ export class MenuService {
   }
 
   addMenu (menu: Menu): Observable<Menu> {
+    menu.id = null;
     return this.http.post<Menu>(this.menuUrl, menu, httpOptions);
   }
 
