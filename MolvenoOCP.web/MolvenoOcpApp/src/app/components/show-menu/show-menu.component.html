@@ -1,113 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-
-  <div class="jumbotron text-center text-white">
+<div class="jumbotron text-center text-white">
     <h1>Menu</h1>
     <p>Please order drinks and food!</p>
   </div>
-
-  <div class="container" *ngFor="let menu of menus">
-    <div class="row card-group" *ngFor="let menuItemList of menu.menuItemList | slice:0:5">
-
-      <div class="col-sm-4">
-        <div class="card bg-light text-darkgrey text-center">
-
-          <h3 class="card-title">{{menuItemList.name}}</h3>
+  
+  <div class="container" *ngFor="let menu of menus | slice:0">
+    <div class = "row">
+      <div class="col-sm-4 py-2" *ngFor='let menuItem of menu.menuItemList'>
+        
+        <div class="card bg-light text-darkgrey text-center card-body h-100" >
+          <h3 class="card-title">{{menuItem.name}}</h3>
           <p class="card-text">
-            <i *ngIf="menuItemList.vegetarian">Vegetarian <img src="/src/assets/images/vegetarian.PNG" width="20px"> </i>
-
+            <i *ngIf="menuItem.vegetarian">Vegetarian <img src="/src/assets/images/vegetarian.PNG" width="20px"> </i>
           </p>
-          <p class="card-text">Allergy info: {{menuItemList.filteredListOfAllergiesPerMenuItem}}</p>
-          <!-- <p>Ut enim ad..</p> Note of Sanne: should have contain all the allergies -->
+          <p class="card-text">Allergy info: {{menuItem.filteredListOfAllergiesPerMenuItem}}</p>
           <a href="#" class="btn btn-secondary">Order!</a>
-
         </div>
+     
       </div>
-
     </div>
-
-    <div class="row card-group" *ngFor="let menuItemList of menu.menuItemList | slice:5:10">
-
-      <div class="col-sm-4">
-        <div class="card bg-light text-darkgrey text-center">
-
-          <h3 class="card-title">{{menuItemList.name}}</h3>
-          <p class="card-text">
-            <i *ngIf="menuItemList.vegetarian">Vegetarian <img src="/src/assets/images/vegetarian.PNG" width="20px"> </i>
-
-          </p>
-          <p class="card-text">Allergy info: {{menuItemList.filteredListOfAllergiesPerMenuItem}}</p>
-          <!-- <p>Ut enim ad..</p> Note of Sanne: should have contain all the allergies -->
-          <a href="#" class="btn btn-secondary">Order!</a>
-
-        </div>
-      </div>
-
     </div>
-
-    <div class="row card-group" *ngFor="let menuItemList of menu.menuItemList | slice:10:15">
-
-      <div class="col-sm-4">
-        <div class="card bg-light text-darkgrey text-center">
-
-          <h3 class="card-title">{{menuItemList.name}}</h3>
-          <p class="card-text">
-            <i *ngIf="menuItemList.vegetarian">Vegetarian <img src="/src/assets/images/vegetarian.PNG" width="20px"> </i>
-
-          </p>
-          <p class="card-text">Allergy info: {{menuItemList.filteredListOfAllergiesPerMenuItem}}</p>
-          <!-- <p>Ut enim ad..</p> Note of Sanne: should have contain all the allergies -->
-          <a href="#" class="btn btn-secondary">Order!</a>
-
-        </div>
-      </div>
-
+  
+  
+  
+  
+  
+    <!-- <p>
+    {{menus && menus[0]?.name}} {{menus && menus[0].menuItemList[1].name}}
+  
+  </p>
+  
+  
+  <p>
+    after
+  </p>
+   -->
+  
+      <!-- <br/> <br/>
+  <div class="container">
+  <div *ngFor="let menu of menus">
+    <b>{{menu.name}}</b>
+  
+    <div *ngFor="let menuItemList of menu.menuItemList">
+      {{menuItemList.name}} <i *ngIf="menuItemList.vegetarian">is vegetarian </i>
+      <i> {{menuItemList.filteredListOfAllergiesPerMenuItem.getDescription()}}</i> 
     </div>
-
-
-
-
+  
+   
+  
   </div>
-
-
-
-
-
-  <!-- <p>
-  {{menus && menus[0]?.name}} {{menus && menus[0].menuItemList[1].name}}
-
-</p>
-
-
-<p>
-  after
-</p>
- -->
-
-  <!-- <br/> <br/>
-<div class="container">
-<div *ngFor="let menu of menus">
-  <b>{{menu.name}}</b>
-
-  <div *ngFor="let menuItemList of menu.menuItemList">
-    {{menuItemList.name}} <i *ngIf="menuItemList.vegetarian">is vegetarian </i>
-    <i> {{menuItemList.filteredListOfAllergiesPerMenuItem.getDescription()}}</i> 
-  </div>
-
- 
-
-</div>
-
-</div> -->
+  
+  </div> -->
