@@ -23,7 +23,7 @@ public class MenuItemController {
         if (((newMenuItem.getName() == null) || newMenuItem.getName().equals(""))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        if (!(newMenuItem.getName().matches("[a-zA-Z]+"))) {
+        if (!(newMenuItem.getName().matches("[a-z|\\sA-Z|\\s]+"))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if (possibleMenuItem.isPresent()) {
@@ -64,7 +64,7 @@ public class MenuItemController {
         if ((update.getName().equals("")) || (update.getName() == null)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        if (!(update.getName().matches("[a-zA-Z]+"))) {
+        if (!(update.getName().matches("[a-z|\\sA-Z|\\s]+"))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if (possibleMenuItem.isPresent()) {

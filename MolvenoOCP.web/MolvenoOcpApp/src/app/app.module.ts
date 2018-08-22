@@ -10,6 +10,7 @@ import { IngredientEditorComponent} from '../app/components/ingredient-editor/in
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
+import { MenuItemListComponent } from './components/menu-item-list/menu-item-list.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { AppRoutingModule } from './/app-routing.module';
     AppComponent,
     IngredientListComponent,
     IngredientEditorComponent,
+    MenuItemListComponent,
 
 
   ],
