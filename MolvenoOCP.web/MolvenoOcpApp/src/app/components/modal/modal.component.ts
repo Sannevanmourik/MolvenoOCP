@@ -63,11 +63,11 @@ export class ModalComponent implements OnInit {
     //   console.log('dismissed');
     // });
 
-    // if (this.getLoggedIn()) {
-    //   console.log('closing modal...');
-    // } else {
-    //   console.log('signing on');
-    // }
+    if (this.getLoggedIn()) {
+      console.log('closing modal...');
+    } else {
+      console.log('signing on');
+    }
   }
 
   private getDismissReason(reason: any): string {
