@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormArray } from '@angular/forms';
 import { IngredientService } from '../../services/ingredient-service.service';
 import {Ingredient} from '../../models/ingredient';
+import { Allergy } from '../../models/allergy';
 
 @Component({
   selector: 'app-ingredient-editor',
@@ -11,6 +12,7 @@ import {Ingredient} from '../../models/ingredient';
 export class IngredientEditorComponent {
 
   ingredients: Ingredient[];
+  allergies: Allergy;
 
   ingredientForm = this.fb.group({
     name: ['', Validators.required],

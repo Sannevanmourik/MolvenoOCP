@@ -51,6 +51,9 @@ import { EnumSelectPipe } from './pipes/enum-select.pipe';
     BrowserAnimationsModule,
     MatTableModule
   ],
+  exports: [
+    EnumSelectPipe
+  ],
   providers: [IngredientService, AlertService, NgbActiveModal,
     {
       provide: HTTP_INTERCEPTORS,
