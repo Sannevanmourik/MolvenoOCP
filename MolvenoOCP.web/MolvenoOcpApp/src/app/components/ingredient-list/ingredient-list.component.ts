@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { IngredientService } from '../../services/ingredient-service.service';
 import { Ingredient } from '../../models/ingredient';
 import { Subscription } from '../../../../node_modules/rxjs';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 // from agnular material
 export interface PeriodicElement {
@@ -20,6 +21,8 @@ export interface PeriodicElement {
 })
 export class IngredientListComponent implements OnInit, OnDestroy {
 
+  closeResult: string;
+
 
   // from angular material
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'vegetarian', 'edit'];
@@ -28,7 +31,7 @@ export class IngredientListComponent implements OnInit, OnDestroy {
 
   @Input() ingredients: Array<Ingredient>;
 
-  constructor( private ingredientService: IngredientService) { }
+  constructor( private modalService: NgbModal, private ingredientService: IngredientService) { }
 
   ngOnInit() {
     this.subscription = this.ingredientService.getAll().subscribe(
@@ -41,6 +44,24 @@ export class IngredientListComponent implements OnInit, OnDestroy {
         console.error('Failed to get i tutti ingredienti', error);
       }
     );
+  }
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
   get getIngredient() {
