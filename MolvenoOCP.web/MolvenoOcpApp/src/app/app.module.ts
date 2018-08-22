@@ -1,3 +1,4 @@
+import { MenuServiceService } from './services/menu-service.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
@@ -9,6 +10,8 @@ import { IngredientService } from '../app/services/ingredient-service.service';
 import { IngredientListComponent } from '../app/components/ingredient-list/ingredient-list.component';
 import { IngredientEditorComponent} from '../app/components/ingredient-editor/ingredient-editor.component';
 import { AppComponent } from './app.component';
+
+import { AppRoutingModule } from './/app-routing.module';
 import { PlaceOrderComponent } from './components/place-order/place-order.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ModalComponent } from './components/modal/modal.component';
@@ -21,6 +24,11 @@ import { AdminComponent } from './components/admin/admin.component';
 import { FakeBackendInterceptor, JwtInterceptor } from './components/helpers';
 
 import {MatCardModule} from '@angular/material/card';
+import { FooterComponent } from './components/footer/footer.component';
+import { MainComponent } from './components/main/main.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ShowMenuComponent } from './components/show-menu/show-menu.component';
+import { LowerCasePipe } from '@angular/common';
 
 import { AppRoutingModule } from './/app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -38,6 +46,11 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
     LoginComponent,
     AdminComponent,
     IngredientEditorComponent,
+    FooterComponent,
+    MainComponent,
+    HeaderComponent,
+    ShowMenuComponent,
+
     EnumSelectPipe,
     DeleteModalComponent,
 
@@ -55,10 +68,7 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
     MatTableModule,
     AngularFontAwesomeModule
   ],
-  exports: [
-    EnumSelectPipe
-  ],
-  providers: [IngredientService, AlertService, NgbActiveModal,
+  providers: [IngredientService, MenuServiceService, AlertService, NgbActiveModal,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: FakeBackendInterceptor,
@@ -69,8 +79,8 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
   useClass: JwtInterceptor,
   multi: true
 }],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 
-// it works, because of the herbs
+

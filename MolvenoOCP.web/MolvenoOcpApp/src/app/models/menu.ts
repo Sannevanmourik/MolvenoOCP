@@ -1,6 +1,9 @@
+import { Seasons } from './seasons';
+
 export class Menu {
     id: number;
     name: string;
+    season: Seasons;
     salesPrice: number;
     menuCategory: string[];
     amountOfTimesOrdered: number;

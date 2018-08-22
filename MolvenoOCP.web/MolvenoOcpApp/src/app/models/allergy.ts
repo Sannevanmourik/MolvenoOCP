@@ -1,11 +1,35 @@
+
+
 export enum Allergy {
-    Gluten = 0,
-    Egg = 1,
-    Cowmilk = 2,
-    Treenuts = 3,
-    Peanuts = 4,
-    Shellfish = 5,
-    Soy = 6,
 
- }
+    GLUTEN,
+    EGG,
+    COWMILK,
+    TREENUTS,
+    PEANUTS,
+    SHELLFISH,
+    SOY
+}
 
+// export enum Allergy {
+
+//     GLUTEN("Gluten"),
+//     EGG("Egg"),
+//     COWMILK ("Cow's milk"),
+//     TREENUTS("Tree nuts"),
+//     PEANUTS("Peanuts"),
+//     SHELLFISH("Shellfish"),
+//     SOY("Soy");
+
+
+//     description: string;
+
+//     constructor Allergy(string description) {
+//         this.description = description;
+
+//     }
+
+//     public string getDescription() {
+//         return description;
+//     }
+// }

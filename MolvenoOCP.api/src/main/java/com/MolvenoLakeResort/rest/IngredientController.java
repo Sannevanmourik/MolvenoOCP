@@ -28,7 +28,7 @@ public class IngredientController {
             if (((newIngredient.getName() == null) || newIngredient.getName().equals(""))) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-        if (!(newIngredient.getName().matches("[a-zA-Z]+"))) {
+        if (!(newIngredient.getName().matches("[a-z|\\sA-Z|\\s]+"))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
          else if (possibleIngredient.isPresent()) {
@@ -73,7 +73,7 @@ public class IngredientController {
         if ((update.getName().equals("")) ) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        if (!(update.getName().matches("[a-zA-Z]+"))) {
+        if (!(update.getName().matches("[a-z|\\sA-Z|\\s]+"))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         else if (update.getPrice() < 0){

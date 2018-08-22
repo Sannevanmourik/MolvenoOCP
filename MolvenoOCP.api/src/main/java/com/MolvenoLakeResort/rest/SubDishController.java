@@ -21,6 +21,12 @@ public class SubDishController {
     public ResponseEntity<SubDish> create(@RequestBody SubDish newSubDish) {
         Optional<SubDish> possibleSubDish = this.subDishRespository.findByName(newSubDish.getName());
 
+        if (((newSubDish.getName() == null) || newSubDish.getName().equals(""))) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (!(newSubDish.getName().matches("[a-z|\\sA-Z|\\s]+"))) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if (possibleSubDish.isPresent()) {
             SubDish existingSubDish = possibleSubDish.get();
             return new ResponseEntity<SubDish>(HttpStatus.CONFLICT);
@@ -54,6 +60,12 @@ public class SubDishController {
     public ResponseEntity<SubDish> updateById(@PathVariable long id, @RequestBody SubDish update) {
         Optional<SubDish> possibleSubDish = this.subDishRespository.findById(id);
 
+        if ((update.getName().equals("")) || (update.getName() == null)) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (!(update.getName().matches("[a-z|\\sA-Z|\\s]+"))) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if (possibleSubDish.isPresent()) {
             SubDish subDish = possibleSubDish.get();
             subDish.setName(update.getName());

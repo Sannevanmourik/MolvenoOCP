@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/menu")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MenuController {
 
     @Autowired
@@ -26,6 +27,12 @@ public class MenuController {
     public ResponseEntity<Menu> create(@RequestBody Menu newMenu) {
         Optional<Menu> possibleMenu = this.menuRepository.findByName(newMenu.getName());
 
+        if (((newMenu.getName() == null) || newMenu.getName().equals(""))) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (!(newMenu.getName().matches("[a-z|\\sA-Z|\\s]+"))) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if (possibleMenu.isPresent()) {
             Menu existingMenu = possibleMenu.get();
             return new ResponseEntity<Menu>(HttpStatus.CONFLICT);
@@ -36,6 +43,7 @@ public class MenuController {
             return new ResponseEntity<Menu>(this.menuRepository.save(newMenu), HttpStatus.CREATED);
         }
     }
+
 
     @GetMapping
     @CrossOrigin(origins = "http://localhost:4200")
@@ -62,6 +70,12 @@ public class MenuController {
     public ResponseEntity<Menu> updateById(@PathVariable long id, @RequestBody Menu update) {
         Optional<Menu> possibleMenu = this.menuRepository.findById(id);
 
+        if ((update.getName().equals("")) || (update.getName() == null)) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (!(update.getName().matches("[a-z|\\sA-Z|\\s]+"))) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if (possibleMenu.isPresent()) {
             Menu menu = possibleMenu.get();
             menu.setName(update.getName());
