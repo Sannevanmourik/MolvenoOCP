@@ -22,7 +22,7 @@ export class IngredientListComponent implements OnInit, OnDestroy {
 
 
   // from angular material
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'vegetarian'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'vegetarian', 'edit'];
 
   subscription:  Subscription;
 
