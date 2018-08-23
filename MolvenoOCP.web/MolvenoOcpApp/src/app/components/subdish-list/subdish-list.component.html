@@ -10,7 +10,14 @@
     <!-- Ingredient Column -->
     <ng-container matColumnDef="ingredients">
       <th mat-header-cell *matHeaderCellDef> Ingredients </th>
-      <td mat-cell *matCellDef="let element"> {{element.ingredients | json}} </td>
+      <td mat-cell *matCellDef="let element"> 
+          <li *ngFor="let ingredient of element.ingredients">
+              {{ ingredient.name }}
+            </li>
+      
+      
+      
+      </td>
     </ng-container>
   
       <!-- edit column -->
@@ -50,14 +57,18 @@
                             <label>
                                 Name:
                                 <input value = "{{element.name}}" type="text" [(ngModel)] = "element.name" required name = "name">
-                              </label>
+                              </label><br>
                             
-                              <label>
-                                Ingredients:
-                                <input value = "{{element.ingredients}}" type="number" [(ngModel)] = "element.ingredients" name = "ingredient">
+                              <!-- <label>
+                                Current ingredients:
+                                
+                                <li *ngFor="let ingredient of element.ingredients">
+                                    {{ ingredient.name }}
+                                    <button type="button" class="btn btn-outline-danger" (click)="deleteIngredient(ingredient, element)">Delete</button>
+                                  </li>
 
 
-                              </label>
+                              </label> -->
                             
 
                         </form>

@@ -55,6 +55,7 @@ export class SubdishEditorComponent implements OnInit, OnDestroy {
     console.log(newSubdish);
 
     this.subdishService.addSubdish(newSubdish).subscribe();
+    this.subdishService.getAll();
   }
 
   ngOnInit() {
