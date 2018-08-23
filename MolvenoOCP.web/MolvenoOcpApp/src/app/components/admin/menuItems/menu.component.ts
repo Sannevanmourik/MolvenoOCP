@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   closeResult: string;
   editMenu: Menu;
-  displayedColumns: string[] = ['id', 'name', 'profit', 'salesPrice', 'calculatedPrice', 'edit'];
+  displayedColumns: string[] = ['id', 'name', 'profit', 'salesPrice', 'calculatedPrice', 'edit', 'vegetarian', 'amountOfTimesOrdered'];
   subscription: Subscription;
 
   @Input() menus: Array<Menu>;

@@ -61,12 +61,12 @@ public class MenuItemController {
     public ResponseEntity<MenuItem> updateById(@PathVariable long id, @RequestBody MenuItem update) {
         Optional<MenuItem> possibleMenuItem = this.menuItemRepository.findById(id);
 
-//        if ((update.getName().equals("")) || (update.getName() == null)) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//        if (!(update.getName().matches("[a-z|0-9|\\sA-Z|\\s]+"))) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
+        if ((update.getName().equals("")) || (update.getName() == null)) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (!(update.getName().matches("[a-z|0-9|\\sA-Z|\\s]+"))) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if (possibleMenuItem.isPresent()) {
             MenuItem menuItem = possibleMenuItem.get();
             menuItem.setName(update.getName());
