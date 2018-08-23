@@ -3,8 +3,6 @@ import { Menu } from '../../models/Menu';
 import { MenuServiceService } from '../../services/menu-service.service';
 import { Subscription } from '../../../../node_modules/rxjs';
 
-
-
 @Component({
   selector: 'app-show-menu',
   templateUrl: './show-menu.component.html',
@@ -34,5 +32,8 @@ export class ShowMenuComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+
+  
 
 }
