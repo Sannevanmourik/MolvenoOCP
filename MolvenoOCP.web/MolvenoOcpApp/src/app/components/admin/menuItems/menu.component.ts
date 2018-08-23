@@ -1,6 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
+import { Subscription } from '../../../../../node_modules/rxjs';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MenuService } from '../../../services/menu.service';
 import { Menu } from '../../../models/menu';
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
 
 @Component({
   selector: 'app-menu',
@@ -8,92 +18,97 @@ import { Menu } from '../../../models/menu';
   providers: [MenuService],
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
-  @Input() menus1: Array<Menu>;
+export class MenuComponent implements OnInit, OnDestroy {
 
-  name = 'admin';
-  menus: Menu[];
+  editForm = this.fb.group({
+    id: [''],
+    name: ['', Validators.required],
+    profit: [0, Validators.required],
+    salesPrice: [0, Validators.required],
+    calculatedPrice: [0, Validators.required],
+    edit: [null],
+  });
+
+  closeResult: string;
   editMenu: Menu;
+  displayedColumns: string[] = ['id', 'name', 'profit', 'salesPrice', 'calculatedPrice', 'edit', 'vegetarian', 'amountOfTimesOrdered'];
+  subscription: Subscription;
 
-  constructor(private menuService: MenuService ) { }
+  @Input() menus: Array<Menu>;
+
+  constructor(private fb: FormBuilder, private modalService: NgbModal, private menuService: MenuService) { }
 
   ngOnInit() {
-    this.getMenus();
-  }
-
-  getMenus() {
-    this.menuService.getAll().subscribe(
-      (menus: Array<Menu>) => {
-        this.menus = menus;
-        this.menus1 = menus;
-        console.log('Retrieved menus:', this.menus);
+    this.subscription = this.menuService.getAll().subscribe(
+      (data: Array<Menu>) => {
+        this.menus = data;
+        console.log('Showing data: ');
+        console.log(this.menus);
       },
       (error) => {
-        console.error('Failed to get menus', error);
+        console.error('Failed to get i tutti ingredienti', error);
       }
     );
   }
 
-  add(
-    id: number,
-    name: string,
-    salesPrice: number,
-    menuCategory: string[],
-    amountOfTimesOrdered: number,
-    ingredientList: string[],
-    subDishList: string[],
-    profit: number,
-    filteredListOfAllergiesPerMenuItem: string[],
-    calculatedPrice: number,
-    vegetarian,
-    ingredientsInStock: number,
-  ): void {
-    this.editMenu = undefined;
-    name = name.trim();
-    if (!name) { return; }
-
-    const newMenu: Menu = {
-      id,
-      name,
-      salesPrice,
-      menuCategory,
-      amountOfTimesOrdered,
-      ingredientList,
-      subDishList,
-      profit,
-      filteredListOfAllergiesPerMenuItem,
-      calculatedPrice,
-      vegetarian,
-      ingredientsInStock,
-     } as Menu;
-    this.menuService.addMenu(newMenu)
-      .subscribe(menu => {
-        this.menus.push(menu);
-        console.log('Menu now contains', this.menus);
-        this.menuService.getAll();
-      });
+  open(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
   }
 
-  delete(menu: Menu): void {
-    this.menus = this.menus.filter(h => h !== menu);
-    this.menuService.deleteMenu(menu.id).subscribe();
-    this.menuService.getAll();
-  }
-
-  edit(menu) {
-    this.editMenu = menu;
-    this.menuService.getAll();
-  }
-
-  update() {
-    if (this.editMenu) {
-      this.menuService.updateMenu(this.editMenu, this.editMenu.id)
-        .subscribe(menu => {
-          const ix = menu ? this.menus.findIndex(h => h.id === menu.id) : -1;
-          if (ix > -1) { this.menus[ix] = menu; }
-        });
-      this.editMenu = undefined;
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
     }
+  }
+
+  get getMenus() {
+    return this.menus;
+  }
+
+  delete(menus: Menu): void {
+    this.menus = this.menus.filter(h => h !== menus);
+    this.menuService.deleteMenu(menus.id).subscribe();
+    console.log(menus.id + '. ' + menus.name + ': DELETED...');
     this.menuService.getAll();
+  }
+
+  edit(editMenu) {
+    this.editForm.value.name = editMenu.name;
+    this.editForm.value.price = editMenu.price;
+    this.editForm.value.vegetarian = editMenu.vegetarian;
+    this.editForm.value.stock = editMenu.stock;
+    this.editForm.value.allergy = editMenu.allergy;
+    this.editForm.value.id = editMenu.id;
+    console.log('edit');
+    console.log(editMenu);
+    console.log('formValue');
+    console.log(this.editForm.value);
+    this.menuService.getAll();
+  }
+
+  save(newMenu: Menu) {
+    console.log('saved: ');
+    console.log(newMenu);
+    this.menuService.updateMenu(newMenu, newMenu.id).subscribe();
+    this.menuService.getAll();
+  }
+
+  add(newMenu: Menu) {
+    this.menuService.addMenu(newMenu).subscribe();
+    console.log('added: ');
+    console.log(newMenu);
+    this.menuService.getAll();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
