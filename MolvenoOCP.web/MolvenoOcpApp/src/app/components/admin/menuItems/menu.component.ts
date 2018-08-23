@@ -4,13 +4,7 @@ import { Subscription } from '../../../../../node_modules/rxjs';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MenuService } from '../../../services/menu.service';
 import { Menu } from '../../../models/menu';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { Ingredient } from '../../../models/ingredient';
 
 @Component({
   selector: 'app-menu',
@@ -31,10 +25,26 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   closeResult: string;
   editMenu: Menu;
-  displayedColumns: string[] = ['id', 'name', 'profit', 'salesPrice', 'calculatedPrice', 'edit', 'vegetarian', 'amountOfTimesOrdered'];
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'profit',
+    'salesPrice',
+    'calculatedPrice',
+    'vegetarian',
+    'ingredientsInStock',
+    'amountOfTimesOrdered',
+    'menuCategory',
+    'ingredientList',
+    'subDishList',
+    'filteredListOfAllergiesPerMenuItem',
+    'edit',
+  ];
+
   subscription: Subscription;
 
   @Input() menus: Array<Menu>;
+  @Input() ingredients: Array<Ingredient>;
 
   constructor(private fb: FormBuilder, private modalService: NgbModal, private menuService: MenuService) { }
 
@@ -42,8 +52,15 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.subscription = this.menuService.getAll().subscribe(
       (data: Array<Menu>) => {
         this.menus = data;
-        console.log('Showing data: ');
+
+        console.log('Data: ');
         console.log(this.menus);
+
+        // for (const entry of this.menus) {
+        // entry.ingredientList.forEach(function (test) {
+        //   console.log(test);
+        // });
+        // }
       },
       (error) => {
         console.error('Failed to get i tutti ingredienti', error);
