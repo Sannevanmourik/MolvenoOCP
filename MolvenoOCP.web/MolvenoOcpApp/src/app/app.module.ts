@@ -34,6 +34,7 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
 import {MatListModule} from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from './components/admin/menuItems/menu.component';
+import { IngredientsComponent } from './components/admin/ingredients/ingredients.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MenuComponent } from './components/admin/menuItems/menu.component';
     EnumSelectPipe,
     DeleteModalComponent,
     MenuComponent,
+    IngredientsComponent,
 
 
   ],
