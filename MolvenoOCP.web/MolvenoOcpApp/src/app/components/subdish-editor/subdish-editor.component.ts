@@ -20,16 +20,16 @@ export class SubdishEditorComponent {
     ])
   });
 
-  // get aliases() {
-  //   return this.ingredientForm.get('aliases') as FormArray;
-  // }
+  get ingredients() {
+    return this.subdishForm.get('ingredients') as FormArray;
+  }
   constructor(private fb: FormBuilder, private subdishService: SubDishService) { }
 
 
 
-  // addAlias() {
-  //   this.aliases.push(this.fb.control(''));
-  // }
+  addIngredient() {
+    this.ingredients.push(this.fb.control(''));
+  }
 
   onSubmit() {
     // TODO: Use EventEmitter with form value

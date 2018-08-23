@@ -6,6 +6,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminGuard } from './guards/admin.guard';
 import { ShowMenuComponent } from './components/show-menu/show-menu.component';
 import { SubdishListComponent } from './components/subdish-list/subdish-list.component';
+import { SubdishEditorComponent } from './components/subdish-editor/subdish-editor.component';
 
 const routes: Routes = [
   { path: 'ingredients', component: IngredientListComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
     canActivate: [AdminGuard]
   },
   { path: 'menu', component: ShowMenuComponent},
-  { path: 'subdish', component: SubdishListComponent}
+  { path: 'subdish', component: SubdishListComponent},
+  { path: 'editSubdish', component: SubdishEditorComponent},
 
 ];
 
