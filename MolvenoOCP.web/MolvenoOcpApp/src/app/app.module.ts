@@ -37,6 +37,7 @@ import { MenuComponent } from './components/admin/menuItems/menu.component';
 import { SubdishListComponent } from './components/subdish-list/subdish-list.component';
 import { SubdishEditorComponent } from './components/subdish-editor/subdish-editor.component';
 import { SubdishesComponent } from './components/admin/subdishes/subdishes.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { SubdishesComponent } from './components/admin/subdishes/subdishes.compo
     SubdishListComponent,
     SubdishEditorComponent,
     SubdishesComponent,
+    HomeComponent,
 
 
   ],
