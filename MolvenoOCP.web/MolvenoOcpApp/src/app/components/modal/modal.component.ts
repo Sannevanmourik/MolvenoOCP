@@ -76,4 +76,9 @@ export class ModalComponent implements OnInit {
   closeModal() {
     this.modalReference.close();
   }
+
+  public login() {
+    this.authService.loginUser('admin');
+    // console.log('toggeld login()...');
+  }
 }

@@ -23,5 +23,5 @@
 <!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Login</button> -->
 <!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openVerticallyCentered(content)">Modal vertically centered</button> -->
 
-<p class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Login</p>
-<pre>{{closeResult}}</pre>
+<a class="nav-link btn btn-primary" *ngIf='!getLoggedIn()' (click)="openLg(content)" (click)='login()'>Login</a>
+<!-- <pre>{{closeResult}}</pre> -->
