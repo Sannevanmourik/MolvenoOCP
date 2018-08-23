@@ -64,7 +64,7 @@ public class MenuItemController {
         if ((update.getName().equals("")) || (update.getName() == null)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        if (!(update.getName().matches("[a-z|0-9|\\sA-Z|\\s]+"))) {
+        if (!(update.getName().matches("[a-z|\\sA-Z|\\s]+"))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if (possibleMenuItem.isPresent()) {
