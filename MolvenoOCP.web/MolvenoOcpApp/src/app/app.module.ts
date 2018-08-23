@@ -35,6 +35,7 @@ import {MatListModule} from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from './components/admin/menuItems/menu.component';
 import { SubdishListComponent } from './components/subdish-list/subdish-list.component';
+import { SubdishEditorComponent } from './components/subdish-editor/subdish-editor.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SubdishListComponent } from './components/subdish-list/subdish-list.com
     DeleteModalComponent,
     MenuComponent,
     SubdishListComponent,
+    SubdishEditorComponent,
 
 
   ],
