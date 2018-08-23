@@ -57,27 +57,30 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <!-- <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li> -->
+
           <li class="nav-bar item">
-              <a class="nav-link" *ngIf='!getLoggedIn()' (click)='login()'><app-modal></app-modal>
+              <a class="nav-link" routerLink="/ingredients"  *ngIf='getLoggedIn()'>Ingredient List</a>
+          </li>
+
+          <li class="nav-bar item">
+              <a class="nav-link" routerLink="/ingredientEditor"  *ngIf='getLoggedIn()'>Ingredient Editor</a>
+          </li>
+
+          <li class="nav-bar item">
+              <a class="nav-link" routerLink="/menu" >Menu</a>
+          </li>
+
+          
+
+
+          <li class="nav-bar item">
+              <!-- <a class="nav-link" *ngIf='!getLoggedIn()' (click)='login()'><app-modal></app-modal>
                 
-              </a>
+              </a> -->
+              <app-modal></app-modal>
             </li>
             <li class="nav-bar item">
-                <a class="nav-link btn btn-primary mb-2 mr-2" *ngIf='getLoggedIn()' (click)='logout()' href="#">Logout
+                <a class="nav-link btn btn-primary" *ngIf='getLoggedIn()' (click)='logout()' href="#">Logout
                   
               </a>
             </li>
