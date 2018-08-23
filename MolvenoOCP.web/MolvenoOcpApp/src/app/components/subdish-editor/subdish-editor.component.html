@@ -1,0 +1,45 @@
+
+<h4> Add subdish</h4>
+
+<form [formGroup]="subdishForm" (ngSubmit)="onSubmit()">
+  <label>
+    Name:
+    <input type="text" formControlName="name" required>
+  </label>
+
+
+  <div formArrayName="ingredients">
+    <h3>Ingredients</h3> <button (click)="addIngredient()">Add Ingredient</button>
+
+    <div *ngFor="let name of ingredients.controls; let i=index">
+
+      <label >
+        Ingredient:
+        <!-- <input type="text" [formControlName]="i"> -->
+
+        <select name="ingredients" >
+            <option value="volvo" *ngFor="let ingredient of availableIngredients">{{ingredient.name}}</option>
+
+          </select>
+
+      </label>
+    </div>
+  </div>
+
+  
+</form>
+
+<button type="submit" [disabled]="!subdishForm.valid" (click)="add2()">Add</button>
+
+
+
+
+<p>
+  Form Value: {{ subdishForm.value | json }}
+</p>
+
+
+<p>
+  Form Status: {{ subdishForm.status }}
+</p>
+

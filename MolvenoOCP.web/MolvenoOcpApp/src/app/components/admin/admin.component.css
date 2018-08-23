@@ -1,0 +1,16 @@
+.jumbotron{
+    background-image: url("/src/assets/images/restaurant.jpg");
+}
+
+.admin-section{
+    background: rgb(175, 101, 67);
+    color: rgba(255,255,255,.3);
+    
+}
+
+.card {
+    background-color:  white;
+    color: black
+    
+}
+
