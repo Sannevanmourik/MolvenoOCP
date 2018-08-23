@@ -17,8 +17,8 @@
         Ingredient:
         <!-- <input type="text" [formControlName]="i"> -->
 
-        <select name="ingredients" >
-            <option value="volvo" *ngFor="let ingredient of availableIngredients">{{ingredient.name}}</option>
+        <select name="ingredients" [formControlName]="i">
+            <option  *ngFor="let ingredient of availableIngredients" [ngValue]=ingredient>{{ingredient.name}}</option>
 
           </select>
 

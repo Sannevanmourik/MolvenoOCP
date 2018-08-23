@@ -23,7 +23,7 @@ export class SubdishEditorComponent implements OnInit, OnDestroy {
   subdishForm = this.fb.group({
     name: ['', Validators.required],
     ingredients: this.fb.array([
-      this.fb.control('')
+      this.fb.control(0)
     ])
   });
 
@@ -38,7 +38,7 @@ export class SubdishEditorComponent implements OnInit, OnDestroy {
 
 
   addIngredient() {
-    this.ingredients.push(this.fb.control(''));
+    this.ingredients.push(this.fb.control(0));
   }
 
   onSubmit() {
@@ -50,6 +50,7 @@ export class SubdishEditorComponent implements OnInit, OnDestroy {
     const formValue = this.subdishForm.value;
     const newSubdish = new Subdish();
     newSubdish.name = formValue.name;
+    newSubdish.ingredients = formValue.ingredients;
 
     console.log(newSubdish);
 
