@@ -119,6 +119,7 @@ export class SubdishListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.ingredientSubscription.unsubscribe();
   }
 
 }

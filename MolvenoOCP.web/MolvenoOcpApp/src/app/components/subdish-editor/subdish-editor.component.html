@@ -13,9 +13,15 @@
 
     <div *ngFor="let name of ingredients.controls; let i=index">
 
-      <label>
+      <label >
         Ingredient:
-        <input type="text" [formControlName]="i">
+        <!-- <input type="text" [formControlName]="i"> -->
+
+        <select name="ingredients" >
+            <option value="volvo" *ngFor="let ingredient of availableIngredients">{{ingredient.name}}</option>
+
+          </select>
+
       </label>
     </div>
   </div>
