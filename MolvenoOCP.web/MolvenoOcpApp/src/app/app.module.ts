@@ -36,6 +36,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from './components/admin/menuItems/menu.component';
 import { SubdishListComponent } from './components/subdish-list/subdish-list.component';
 import { SubdishEditorComponent } from './components/subdish-editor/subdish-editor.component';
+import { SubdishesComponent } from './components/admin/subdishes/subdishes.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { SubdishEditorComponent } from './components/subdish-editor/subdish-edit
     MenuComponent,
     SubdishListComponent,
     SubdishEditorComponent,
+    SubdishesComponent,
 
 
   ],
