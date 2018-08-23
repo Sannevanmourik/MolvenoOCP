@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Validators, FormBuilder} from '@angular/forms';
 import { SubDishService } from '../../services/sub-dish.service';
+import { IngredientService } from '../../services/ingredient-service.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Subdish } from '../../models/subdish';
+import { Ingredient } from '../../models/ingredient';
 import { Subscription } from '../../../../node_modules/rxjs';
 
 @Component({
@@ -12,7 +14,10 @@ import { Subscription } from '../../../../node_modules/rxjs';
 })
 export class SubdishListComponent implements OnInit, OnDestroy {
 
-  constructor(private fb: FormBuilder, private modalService: NgbModal, private subdishService: SubDishService) { }
+  constructor(private fb: FormBuilder,
+     private modalService: NgbModal,
+      private subdishService: SubDishService,
+       private ingredientService: IngredientService) { }
 
   editForm = this.fb.group({
     name: ['', Validators.required],
@@ -23,11 +28,15 @@ export class SubdishListComponent implements OnInit, OnDestroy {
 
   editSubdish: Subdish;
 
-  displayedColumns: string[] = ['name', 'ingredients'];
+  displayedColumns: string[] = ['name', 'ingredients', 'edit'];
 
   subscription:  Subscription;
 
   @Input() subdishes: Array<Subdish>;
+
+  ingredientSubscription: Subscription;
+
+  availableIngredients: Array<Ingredient>;
 
 
   ngOnInit() {
@@ -40,6 +49,17 @@ export class SubdishListComponent implements OnInit, OnDestroy {
       },
       (error) => {
         console.error('Failed to get i tutti subdishishi', error);
+      }
+    );
+
+    this.ingredientSubscription = this.ingredientService.getAll().subscribe(
+      (data: Array<Ingredient>) => {
+        this.availableIngredients = data;
+
+        console.log(this.availableIngredients);
+      },
+      (error) => {
+        console.error('Failed to get i tutti ingredienti', error);
       }
     );
   }
