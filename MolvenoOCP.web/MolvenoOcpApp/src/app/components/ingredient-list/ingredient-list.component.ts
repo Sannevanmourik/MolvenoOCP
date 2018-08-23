@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
 import { IngredientService } from '../../services/ingredient-service.service';
 import { Ingredient } from '../../models/ingredient';
 import { Validators, FormBuilder} from '@angular/forms';
@@ -31,9 +31,13 @@ export class IngredientListComponent implements OnInit, OnDestroy {
     allergy: [null],
   });
 
+
+
   closeResult: string;
 
   editIngredient: Ingredient;
+
+  // formValue: Ingredient;
 
 
   // from angular material
@@ -95,23 +99,38 @@ export class IngredientListComponent implements OnInit, OnDestroy {
 
 
   edit(editIngredient) {
-    const formValue = this.editForm.value;
-    formValue.name = editIngredient.name;
-    formValue.price = editIngredient.price;
-    formValue.vegetarian = editIngredient.vegetarian;
-    formValue.stock = editIngredient.stock;
-    formValue.allergy = editIngredient.allergy;
-    formValue.id = editIngredient.id;
+    this.editForm.value.name = editIngredient.name;
+
+    // this.formValue.name = editIngredient.name;
+    this.editForm.value.price = editIngredient.price;
+    this.editForm.value.vegetarian = editIngredient.vegetarian;
+    this.editForm.value.stock = editIngredient.stock;
+    this.editForm.value.allergy = editIngredient.allergy;
+    this.editForm.value.id = editIngredient.id;
+    console.log('edit');
     console.log(editIngredient);
+    console.log('formValue');
+    console.log(this.editForm.value);
     this.ingredientService.getAll();
     // this.update();
   }
 
-  save() {
+  save(newIngredient: Ingredient) {
 
-    const formValue = this.editForm.value;
+    console.log('save');
+    console.log(newIngredient);
+
+    this.ingredientService.updateIngredient(newIngredient, newIngredient.id).subscribe();
+    this.ingredientService.getAll();
+
+
+  }
+
+  /*
+
+  add2() {
+    const formValue = this.ingredientForm.value;
     const newIngredient = new Ingredient();
-    newIngredient.id = formValue.id;
     newIngredient.name = formValue.name;
     newIngredient.price = formValue.price;
     newIngredient.vegetarian = formValue.vegetarian;
@@ -119,24 +138,10 @@ export class IngredientListComponent implements OnInit, OnDestroy {
     newIngredient.allergy = formValue.allergy;
     console.log(newIngredient);
 
-    this.ingredientService.updateIngredient(newIngredient, newIngredient.id).subscribe();
-
-
+    this.ingredientService.addIngredient(newIngredient).subscribe();
   }
 
-  update() {
-    if (this.editIngredient) {
-      this.ingredientService.updateIngredient(this.editIngredient, this.editIngredient.id)
-        .subscribe(movie => {
-          const ix = movie ? this.ingredients.findIndex(h => h.id === movie.id) : -1;
-          if (ix > -1) { this.ingredients[ix] = movie; }
-        });
-      this.editIngredient = undefined;
-    }
-    this.ingredientService.getAll();
-  }
-
-
+  */
 
 
   ngOnDestroy() {

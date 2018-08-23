@@ -44,15 +44,14 @@ export class ModalComponent implements OnInit {
   }
 
   openLg(content) {
-    this.modalService.open(content, { size: 'lg' }).result.then((result) => {
-    // this.modalService.open(content, { size: 'lg' }).dismiss();
-        // this.closeResult = `Closed with: ${result}`;
-     console.log('closing modal') ;
-this.activeModal.close();
-this.activeModal.dismiss();
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+
+    this.modalReference = this.modalService.open(content);
+
+    this.modalReference.result.then((result) => {
+      // this.closeResult = `Closed with: ${result}`;
       console.log('dismissed');
+    }, (reason) => {
+      this.closeResult = `${this.getDismissReason(reason)}`;
     });
 
     if (this.getLoggedIn()) {
@@ -64,11 +63,17 @@ this.activeModal.dismiss();
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
+      console.log('dismissed by ESC');
+      return '';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
+      console.log('dismissed by backdrop');
+      return '';
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  closeModal() {
+    this.modalReference.close();
   }
 }

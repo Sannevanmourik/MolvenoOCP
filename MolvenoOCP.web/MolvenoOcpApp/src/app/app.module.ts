@@ -27,12 +27,13 @@ import { MainComponent } from './components/main/main.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ShowMenuComponent } from './components/show-menu/show-menu.component';
 import { LowerCasePipe } from '@angular/common';
-
-import { AppRoutingModule } from './/app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material';
 import { EnumSelectPipe } from './pipes/enum-select.pipe';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
+import {MatListModule} from '@angular/material';
+import { AppRoutingModule } from './app-routing.module';
+import { MenuComponent } from './components/admin/menuItems/menu.component';
 
 @NgModule({
   declarations: [
@@ -48,9 +49,9 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
     MainComponent,
     HeaderComponent,
     ShowMenuComponent,
-
     EnumSelectPipe,
     DeleteModalComponent,
+    MenuComponent,
 
 
   ],
@@ -64,6 +65,7 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatListModule,
     AngularFontAwesomeModule
   ],
   providers: [IngredientService, MenuServiceService, AlertService, NgbActiveModal,
