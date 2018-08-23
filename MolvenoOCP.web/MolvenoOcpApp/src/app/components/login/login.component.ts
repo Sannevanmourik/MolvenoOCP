@@ -1,19 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-login',
-//   templateUrl: './login.component.html',
-//   styleUrls: ['./login.component.css']
-// })
-// export class LoginComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
-
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { NgbModule, NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -43,8 +27,6 @@ export class LoginComponent implements OnInit {
     submitted = false;
     returnUrl: string;
 
-    // @Input() ingredients: Array[] = ['test', 'test'];
-
     constructor(
         private fb: FormBuilder,
         private formBuilder: FormBuilder,
@@ -61,11 +43,7 @@ export class LoginComponent implements OnInit {
 
         // reset login status
         this.authenticationService.logout();
-
-        // get return url from route parameters or default to '/'
-        // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.returnUrl = 'admin';
-
       }
 
     // convenience getter for easy access to form fields

@@ -33,6 +33,7 @@ import { EnumSelectPipe } from './pipes/enum-select.pipe';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 import {MatListModule} from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
+import { MenuComponent } from './components/admin/menuItems/menu.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AppRoutingModule } from './app-routing.module';
     ShowMenuComponent,
     EnumSelectPipe,
     DeleteModalComponent,
+    MenuComponent,
 
 
   ],
