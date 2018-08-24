@@ -8,6 +8,7 @@ import { ShowMenuComponent } from './components/show-menu/show-menu.component';
 import { SubdishListComponent } from './components/subdish-list/subdish-list.component';
 import { SubdishEditorComponent } from './components/subdish-editor/subdish-editor.component';
 import { SubdishesComponent } from './components/admin/subdishes/subdishes.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   { path: 'ingredients', component: IngredientListComponent },
@@ -20,6 +21,11 @@ const routes: Routes = [
   { path: 'subdish', component: SubdishListComponent},
   { path: 'editSubdish', component: SubdishEditorComponent},
   { path: 'subdishes', component: SubdishesComponent},
+  { path: 'home', component: HomeComponent},
+  { path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  }
 
 ];
 

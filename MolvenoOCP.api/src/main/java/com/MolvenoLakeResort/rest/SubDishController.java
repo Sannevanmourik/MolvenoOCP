@@ -69,7 +69,7 @@ public class SubDishController {
         if (possibleSubDish.isPresent()) {
             SubDish subDish = possibleSubDish.get();
             subDish.setName(update.getName());
-            subDish.setIngredientListForSubDish(update.getIngredientListForSubDish());
+            subDish.setIngredients(update.getIngredients());
 
 
             return new ResponseEntity<SubDish>(this.subDishRespository.save(subDish), HttpStatus.OK);
