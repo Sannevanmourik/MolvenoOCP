@@ -130,7 +130,7 @@ export class IngredientsComponent implements OnInit, OnDestroy {
     console.log(newIngredient);
 
     this.ingredientService.addIngredient(newIngredient).subscribe();
-    this.ingredientService.getAll().subscribe(
+    this.subscription = this.ingredientService.getAll().subscribe(
       (data: Array<Ingredient>) => {
         this.ingredients = data;
 
