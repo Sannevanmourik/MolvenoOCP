@@ -1,3 +1,5 @@
+
+<!-- modal for show menu -->
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
@@ -9,19 +11,21 @@
     <form>
       <div class="form-group">
           <div class="input-group">
-          <!-- <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker"> -->
-          <div class="input-group-append">
-              <mat-checkbox color="primary" href="http://localhost:8080/api/filter/vegetarian">Vegeterian</mat-checkbox>
-          </div>
-          <div class="input-group-append">
+
+            <!-- vegetarian checkbox -->
+            <div class="input-group-append">
+              <mat-checkbox color="primary" name="vegetarian" [(ngModel)]="vegetarianSelected">Vegetarian</mat-checkbox>
+            </div>
+
+            <!-- dropdown for allergies -->
+          <!-- <div class="input-group-append">
                     <div ngbDropdown class="d-inline-block">
                       <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Choose an allergy</button>
-                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1" *ngFor="let allergy of Allergy">
-                        <button class="dropdown-item">{{allergy}}</button>
+                        <button class="dropdown-item">{{ingredient.getAllergy}}</button>
                   </div>
-          </div>
-</div>
-      </div>
+          </div>  -->
+         </div>
+    
       </div>
     </form>
   </div>
@@ -34,7 +38,6 @@
 </ng-template>
 
 <button class="btn btn-outline-primary mb-2 mr-2" (click)="openBackDropCustomClass(content)">Filter</button>
-
 
 <hr>
 

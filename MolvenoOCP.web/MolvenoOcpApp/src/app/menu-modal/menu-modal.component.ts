@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import { IngredientService } from './../services/ingredient-service.service';
+import { Ingredient } from './../models/ingredient';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import {NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,6 +10,12 @@ import {NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bo
   styleUrls: ['./menu-modal.component.css']
 })
 export class MenuModalComponent {
+
+  @Output() 
+  vegetarian = new EventEmitter<boolean>();
+
+  private vegetarianSelected: boolean = false;
+
   closeResult: string;
 
   constructor(
@@ -16,16 +24,19 @@ export class MenuModalComponent {
     ) {}
 
     openBackDropCustomClass(content) {
-    this.modalService.open(content, {backdropClass: 'modal-backdrop'}).result.then((result) => {
-    // this.modalService.open(content, { size: 'lg' }).dismiss();
-        // this.closeResult = `Closed with: ${result}`;
-     console.log('closing modal') ;
-this.activeModal.close();
-this.activeModal.dismiss();
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      console.log('dismissed');
-    });
+    this.modalService.open(content, {backdropClass: 'modal-backdrop'}).result.then(
+      (result) => {
+        console.log('closing modal') ;
+        console.log('emitting'+this.vegetarianSelected);
+        this.vegetarian.emit(this.vegetarianSelected);
+        this.activeModal.close();
+        this.activeModal.dismiss();
+      }, 
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        console.log('dismissed');
+      }
+    );
   }
 
 
@@ -38,5 +49,10 @@ this.activeModal.dismiss();
         return  `with: ${reason}`;
       }
     }
+
+    public testClick() {
+      console.log("test geclicked");
+    }
+
 }
 
