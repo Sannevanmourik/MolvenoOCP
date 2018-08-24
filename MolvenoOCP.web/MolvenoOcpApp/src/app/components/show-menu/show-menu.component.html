@@ -2,8 +2,13 @@
     <h1>Menu</h1>
     <p>Please order drinks and food!</p>
   </div>
+
+  <div class="container">
+    <app-menu-modal (vegetarian)="setMenu($event)"></app-menu-modal>
+  </div>
+    
   
-  <div class="container" *ngFor="let menu of menus | slice:0">
+<div class="container" *ngFor="let menu of getMenus() | slice:0">
     <div class = "row">
       <div class="col-sm-4 py-2" *ngFor='let menuItem of menu.menuItemList'>
         
@@ -20,9 +25,7 @@
     </div>
     </div>
   
-  
-  
-  
+   
   
     <!-- <p>
     {{menus && menus[0]?.name}} {{menus && menus[0].menuItemList[1].name}}
