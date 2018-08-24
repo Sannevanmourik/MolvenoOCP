@@ -1,5 +1,7 @@
 .jumbotron{
     background-image: url("/src/assets/images/menu.jpg");
+    height: 180px;
+
     
 }
 

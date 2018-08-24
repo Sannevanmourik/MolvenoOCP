@@ -53,17 +53,20 @@ public class FilterMenuItemController {
     }
 
     @GetMapping("vegetarian")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<MenuItem>> list() {
         return new ResponseEntity<Iterable<MenuItem>>(this.getVegeterianMenuItems(), HttpStatus.OK);
     }
 
     @GetMapping("category/{category}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<MenuItem>> findByCategorie(@PathVariable MenuCategory category) {
         return new ResponseEntity<Iterable<MenuItem>>(this.getMenuItemsByCategory(category), HttpStatus.OK);
     }
 
 
     @GetMapping("allergy/{allergy}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Iterable<MenuItem>> findByAllergy(@PathVariable Allergy allergy) {
         return new ResponseEntity<Iterable<MenuItem>>(this.getMenuItemsByAllergy(allergy), HttpStatus.OK);
     }

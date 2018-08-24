@@ -24,7 +24,7 @@ public class Ingredient implements Serializable {
     @JsonIgnore // print geen tabel van menuItems
     private List<MenuItem> menuItemList;
 
-    @ManyToMany(mappedBy = "ingredientListForSubDish")
+    @ManyToMany(mappedBy = "ingredients")
     @JsonIgnore // print geen tabel van subDishes
     private List<SubDish> subDishList;
 

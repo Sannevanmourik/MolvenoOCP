@@ -21,4 +21,7 @@ public enum Allergy {
     public String getDescription() {
         return description;
     }
+
+
+
 }
