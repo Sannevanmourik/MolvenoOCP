@@ -34,6 +34,7 @@
         <option value = "PEANUTS">Peanuts</option>
         <option value = "SHELLFISH">Shellfish</option>
         <option value = "SOY">Soy</option>
+        <option value = "">""</option>
 
         </select>
     </label>
@@ -141,7 +142,7 @@
 
                               <label>
                                 Vegetarian:
-                                <input type="checkbox" [(ngModel)] = "element.vegetarian" name = "vegetarian">
+                                <input value = "{{element.vegetarian}}" type="checkbox" [(ngModel)] = "element.vegetarian" name = "vegetarian">
                               </label>
 
                               <label>
@@ -159,7 +160,7 @@
                                     <option value = "PEANUTS">Peanuts</option>
                                     <option value = "SHELLFISH">Shellfish</option>
                                     <option value = "SOY">Soy</option>
-                                    <option value = "">None</option>
+                                    <option value = null>None</option>
 
                                     </select>
                                 </label>
