@@ -13,7 +13,7 @@ import { MenuComponent } from './components/admin/menuItems/menu.component';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path: 'ingredients', component: IngredientListComponent },
+  // { path: 'ingredients', component: IngredientListComponent },
   { path: 'ingredientEditor', component: IngredientEditorComponent },
   { path: 'admin',
     component: AdminComponent,
