@@ -7,19 +7,22 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div></div>
-                        <div  class="card py-4 h-100">
-                            <a class = "btn btn-primary" [routerLink] ="['/ingredients']">Edit ingredients</a>
-                                <a [routerLink]="['/ingredients']"><img class="card-img-bottom" src="/src/assets/images/carrots.jpg" 
+                        <a [routerLink]="['/ingredients']"><div  class="card py-4 h-100">
+                                <img class="card-img-top" src="/src/assets/images/carrots.jpg" 
                                     style="max-width:100%;height:auto;" alt="carrots">                            
-                                </a>
+                                
+                                <div class = "card-body">
+                            <a class = "btn btn-primary" [routerLink] ="['/ingredients']">Edit ingredients</a>
                         </div>
+                        </div>
+                    </a>
                     </div>
 
                     <div class="col-md-3">
                         <div></div>
                         <div  class="card py-4 h-100">
                             <a class = "btn btn-primary" [routerLink]="['/subdishes']">Edit subdishes</a>
-                                    <a [routerLink]="['/subdishes']"><img class="card-img-bottom" src="/src/assets/images/pizza_dough.jpg" 
+                                    <a [routerLink]="['/subdishes']"><img class="card-img-top" src="/src/assets/images/pizza_dough.jpg" 
                                         style="max-width:100%;height:auto;" alt="pizza dough">
                                 </a>
                         </div>
@@ -29,7 +32,7 @@
                         <div></div>
                         <div  class="card py-4 h-100">
                             <a class = "btn btn-primary" [routerLink]="['/menu-items']">Edit dishes</a>
-                                <a [routerLink]="['/menu-items']"><img class="card-img-bottom" src="/src/assets/images/moussaka2.jpeg" 
+                                <a [routerLink]="['/menu-items']"><img class="card-img-top" src="/src/assets/images/moussaka2.jpeg" 
                                     style="max-width:100%;height:auto;" alt="moussaka">
                                 </a>
                         </div>
