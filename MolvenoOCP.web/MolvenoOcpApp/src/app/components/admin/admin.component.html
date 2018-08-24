@@ -8,9 +8,9 @@
                     <div class="col-md-3">
                         <div></div>
                         <div  class="card py-4 h-100">
-                            <p>Edit ingredients</p>
-                                <a href="app-ingredients"><img src="/src/assets/images/carrots.jpg" alt="carrots">
-                                    <app-ingredients></app-ingredients>
+                            <a [routerLink] ="['/ingredients']">Edit ingredients</a>
+                                <a [routerLink]="['/ingredients']"><img class="card-img-bottom" src="/src/assets/images/carrots.jpg" 
+                                    style="max-width:100%;height:auto;" alt="carrots">                            
                                 </a>
                         </div>
                     </div>
@@ -18,35 +18,33 @@
                     <div class="col-md-3">
                         <div></div>
                         <div  class="card py-4 h-100">
-                                    <p>Edit subdishes</p>
-                                    <img src="/src/assets/images/pizza_dough.jpg" alt="pizza dough">
-                                
+                            <a [routerLink]="['/subdishes']">Edit subdishes</a>
+                                    <a [routerLink]="['/subdishes']"><img class="card-img-bottom" src="/src/assets/images/pizza_dough.jpg" 
+                                        style="max-width:100%;height:auto;" alt="pizza dough">
+                                </a>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div></div>
                         <div  class="card py-4 h-100">
-                                <p>Edit dishes</p>
-                                <img src="/src/assets/images/moussaka.jpg" alt="moussaka">
-                                
+                            <a [routerLink]="['/menu-items']">Edit dishes</a>
+                                <a [routerLink]="['/menu-items']"><img class="card-img-bottom" src="/src/assets/images/moussaka2.jpeg" 
+                                    style="max-width:100%;height:auto;" alt="moussaka">
+                                </a>
                         </div>
                     </div>
                     
                     <div class="col-md-3">
                         <div></div>
                         <div  class="card py-4 h-100">
-                            <p>Edit Menus</p>
-                            <a href="/menu-items"><img src="/src/assets/images/paper_menu.jpg" alt="menu"></a>
+                            <a [routerLink]="['/menu']">Edit Menus</a>
+                                <a [routerLink]="['/menu-items']"><img class="card-img-bottom" src="/src/assets/images/paper_menu.jpg" 
+                                    style="max-width:100%;height:auto;" alt="menu">
+                                </a>
                             
                         </div>
                     </div>
-
-
-
-
-
-
                 </div>
         </div>    
   </section>
