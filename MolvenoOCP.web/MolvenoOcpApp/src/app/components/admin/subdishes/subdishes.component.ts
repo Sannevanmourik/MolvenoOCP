@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Validators, FormBuilder} from '@angular/forms';
+import { Validators, FormBuilder, FormArray} from '@angular/forms';
 import { SubDishService } from '../../../services/sub-dish.service';
 import { IngredientService } from '../../../services/ingredient-service.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
@@ -24,6 +24,15 @@ export class SubdishesComponent implements OnInit, OnDestroy {
         ingredients: [[]]
       });
 
+      subdishForm = this.fb.group({
+        name: ['', Validators.required],
+        ingredients: this.fb.array([
+          this.fb.control(0)
+        ])
+      });
+
+
+
       closeResult: string;
 
       editSubdish: Subdish;
@@ -33,11 +42,32 @@ export class SubdishesComponent implements OnInit, OnDestroy {
       subscription:  Subscription;
 
       @Input() subdishes: Array<Subdish>;
-      ingredients: Array<Ingredient>;
+      // ingredients: Array<Ingredient>;
 
       ingredientSubscription: Subscription;
 
       availableIngredients: Array<Ingredient>;
+
+      add2() {
+        const formValue = this.subdishForm.value;
+        const newSubdish = new Subdish();
+        newSubdish.name = formValue.name;
+        newSubdish.ingredients = formValue.ingredients;
+
+        console.log(newSubdish);
+
+        this.subdishService.addSubdish(newSubdish).subscribe();
+        this.subdishService.getAll().subscribe(
+          (data: Array<Subdish>) => {
+            this.subdishes = data;
+
+            console.log(this.subdishes);
+          },
+          (error) => {
+            console.error('Failed to get i tutti subdishishi', error);
+          }
+        );
+      }
 
 
       ngOnInit() {
@@ -84,6 +114,14 @@ export class SubdishesComponent implements OnInit, OnDestroy {
 
       get getSubdish() {
         return this.subdishes;
+      }
+
+      get ingredients() {
+        return this.subdishForm.get('ingredients') as FormArray;
+      }
+
+      addIngredient() {
+        this.ingredients.push(this.fb.control(0));
       }
 
       delete(subdish: Subdish): void {
