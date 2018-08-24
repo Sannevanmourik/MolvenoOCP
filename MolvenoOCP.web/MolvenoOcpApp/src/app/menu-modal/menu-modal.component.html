@@ -1,0 +1,44 @@
+
+<!-- modal for show menu -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+          <div class="input-group">
+
+            <!-- vegetarian checkbox -->
+            <div class="input-group-append">
+              <mat-checkbox color="primary" name="vegetarian" [(ngModel)]="vegetarianSelected">Vegetarian</mat-checkbox>
+            </div>
+
+            <!-- dropdown for allergies -->
+          <!-- <div class="input-group-append">
+                    <div ngbDropdown class="d-inline-block">
+                      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Choose an allergy</button>
+                        <button class="dropdown-item">{{ingredient.getAllergy}}</button>
+                  </div>
+          </div>  -->
+         </div>
+    
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+
+
+  </div>
+</ng-template>
+
+<button class="btn btn-outline-primary mb-2 mr-2" (click)="openBackDropCustomClass(content)">Filter</button>
+
+<hr>
+
+<pre>{{closeResult}}</pre>

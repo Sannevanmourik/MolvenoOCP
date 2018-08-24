@@ -10,6 +10,8 @@ import { IngredientService } from '../app/services/ingredient-service.service';
 import { IngredientListComponent } from '../app/components/ingredient-list/ingredient-list.component';
 import { IngredientEditorComponent} from '../app/components/ingredient-editor/ingredient-editor.component';
 import { AppComponent } from './app.component';
+
+
 import { PlaceOrderComponent } from './components/place-order/place-order.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ModalComponent } from './components/modal/modal.component';
@@ -21,6 +23,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AdminComponent } from './components/admin/admin.component';
 import { FakeBackendInterceptor, JwtInterceptor } from './components/helpers';
 
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
@@ -39,6 +42,7 @@ import { SubdishListComponent } from './components/subdish-list/subdish-list.com
 import { SubdishEditorComponent } from './components/subdish-editor/subdish-editor.component';
 import { SubdishesComponent } from './components/admin/subdishes/subdishes.component';
 import { HomeComponent } from './components/home/home.component';
+import { MenuModalComponent } from './menu-modal/menu-modal.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +66,7 @@ import { HomeComponent } from './components/home/home.component';
     SubdishEditorComponent,
     SubdishesComponent,
     HomeComponent,
+    MenuModalComponent,
 
 
   ],
@@ -76,7 +81,8 @@ import { HomeComponent } from './components/home/home.component';
     BrowserAnimationsModule,
     MatTableModule,
     MatListModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatCheckboxModule
   ],
   providers: [IngredientService, MenuServiceService, AlertService, NgbActiveModal,
     {
