@@ -20,7 +20,7 @@ public class SubDish implements Serializable {
     @JoinTable(name = "subDish_ingredient",
             joinColumns = @JoinColumn(name = "subDish_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id"))
-    private List<Ingredient> ingredientListForSubDish = new ArrayList<>();
+    private List<Ingredient> ingredients = new ArrayList<>();
 
     @ManyToMany(mappedBy = "subDishList")
     @JsonIgnore // print geen tabel van subDishes
@@ -40,12 +40,12 @@ public class SubDish implements Serializable {
         this.name = name;
     }
 
-    public List<Ingredient> getIngredientListForSubDish() {
-        return ingredientListForSubDish;
+    public List<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredientListForSubDish(List<Ingredient> ingredientListForSubDish) {
-        this.ingredientListForSubDish = ingredientListForSubDish;
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public List<MenuItem> getMenuItemList() {
@@ -57,7 +57,7 @@ public class SubDish implements Serializable {
     }
 
     public boolean isVegetarian() {
-        return getIngredientListForSubDish().stream().allMatch(Ingredient::isVegetarian);
+        return getIngredients().stream().allMatch(Ingredient::isVegetarian);
     }
 
 

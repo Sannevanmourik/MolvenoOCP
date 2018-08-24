@@ -1,5 +1,5 @@
 
-<h4> Add subdish</h4>
+<h4> Add new subdish</h4>
 
 <form [formGroup]="subdishForm" (ngSubmit)="onSubmit()">
   <label>
@@ -9,7 +9,7 @@
 
 
   <div formArrayName="ingredients">
-    <h3>Ingredients</h3> <button (click)="addIngredient()">Add Ingredient</button>
+    <h5>Ingredients for subdish</h5> 
 
     <div *ngFor="let name of ingredients.controls; let i=index">
 
@@ -17,19 +17,21 @@
         Ingredient:
         <!-- <input type="text" [formControlName]="i"> -->
 
-        <select name="ingredients" >
-            <option value="volvo" *ngFor="let ingredient of availableIngredients">{{ingredient.name}}</option>
+        <select name="ingredients" [formControlName]="i">
+            <option  *ngFor="let ingredient of availableIngredients" [ngValue]=ingredient>{{ingredient.name}}</option>
 
           </select>
 
       </label>
+      
     </div>
+    <button (click)="addIngredient()">Add Ingredient</button>
   </div>
 
   
 </form>
 
-<button type="submit" [disabled]="!subdishForm.valid" (click)="add2()">Add</button>
+<button type="submit" [disabled]="!subdishForm.valid" (click)="add2()">Add Subdish</button>
 
 
 
