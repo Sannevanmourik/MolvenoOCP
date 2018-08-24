@@ -1,9 +1,10 @@
 import { MenuItem } from './../../models/menuItem';
+
 import { Component, OnInit, Input } from '@angular/core';
 import { Menu } from '../../models/Menu';
 import { MenuServiceService } from '../../services/menu-service.service';
 import { Subscription } from '../../../../node_modules/rxjs';
-import { MenuItem } from '../../models/MenuItem';
+
 
 @Component({
   selector: 'app-show-menu',
@@ -39,13 +40,13 @@ public vegetarian: boolean;
     this.subscription.unsubscribe();
   }
 
-  getMenu(id: number): Menu{
-    return this.menu;
-  }
-
-  // getMenus(): Menu[] {
-  //   return this.menus;
+  // getMenu(id: number): Menu{
+  //   return this.menu;
   // }
+
+  getMenus(): Menu[] {
+    return this.menus;
+  }
 
   setMenu(vegetarian: boolean){
     console.log('setting menu to: '+ vegetarian);
@@ -66,8 +67,8 @@ public vegetarian: boolean;
    
     } else {
 
-      // this.getMenus();
-      this.getMenu(0);
+      this.getMenus();
+      // this.getMenu(0);
     }
   }
 
