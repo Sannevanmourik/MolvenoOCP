@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'editSubdish', component: SubdishEditorComponent},
   { path: 'subdishes', component: SubdishesComponent},
   { path: 'ingredients', component: IngredientsComponent},
-  { path: 'menu1', component: MenuComponent},
+  { path: 'menu-items', component: MenuComponent},
   { path: 'home', component: HomeComponent},
   { path: '',
     redirectTo: '/home',

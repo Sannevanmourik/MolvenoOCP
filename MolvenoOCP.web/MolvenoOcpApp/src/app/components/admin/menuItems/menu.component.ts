@@ -8,7 +8,7 @@ import { Menu } from '../../../models/menu';
 import { Ingredient } from '../../../models/ingredient';
 
 @Component({
-  selector: 'app-menu1',
+  selector: 'app-menu-items',
   templateUrl: './menu.component.html',
   providers: [MenuService, IngredientService],
   styleUrls: ['./menu.component.css']
