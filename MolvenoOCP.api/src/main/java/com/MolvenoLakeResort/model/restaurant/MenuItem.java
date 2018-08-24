@@ -1,12 +1,9 @@
 package com.MolvenoLakeResort.model.restaurant;
 
-import com.MolvenoLakeResort.service.DishOfTheDayService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -113,7 +110,7 @@ public class MenuItem {
 
     public double getCalculatedPrice() {
         double totalPriceIngredientList = getIngredientList().stream().mapToDouble(Ingredient::getPrice).sum();
-        double totalPriceSubDishList = getSubDishList().stream().flatMapToDouble(s -> s.getIngredientListForSubDish().stream().mapToDouble(Ingredient::getPrice)).sum();
+        double totalPriceSubDishList = getSubDishList().stream().flatMapToDouble(s -> s.getIngredients().stream().mapToDouble(Ingredient::getPrice)).sum();
         return totalPriceIngredientList + totalPriceSubDishList;
     }
 
@@ -150,7 +147,7 @@ public class MenuItem {
 
     public List<Allergy> getFilteredListOfAllergiesPerMenuItem() {
         List<Allergy> listOfAllergiesFromIngredients = getIngredientList().parallelStream().map(Ingredient::getAllergy).collect(Collectors.toList());
-        List<Allergy> listOfAllergiesFromSubDishes = getSubDishList().parallelStream().flatMap(s -> s.getIngredientListForSubDish().stream().map(Ingredient::getAllergy)).collect(Collectors.toList());
+        List<Allergy> listOfAllergiesFromSubDishes = getSubDishList().parallelStream().flatMap(s -> s.getIngredients().stream().map(Ingredient::getAllergy)).collect(Collectors.toList());
         List<Allergy> listofAllAllergiesFromMenuItem = Stream.concat(listOfAllergiesFromIngredients.stream(), listOfAllergiesFromSubDishes.stream()).collect(Collectors.toList());
 
         List<Allergy> filteredListOfAllAllergiesFromMenuItem = listofAllAllergiesFromMenuItem.stream().filter(a -> a != null).distinct().collect(Collectors.toList());

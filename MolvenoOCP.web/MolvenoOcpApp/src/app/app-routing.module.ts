@@ -10,6 +10,7 @@ import { SubdishEditorComponent } from './components/subdish-editor/subdish-edit
 import { SubdishesComponent } from './components/admin/subdishes/subdishes.component';
 import { IngredientsComponent } from './components/admin/ingredients/ingredients.component';
 import { MenuComponent } from './components/admin/menuItems/menu.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   { path: 'ingredients', component: IngredientListComponent },
@@ -24,7 +25,11 @@ const routes: Routes = [
   { path: 'subdishes', component: SubdishesComponent},
   { path: 'ingredients', component: IngredientsComponent},
   { path: 'menu1', component: MenuComponent},
-
+  { path: 'home', component: HomeComponent},
+  { path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
