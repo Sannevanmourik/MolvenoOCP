@@ -58,16 +58,24 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
 
-          <li class="nav-bar item">
-              <a class="nav-link" routerLink="/ingredients"  *ngIf='getLoggedIn()'>Ingredient List</a>
-          </li>
+            <li class="nav-bar item">
+                <a class="nav-link" routerLink="/admin"  *ngIf='getLoggedIn()'>Admin</a>
+            </li>
 
           <li class="nav-bar item">
+              <a class="nav-link" routerLink="/ingredients"  *ngIf='getLoggedIn()'>Edit ingredients</a>
+          </li>
+
+          <!-- <li class="nav-bar item">
               <a class="nav-link" routerLink="/ingredientEditor"  *ngIf='getLoggedIn()'>Ingredient Editor</a>
+          </li> -->
+
+          <li class="nav-bar item">
+              <a class="nav-link" routerLink="/subdishes"  *ngIf='getLoggedIn()'>Edit subdishes</a>
           </li>
 
           <li class="nav-bar item">
-              <a class="nav-link" routerLink="/subdishes"  *ngIf='getLoggedIn()'>Subdish Editor</a>
+              <a class="nav-link" routerLink="/menu-items"  *ngIf='getLoggedIn()'>Edit dishes</a>
           </li>
 
           <li class="nav-bar item">
