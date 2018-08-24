@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="menus" class="mat-elevation-z8">
+<table mat-table [dataSource]="menuItems" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -45,9 +45,50 @@
       <td mat-cell *matCellDef="let element"> {{element.amountOfTimesOrdered}} </td>
     </ng-container>
 
-    
+    <!-- ingredientsInStock Column -->
+    <ng-container matColumnDef="ingredientsInStock">
+      <th mat-header-cell *matHeaderCellDef> In-Stock </th>
+      <td mat-cell *matCellDef="let element"> {{element.ingredientsInStock}} </td>
+    </ng-container>
 
-    <!-- edit column -->
+    <!-- menuCategory Column -->
+    <ng-container matColumnDef="menuCategory">
+      <th mat-header-cell *matHeaderCellDef> Category </th>
+      <td mat-cell *matCellDef="let element"> {{element.menuCategory}} </td>
+    </ng-container>
+    
+    <!-- ingredientList Column -->
+    <ng-container matColumnDef="ingredientList">
+        <th mat-header-cell *matHeaderCellDef> Ingredients </th>
+        <td mat-cell *matCellDef="let element">
+            <select>
+              <option *ngFor="let ingredient of element.ingredientList" [value]="ingredient.key">{{ingredient.name}}</option>
+            </select>
+        </td>
+    </ng-container>
+
+
+    <!-- subDishList Column -->
+    <ng-container matColumnDef="subDishList">
+        <th mat-header-cell *matHeaderCellDef> SubDishes </th>
+        <td mat-cell *matCellDef="let element">
+            <select>
+              <option *ngFor="let subDishList of element.subDishList" [value]="subDishList.key">{{subDishList.name}}</option>
+            </select>
+        </td>
+    </ng-container>
+    
+    <!-- filteredListOfAllergiesPerMenuItem Column -->
+    <ng-container matColumnDef="filteredListOfAllergiesPerMenuItem">
+        <th mat-header-cell *matHeaderCellDef> Allergies </th>
+        <td mat-cell *matCellDef="let element">
+            <select>
+              <option *ngFor="let filteredListOfAllergiesPerMenuItem of element.filteredListOfAllergiesPerMenuItem" [value]="filteredListOfAllergiesPerMenuItem.key">{{filteredListOfAllergiesPerMenuItem}}</option>
+            </select>
+        </td>
+    </ng-container>
+    
+<!--== EDIT COLUMN ==-->
     <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef> Edit </th>
         <td mat-cell *matCellDef="let element"> 
@@ -108,28 +149,36 @@
                           
                             <label>
                               Vegetarian:
-                              <!-- <input value = "{{element.vegetarian}}" type="text" [(ngModel)] = "element.vegetarian" name = "vegetarian"> -->
-
                               <select  [(ngModel)] = "element.vegetarian" name = "vegetarian">
                                 <option value = "true">true</option>
                                 <option value = "false">false</option>
                               </select>
-
-
                             </label>
-                          
+
+                            <label>
+                                IngredientList:
+                                <!-- <select  [(ngModel)] = "element.ingredientList" name = "ingredientList"> -->
+                                    <!-- <td mat-cell *matCellDef="let element"> -->
+                                        <select multiple>
+                                          <option *ngFor="let ingredient of ingredients" [value]="ingredient.key">{{ingredient.name}}</option>
+                                        </select>
+                                    <!-- </td> -->
+                                                            <!-- </select> -->
+                              </label>
+  
+
+                            
+
                             <label>
                               AmountOfTimesOrdered:
                               <input value = "{{element.amountOfTimesOrdered}}" type="number" [(ngModel)] = "element.amountOfTimesOrdered" name = "amountOfTimesOrdered">
                             </label>
-                          
                       </form>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" (click)="save(element)">Save</button>
                 </div>
               </ng-template>
-
 
               <!-- Add new record -->
               <ng-template #addNew let-c="close" let-d="dismiss">
@@ -141,10 +190,6 @@
                 </div>
                 <div class="modal-body">
                       <form>
-                            <!-- <label>
-                              Id:
-                            <input disabled="disabled" value = "" type="number" [(ngModel)] = "element.id" required name = "id">
-                            </label> -->
                             <label>
                               Name:
                               <input value = "name" type="text" [(ngModel)] = "element.name" required name = "name">

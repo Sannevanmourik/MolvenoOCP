@@ -67,6 +67,7 @@ export class IngredientEditorComponent {
     console.log(newIngredient);
 
     this.ingredientService.addIngredient(newIngredient).subscribe();
+    this.ingredientService.getAll();
   }
 
 }

@@ -12,6 +12,6 @@ export class Menu {
     profit: number;
     filteredListOfAllergiesPerMenuItem: string[];
     calculatedPrice: number;
-    vegetarian;
+    vegetarian: boolean;
     ingredientsInStock: number;
 }

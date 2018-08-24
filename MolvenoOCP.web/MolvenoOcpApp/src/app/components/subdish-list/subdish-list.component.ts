@@ -33,6 +33,7 @@ export class SubdishListComponent implements OnInit, OnDestroy {
   subscription:  Subscription;
 
   @Input() subdishes: Array<Subdish>;
+  ingredients: Array<Ingredient>;
 
   ingredientSubscription: Subscription;
 
@@ -89,6 +90,14 @@ export class SubdishListComponent implements OnInit, OnDestroy {
   delete(subdish: Subdish): void {
     this.subdishes = this.subdishes.filter(h => h !== subdish);
     this.subdishService.deleteSubdish(subdish.id).subscribe();
+    this.subdishService.getAll();
+  }
+
+  deleteIngredient(ingredient: Ingredient, subdish: Subdish): void {
+    // this.ingredients = subdish.ingredients.filter(i => i !== ingredient);
+    // this.availableIngredients = this.availableIngredients.filter(h => h !== ingredient);
+    subdish.ingredients = subdish.ingredients.filter(i => i !== ingredient);
+    this.subdishService.updateSubdish(subdish, subdish.id).subscribe();
     this.subdishService.getAll();
   }
 
