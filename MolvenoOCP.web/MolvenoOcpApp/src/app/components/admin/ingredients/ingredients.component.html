@@ -34,12 +34,12 @@
         <option value = "PEANUTS">Peanuts</option>
         <option value = "SHELLFISH">Shellfish</option>
         <option value = "SOY">Soy</option>
-  
+
         </select>
     </label>
 
 
-  
+
 </form>
 
 <button type="submit" [disabled]="!ingredientForm.valid" (click)="add2()">Add</button>
@@ -63,42 +63,42 @@
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
-  
+
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef> Name </th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
-  
+
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Price </th>
       <td mat-cell *matCellDef="let element"> {{element.price}} </td>
     </ng-container>
-  
+
     <!-- Weight Column -->
     <ng-container matColumnDef="weight">
       <th mat-header-cell *matHeaderCellDef> Stock </th>
       <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
     </ng-container>
-  
+
     <!-- Symbol Column -->
     <ng-container matColumnDef="symbol">
       <th mat-header-cell *matHeaderCellDef> Allergy </th>
       <td mat-cell *matCellDef="let element"> {{element.allergy}} </td>
     </ng-container>
-  
+
       <!-- Symbol Column -->
       <ng-container matColumnDef="vegetarian">
         <th mat-header-cell *matHeaderCellDef> Vegetarian </th>
         <td mat-cell *matCellDef="let element"> {{element.vegetarian}} </td>
       </ng-container>
-  
+
       <!-- edit column -->
       <ng-container matColumnDef="edit">
           <th mat-header-cell *matHeaderCellDef> Edit </th>
-          <td mat-cell *matCellDef="let element"> 
-            
+          <td mat-cell *matCellDef="let element">
+
             <!-- // delete modal with confirm button -->
             <ng-template #contentDelete let-c="close" let-d="dismiss">
                 <div class="modal-header">
@@ -108,17 +108,17 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  Delete {{element.name}}? This action cannot be undone! 
+                  Delete {{element.name}}? This action cannot be undone!
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" (click)="delete(element)">Confirm delete</button>
                 </div>
               </ng-template>
-              
+
               <button class="btn btn-outline-danger" (click)="open(contentDelete)"> <i class="fas fa-trash-alt"></i>Delete</button>
-  
+
               <!-- // edit modal -->
-  
+
               <ng-template #content let-c="close" let-d="dismiss">
                   <div class="modal-header">
                     <h4 class="modal-title" id="modal-basic-title">Edit</h4>
@@ -133,22 +133,22 @@
                                 Name:
                                 <input value = "{{element.name}}" type="text" [(ngModel)] = "element.name" required name = "name">
                               </label>
-                            
+
                               <label>
                                 Price:
                                 <input value = "{{element.price}}" type="number" [(ngModel)] = "element.price" required name = "price">
                               </label>
-                            
+
                               <label>
                                 Vegetarian:
                                 <input type="checkbox" [(ngModel)] = "element.vegetarian" name = "vegetarian">
                               </label>
-                            
+
                               <label>
                                 Stock:
                                 <input value = "{{element.stock}}" type="number" [(ngModel)] = "element.stock" name = "stock">
                               </label>
-                                         
+
                               <label>
                                   Allergy:
                                   <select  [(ngModel)] = "element.allergy" name = "allergy">
@@ -159,8 +159,8 @@
                                     <option value = "PEANUTS">Peanuts</option>
                                     <option value = "SHELLFISH">Shellfish</option>
                                     <option value = "SOY">Soy</option>
-                                    <option value = null>None</option>
-                              
+                                    <option value = "">None</option>
+
                                     </select>
                                 </label>
                         </form>
@@ -169,19 +169,19 @@
                     <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" (click)="save(element)">Save</button>
                   </div>
                 </ng-template>
-                
+
                 <button class="btn btn-outline-primary" (click)="open(content)" (click)="edit(element)"> <i class="fas fa-trash-alt"></i>Edit</button>
-              
-              
-          
-          
-          
-          
-          
+
+
+
+
+
+
+
           </td>
         </ng-container>
-  
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  
+
