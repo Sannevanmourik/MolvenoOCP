@@ -3,19 +3,14 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { Subscription } from '../../../../../node_modules/rxjs';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MenuService } from '../../../services/menu.service';
+import { IngredientService } from '../../../services/ingredient-service.service';
 import { Menu } from '../../../models/menu';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { Ingredient } from '../../../models/ingredient';
 
 @Component({
-  selector: 'app-menu',
+  selector: 'app-menu-items',
   templateUrl: './menu.component.html',
-  providers: [MenuService],
+  providers: [MenuService, IngredientService],
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit, OnDestroy {
@@ -31,24 +26,59 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   closeResult: string;
   editMenu: Menu;
-  displayedColumns: string[] = ['id', 'name', 'profit', 'salesPrice', 'calculatedPrice', 'edit', 'vegetarian', 'amountOfTimesOrdered'];
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'profit',
+    'salesPrice',
+    'calculatedPrice',
+    'vegetarian',
+    'ingredientsInStock',
+    'amountOfTimesOrdered',
+    'menuCategory',
+    'ingredientList',
+    'subDishList',
+    'filteredListOfAllergiesPerMenuItem',
+    'edit',
+  ];
+
   subscription: Subscription;
 
-  @Input() menus: Array<Menu>;
+  @Input() menuItems: Array<Menu>;
+  @Input() ingredients: Array<Ingredient>;
 
-  constructor(private fb: FormBuilder, private modalService: NgbModal, private menuService: MenuService) { }
+  constructor(
+    private fb: FormBuilder,
+    private modalService: NgbModal,
+    private menuService: MenuService,
+    private ingredientService: IngredientService) {}
 
   ngOnInit() {
     this.subscription = this.menuService.getAll().subscribe(
       (data: Array<Menu>) => {
-        this.menus = data;
-        console.log('Showing data: ');
-        console.log(this.menus);
+        this.menuItems = data;
+
+        console.log('MenuItems: ');
+        console.log(this.menuItems);
       },
       (error) => {
         console.error('Failed to get i tutti ingredienti', error);
       }
     );
+
+    this.subscription = this.ingredientService.getAll().subscribe(
+      (data: Array<Ingredient>) => {
+        this.ingredients = data;
+
+        console.log('Ingredients: ');
+        console.log(this.ingredients);
+      },
+      (error) => {
+        console.error('Failed to get i tutti ingredienti', error);
+      }
+    );
+
+
   }
 
   open(content) {
@@ -70,11 +100,11 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   get getMenus() {
-    return this.menus;
+    return this.menuItems;
   }
 
   delete(menus: Menu): void {
-    this.menus = this.menus.filter(h => h !== menus);
+    this.menuItems = this.menuItems.filter(h => h !== menus);
     this.menuService.deleteMenu(menus.id).subscribe();
     console.log(menus.id + '. ' + menus.name + ': DELETED...');
     this.menuService.getAll();
