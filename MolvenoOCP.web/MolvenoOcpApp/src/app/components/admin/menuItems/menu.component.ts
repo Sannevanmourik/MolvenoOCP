@@ -3,13 +3,14 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { Subscription } from '../../../../../node_modules/rxjs';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MenuService } from '../../../services/menu.service';
+import { IngredientService } from '../../../services/ingredient-service.service';
 import { Menu } from '../../../models/menu';
 import { Ingredient } from '../../../models/ingredient';
 
 @Component({
-  selector: 'app-menu',
+  selector: 'app-menu1',
   templateUrl: './menu.component.html',
-  providers: [MenuService],
+  providers: [MenuService, IngredientService],
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit, OnDestroy {
@@ -43,29 +44,41 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  @Input() menus: Array<Menu>;
+  @Input() menuItems: Array<Menu>;
   @Input() ingredients: Array<Ingredient>;
 
-  constructor(private fb: FormBuilder, private modalService: NgbModal, private menuService: MenuService) { }
+  constructor(
+    private fb: FormBuilder,
+    private modalService: NgbModal,
+    private menuService: MenuService,
+    private ingredientService: IngredientService) {}
 
   ngOnInit() {
     this.subscription = this.menuService.getAll().subscribe(
       (data: Array<Menu>) => {
-        this.menus = data;
+        this.menuItems = data;
 
-        console.log('Data: ');
-        console.log(this.menus);
-
-        // for (const entry of this.menus) {
-        // entry.ingredientList.forEach(function (test) {
-        //   console.log(test);
-        // });
-        // }
+        console.log('MenuItems: ');
+        console.log(this.menuItems);
       },
       (error) => {
         console.error('Failed to get i tutti ingredienti', error);
       }
     );
+
+    this.subscription = this.ingredientService.getAll().subscribe(
+      (data: Array<Ingredient>) => {
+        this.ingredients = data;
+
+        console.log('Ingredients: ');
+        console.log(this.ingredients);
+      },
+      (error) => {
+        console.error('Failed to get i tutti ingredienti', error);
+      }
+    );
+
+
   }
 
   open(content) {
@@ -87,11 +100,11 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   get getMenus() {
-    return this.menus;
+    return this.menuItems;
   }
 
   delete(menus: Menu): void {
-    this.menus = this.menus.filter(h => h !== menus);
+    this.menuItems = this.menuItems.filter(h => h !== menus);
     this.menuService.deleteMenu(menus.id).subscribe();
     console.log(menus.id + '. ' + menus.name + ': DELETED...');
     this.menuService.getAll();
