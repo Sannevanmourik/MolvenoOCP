@@ -123,29 +123,14 @@
                 <div class="modal-body">
                       <form>
                             <label>
-                              Id:
-                            <input disabled="disabled" value = "{{element.id}}" type="number" [(ngModel)] = "element.id" required name = "id">
-                            </label>
-                            <label>
                               Name:
                               <input value = "{{element.name}}" type="text" [(ngModel)] = "element.name" required name = "name">
-                            </label>
-                          
-                            <label>
-                              Profit:
-                              <input value = "{{element.profit}}" type="number" [(ngModel)] = "element.profit" required name = "profit">
                             </label>
                           
                             <label>
                               SalesPrice:
                               <input value = "{{element.salesPrice}}" type="number" [(ngModel)] = "element.salesPrice" name = "salesPrice">
                             </label>
-                          
-                            <label>
-                              CalculatedPrice:
-                              <input value = "{{element.calculatedPrice}}" type="number" [(ngModel)] = "element.calculatedPrice" name = "calculatedPrice">
-                            </label>
-                                       
                           
                             <label>
                               Vegetarian:
@@ -165,14 +150,6 @@
                                     <!-- </td> -->
                                                             <!-- </select> -->
                               </label>
-  
-
-                            
-
-                            <label>
-                              AmountOfTimesOrdered:
-                              <input value = "{{element.amountOfTimesOrdered}}" type="number" [(ngModel)] = "element.amountOfTimesOrdered" name = "amountOfTimesOrdered">
-                            </label>
                       </form>
                 </div>
                 <div class="modal-footer">
@@ -196,30 +173,15 @@
                             </label>
                           
                             <label>
-                              Profit:
-                              <input value = "0" type="number" [(ngModel)] = "element.profit" required name = "profit">
-                            </label>
-                          
-                            <label>
                               SalesPrice:
                               <input value = "0" type="number" [(ngModel)] = "element.salesPrice" name = "salesPrice">
                             </label>
-                          
-                            <label>
-                              CalculatedPrice:
-                              <input value = "0" type="number" [(ngModel)] = "element.calculatedPrice" name = "calculatedPrice">
-                            </label>
+
                             <label>
                               Vegetarian:
                               <input value = "" type="text" [(ngModel)] = "element.vegetarian" name = "vegetarian">
                             </label>
-                          
-                            <label>
-                              AmountOfTimesOrdered:
-                              <input value = "" type="number" [(ngModel)] = "element.amountOfTimesOrdered" name = "amountOfTimesOrdered">
-                            </label>
-
-                                       
+                            
                       </form>
                 </div>
                 <div class="modal-footer">
@@ -229,7 +191,7 @@
 
 
               
-              &nbsp;<button class="btn btn-outline-primary" (click)="open(content)" (click)="edit(element)"> <i class="fas fa-trash-alt"></i>Edit</button>
+              &nbsp;<button class="btn btn-outline-primary" (click)="open(content)"> <i class="fas fa-trash-alt"></i>Edit</button>
               &nbsp;<button class="btn btn-success" (click)="open(addNew)"> <i class="fas fa-trash-alt"></i>Add</button>
             
         </td>
