@@ -1,0 +1,17 @@
+
+<form [formGroup]="parentForm"> -->
+    <label for="name">Name</label>
+    <input formControlName="name" />
+
+    <br/>
+
+    <label for="price">Price</label>
+    <input formControlName="price" />
+
+    <app-ingredient2-list
+        [parentForm]="parentForm"
+        [ingredientList]="parentData.ingredientList">
+    </app-ingredient2-list>    
+</form>
+  
+  

@@ -1,0 +1,10 @@
+<div [formGroup]="parentForm">
+    <div formArrayName="ingredientList">
+        <div *ngFor="let ingredient of ingredientList">
+            <app-child-form
+                [ingredientList]="parentForm.controls.ingredientList"
+                [ingredient]="ingredient">
+            </app-child-form>
+        </div>
+    </div>
+</div>

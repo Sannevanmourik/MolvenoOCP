@@ -15,17 +15,7 @@ import { Ingredient } from '../../../models/ingredient';
 })
 export class MenuComponent implements OnInit, OnDestroy {
 
-  editForm = this.fb.group({
-    id: [''],
-    name: ['', Validators.required],
-    profit: [0, Validators.required],
-    salesPrice: [0, Validators.required],
-    calculatedPrice: [0, Validators.required],
-    edit: [null],
-  });
-
   closeResult: string;
-  editMenu: Menu;
   displayedColumns: string[] = [
     'id',
     'name',
@@ -77,8 +67,6 @@ export class MenuComponent implements OnInit, OnDestroy {
         console.error('Failed to get i tutti ingredienti', error);
       }
     );
-
-
   }
 
   open(content) {
@@ -99,29 +87,12 @@ export class MenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  get getMenus() {
-    return this.menuItems;
-  }
-
   delete(menus: Menu): void {
     this.menuItems = this.menuItems.filter(h => h !== menus);
     this.menuService.deleteMenu(menus.id).subscribe();
     console.log(menus.id + '. ' + menus.name + ': DELETED...');
     this.menuService.getAll();
-  }
-
-  edit(editMenu) {
-    this.editForm.value.name = editMenu.name;
-    this.editForm.value.price = editMenu.price;
-    this.editForm.value.vegetarian = editMenu.vegetarian;
-    this.editForm.value.stock = editMenu.stock;
-    this.editForm.value.allergy = editMenu.allergy;
-    this.editForm.value.id = editMenu.id;
-    console.log('edit');
-    console.log(editMenu);
-    console.log('formValue');
-    console.log(this.editForm.value);
-    this.menuService.getAll();
+    this.updateData();
   }
 
   save(newMenu: Menu) {
@@ -129,6 +100,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     console.log(newMenu);
     this.menuService.updateMenu(newMenu, newMenu.id).subscribe();
     this.menuService.getAll();
+    this.updateData();
   }
 
   add(newMenu: Menu) {
@@ -136,9 +108,43 @@ export class MenuComponent implements OnInit, OnDestroy {
     console.log('added: ');
     console.log(newMenu);
     this.menuService.getAll();
+    this.updateData();
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.menuService.getAll();
+    this.updateData();
+  }
+
+  updateData() {
+      this.menuService.getAll().subscribe(
+      (data: Array<Menu>) => {
+        this.menuItems = data;
+
+        console.log('MenuItems updated: ');
+        console.log(this.menuItems);
+      },
+      (error) => {
+        console.error('Failed to get i tutti ingredienti', error);
+      }
+    );
+
   }
 }
+
+  // edit(editMenu) {
+  //   this.editForm.value.name = editMenu.name;
+  //   this.editForm.value.price = editMenu.price;
+  //   this.editForm.value.vegetarian = editMenu.vegetarian;
+  //   this.editForm.value.stock = editMenu.stock;
+  //   this.editForm.value.allergy = editMenu.allergy;
+  //   this.editForm.value.id = editMenu.id;
+  //   console.log('edit');
+  //   console.log(editMenu);
+  //   console.log('formValue');
+  //   console.log(this.editForm.value);
+  //   this.menuService.getAll();
+  // }
+  // get getMenus() {
+  //   return this.menuItems;
+  // }

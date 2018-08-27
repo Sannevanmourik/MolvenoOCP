@@ -44,6 +44,11 @@ import { SubdishesComponent } from './components/admin/subdishes/subdishes.compo
 import { HomeComponent } from './components/home/home.component';
 import { MenuModalComponent } from './menu-modal/menu-modal.component';
 
+import { FormComponent } from './components/admin/menuItems/form/form.component';
+import { IngredientList2Component } from './components/admin/menuItems/form/ingredient2-list/ingredient2-list.component';
+import { ChildFormComponent } from './components/admin/menuItems/form/ingredient2-list/child-form/child-form.component';
+import { AllergyListComponent } from './components/admin/menuItems/form/allergy-list/allergy-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +72,10 @@ import { MenuModalComponent } from './menu-modal/menu-modal.component';
     SubdishesComponent,
     HomeComponent,
     MenuModalComponent,
+    FormComponent,
+    IngredientList2Component,
+    AllergyListComponent,
+    ChildFormComponent,
 
 
   ],
